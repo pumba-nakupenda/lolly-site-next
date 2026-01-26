@@ -9,6 +9,9 @@ const Services = () => {
     const navigate = useNavigate();
     const [activeStep, setActiveStep] = useState(0);
     const [activeExpertise, setActiveExpertise] = useState(0);
+    const [activeDiff, setActiveDiff] = useState(0);
+    const [activeResult, setActiveResult] = useState(0);
+    const [activeCatalogue, setActiveCatalogue] = useState(0);
     const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
@@ -28,6 +31,7 @@ const Services = () => {
     const handleScroll = (e: any, setIndex: Function) => {
         const scrollLeft = e.target.scrollLeft;
         const width = e.target.scrollWidth - e.target.clientWidth;
+        if (width <= 0) return;
         const scrollPercentage = scrollLeft / width;
         const totalItems = e.target.children.length;
         const index = Math.round(scrollPercentage * (totalItems - 1));
@@ -147,7 +151,7 @@ const Services = () => {
     const standardExpertises = expertises.filter(s => s.id !== "consulting");
 
     return (
-        <div className="pt-24 md:pt-40 pb-16 md:pb-20 px-6 min-h-screen relative overflow-hidden bg-transparent">
+        <div className="pt-24 md:pt-40 pb-16 md:pb-20 px-0 md:px-6 min-h-screen relative overflow-hidden bg-transparent">
             {/* Premium Background Decorative Elements */}
             <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none hidden md:block">
                 <motion.div
@@ -172,7 +176,7 @@ const Services = () => {
             </div>
 
             {/* Header */}
-            <div className="container mx-auto max-w-5xl text-center mb-16 md:mb-32 relative z-10">
+            <div className="container mx-auto max-w-5xl text-center mb-16 md:mb-32 relative z-10 px-6 md:px-0">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -189,7 +193,7 @@ const Services = () => {
             </div>
 
             {/* Steps Section */}
-            <section className="container mx-auto max-w-6xl mb-24 md:mb-48 relative z-10" ref={stepsRef}>
+            <section className="container mx-auto max-w-6xl mb-24 md:mb-48 relative z-10 px-0 md:px-6" ref={stepsRef}>
                 <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-white/10 transform -translate-x-1/2">
                     <motion.div
                         style={{ scaleY: scaleY }}
@@ -199,7 +203,7 @@ const Services = () => {
 
                 {/* Mobile Carousel Container for Steps */}
                 <div 
-                    className="flex overflow-x-auto snap-x snap-mandatory pt-12 pb-8 gap-4 px-[7.5vw] md:block md:px-0 md:pt-0 scrollbar-hide"
+                    className="flex overflow-x-auto snap-x snap-mandatory pt-12 pb-8 gap-4 px-6 md:block md:px-0 md:pt-0 scrollbar-hide"
                     onScroll={(e) => handleScroll(e, setActiveStep)}
                 >
                     {[
@@ -251,7 +255,7 @@ const Services = () => {
                             <div className="md:w-[45%] w-full">
                                 <motion.div
                                     whileHover={{ y: -5, borderColor: "rgba(255, 209, 0, 0.3)" }}
-                                    className={`p-8 md:p-12 bg-surface/30 backdrop-blur-xl border border-white/5 rounded-[2.5rem] transition-all duration-500 relative group shadow-2xl h-full ${index % 2 === 0 ? 'md:text-left' : 'md:text-right'}`}
+                                    className={`p-6 md:p-12 bg-surface/30 backdrop-blur-xl border border-white/5 rounded-[2.5rem] transition-all duration-500 relative group shadow-2xl h-full ${index % 2 === 0 ? 'md:text-left' : 'md:text-right'}`}
                                 >
                                     <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent pointer-events-none rounded-[2.5rem]" />
 
@@ -368,7 +372,7 @@ const Services = () => {
 
                 {/* Grid for other expertises - Horizontal on Mobile */}
                 <div 
-                    className="flex overflow-x-auto snap-x snap-mandatory pt-12 pb-8 gap-5 px-[7.5vw] md:px-0 scrollbar-hide md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-10 md:pb-0 md:overflow-visible"
+                    className="flex overflow-x-auto snap-x snap-mandatory pt-12 pb-8 gap-5 px-6 md:px-0 scrollbar-hide md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-10 md:pb-0 md:overflow-visible"
                     onScroll={(e) => handleScroll(e, setActiveExpertise)}
                 >
                     {standardExpertises.map((service, index) => (
@@ -382,7 +386,7 @@ const Services = () => {
                             className="min-w-[85vw] snap-center md:min-w-0 bg-surface/30 backdrop-blur-xl rounded-[2.5rem] border border-white/5 overflow-hidden hover:border-primary/20 transition-all duration-500 flex flex-col h-full group relative shadow-xl"
                         >
                             <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent pointer-events-none" />
-                            <div className="p-10 flex-1 relative z-10">
+                            <div className="p-6 md:p-10 flex-1 relative z-10">
                                 <div className="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center mb-8 border border-white/10 group-hover:bg-primary/20 transition-all group-hover:rotate-12 group-hover:scale-110">
                                     <service.icon size={28} className="text-white group-hover:text-primary transition-colors" />
                                 </div>
@@ -447,7 +451,10 @@ const Services = () => {
                         </h2>
                     </motion.div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                    <div 
+                        className="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-8 px-6 md:px-0 scrollbar-hide md:grid md:grid-cols-3 lg:grid-cols-5 md:overflow-visible"
+                        onScroll={(e) => handleScroll(e, setActiveDiff)}
+                    >
                         {[
                             { icon: HeartHandshake, title: "Co-Création", desc: "Immersion totale dans vos enjeux. Nous devenons votre département com interne." },
                             { icon: Target, title: "Impact Data", desc: "Zéro vanité. Nous traquons les indicateurs réels de croissance et conversion." },
@@ -462,7 +469,7 @@ const Services = () => {
                                 viewport={{ once: true }}
                                 transition={{ delay: i * 0.1 }}
                                 whileHover={{ y: -10, scale: 1.02 }}
-                                className="bg-surface/20 backdrop-blur-xl p-8 rounded-[2rem] border border-white/5 hover:border-primary/30 transition-all duration-500 group text-center flex flex-col items-center"
+                                className="min-w-[80vw] snap-center md:min-w-0 bg-surface/20 backdrop-blur-xl p-8 rounded-[2rem] border border-white/5 hover:border-primary/30 transition-all duration-500 group text-center flex flex-col items-center"
                             >
                                 <div className="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-all">
                                     <item.icon size={28} className="text-primary" />
@@ -470,6 +477,15 @@ const Services = () => {
                                 <h3 className="text-lg font-bold text-white mb-3 tracking-tight">{item.title}</h3>
                                 <p className="text-gray-400 text-[13px] leading-relaxed">{item.desc}</p>
                             </motion.div>
+                        ))}
+                    </div>
+                    {/* Pagination Dots for Differentiators (Mobile Only) */}
+                    <div className="flex md:hidden justify-center gap-2 mt-4">
+                        {[0, 1, 2, 3, 4].map((i) => (
+                            <div 
+                                key={i} 
+                                className={`h-1.5 rounded-full transition-all duration-300 ${activeDiff === i ? "w-6 bg-primary" : "w-1.5 bg-white/20"}`}
+                            />
                         ))}
                     </div>
                 </div>
@@ -488,7 +504,10 @@ const Services = () => {
                     </h2>
                 </motion.div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-10 text-center max-w-6xl mx-auto">
+                <div 
+                    className="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-8 px-6 md:px-0 scrollbar-hide md:grid md:grid-cols-3 md:gap-10 md:overflow-visible max-w-6xl mx-auto"
+                    onScroll={(e) => handleScroll(e, setActiveResult)}
+                >
                     {[
                         { val: "+450%", label: "Notoriété Digitale", desc: "Campagne 360° pour une institution publique.", color: "primary" },
                         { val: "+180%", label: "Conversion Leads", desc: "Refonte d'identité et stratégie ads pour une PME.", color: "accent" },
@@ -501,7 +520,7 @@ const Services = () => {
                             viewport={{ once: true }}
                             transition={{ delay: i * 0.2, type: "spring", stiffness: 100 }}
                             whileHover={{ y: -10 }}
-                            className={`p-12 bg-surface/30 backdrop-blur-2xl border border-white/10 rounded-[3rem] relative overflow-hidden group shadow-2xl`}
+                            className={`min-w-[85vw] snap-center md:min-w-0 p-12 bg-surface/30 backdrop-blur-2xl border border-white/10 rounded-[3rem] relative overflow-hidden group shadow-2xl`}
                         >
                             <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent pointer-events-none" />
                             <div className="relative z-10">
@@ -518,6 +537,15 @@ const Services = () => {
                             {/* Inner Glow */}
                             <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-primary/10 rounded-full blur-[50px] pointer-events-none" />
                         </motion.div>
+                    ))}
+                </div>
+                {/* Pagination Dots for Results (Mobile Only) */}
+                <div className="flex md:hidden justify-center gap-2 mt-4">
+                    {[0, 1, 2].map((i) => (
+                        <div 
+                            key={i} 
+                            className={`h-1.5 rounded-full transition-all duration-300 ${activeResult === i ? "w-6 bg-primary" : "w-1.5 bg-white/20"}`}
+                        />
                     ))}
                 </div>
             </section>
@@ -572,6 +600,24 @@ const Services = () => {
                     </p>
                 </motion.div>
 
+                <div className="md:hidden flex overflow-x-auto gap-2 pb-8 scrollbar-hide px-6 -mx-6">
+                    {[
+                        "Stratégie", "Design", "Vidéos", "Social", "Contenu", "Formations", "Events"
+                    ].map((tab, i) => (
+                        <button
+                            key={i}
+                            onClick={() => setActiveCatalogue(i)}
+                            className={`whitespace-nowrap px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest transition-all ${
+                                activeCatalogue === i 
+                                ? "bg-primary text-black" 
+                                : "bg-white/5 text-gray-400 border border-white/10"
+                            }`}
+                        >
+                            {tab}
+                        </button>
+                    ))}
+                </div>
+
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
                     {[
                         { cat: "Stratégie & Conseil", list: ["Audit image", "Audit digital", "Diagnostic comm", "Stratégie 360", "Plan de comm", "Positionnement", "Accompagnement Executive"] },
@@ -588,7 +634,7 @@ const Services = () => {
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true }}
                             transition={{ delay: i * 0.05 }}
-                            className="space-y-6 group"
+                            className={`space-y-6 group ${isMobile && activeCatalogue !== i ? "hidden" : "block"}`}
                         >
                             <h3 className="text-primary font-black uppercase tracking-widest text-xs border-b border-primary/20 pb-4 group-hover:border-primary transition-colors">{item.cat}</h3>
                             <ul className="space-y-3">

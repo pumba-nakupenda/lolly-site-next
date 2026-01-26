@@ -23,7 +23,7 @@ const Home = () => {
 
             <ClientLogos />
 
-            <section className="py-20 md:py-32 relative z-10">
+            <section className="py-16 md:py-32 relative z-10">
                 {/* Background Decorative Element */}
                 <div className="absolute top-1/2 left-0 w-full h-full pointer-events-none overflow-hidden -z-10 hidden md:block">
                     <motion.div
@@ -37,7 +37,7 @@ const Home = () => {
                 </div>
 
                 <div className="container mx-auto px-6">
-                    <div className="flex flex-col md:flex-row justify-between items-end mb-24 gap-12">
+                    <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 md:mb-24 gap-8 md:gap-12">
                         <motion.div
                             initial={{ opacity: 0, x: -30 }}
                             whileInView={{ opacity: 1, x: 0 }}
@@ -46,17 +46,17 @@ const Home = () => {
                             className="max-w-3xl"
                         >
                             <span className="text-primary font-bold tracking-[0.2em] uppercase text-xs mb-4 block">Notre Philosophie</span>
-                            <h2 className="text-2xl md:text-7xl font-serif font-bold mb-8 text-white tracking-tight">
+                            <h2 className="text-3xl md:text-7xl font-serif font-bold mb-8 text-white tracking-tight leading-tight">
                                 Nous ne suivons pas <br />les tendances. <span className="text-primary italic pb-1 px-2">On les crée.</span>
                             </h2>
                             <p className="text-lg md:text-xl text-gray-400 leading-relaxed max-w-xl">
                                 LOLLY est votre partenaire stratégique pour dominer le paysage digital sénégalais avec une longueur d'avance.
                             </p>
                         </motion.div>
-                        <Link to="/services">
+                        <Link to="/services" className="w-full md:w-auto">
                             <motion.div
                                 whileHover={{ x: 10 }}
-                                className="group flex items-center gap-4 text-white hover:text-primary transition-all uppercase tracking-[0.2em] text-xs font-black cursor-pointer bg-white/5 px-8 py-5 rounded-2xl border border-white/10 backdrop-blur-sm"
+                                className="group flex items-center justify-between md:justify-start gap-4 text-white hover:text-primary transition-all uppercase tracking-[0.2em] text-[10px] md:text-xs font-black cursor-pointer bg-white/5 px-6 md:px-8 py-4 md:py-5 rounded-2xl border border-white/10 backdrop-blur-sm"
                             >
                                 Voir toutes nos expertises
                                 <span className="text-lg group-hover:translate-x-2 transition-transform">→</span>
@@ -66,7 +66,7 @@ const Home = () => {
 
                     {/* Services Section - Horizontal Scroll on Mobile */}
                     <div 
-                        className="flex overflow-x-auto pb-8 gap-6 snap-x snap-mandatory scrollbar-hide md:grid md:grid-cols-3 md:gap-8 md:pb-0 md:overflow-visible"
+                        className="flex overflow-x-auto pb-8 gap-5 snap-x snap-mandatory scrollbar-hide md:grid md:grid-cols-3 md:gap-8 md:pb-0 md:overflow-visible"
                         onScroll={(e) => handleScroll(e, setActiveService)}
                     >
                         {[
@@ -81,14 +81,14 @@ const Home = () => {
                                 viewport={{ once: true }}
                                 transition={{ delay: i * 0.2, duration: 0.8 }}
                                 whileHover={{ y: -15, scale: 1.02 }}
-                                className={`min-w-[80vw] md:min-w-0 snap-center p-10 bg-surface/30 backdrop-blur-xl border border-white/5 rounded-[2.5rem] hover:border-primary/30 transition-all duration-500 group relative overflow-hidden ${i === 1 ? 'md:mt-12' : i === 2 ? 'md:mt-24' : ''}`}
+                                className={`min-w-[85vw] md:min-w-0 snap-center p-8 md:p-10 bg-surface/30 backdrop-blur-xl border border-white/5 rounded-[2.5rem] hover:border-primary/30 transition-all duration-500 group relative overflow-hidden ${i === 1 ? 'md:mt-12' : i === 2 ? 'md:mt-24' : ''}`}
                             >
                                 <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent pointer-events-none" />
-                                <div className={`w-16 h-16 ${item.color} rounded-2xl mb-8 flex items-center justify-center text-black font-black text-2xl group-hover:rotate-12 transition-transform shadow-lg`}>
+                                <div className={`w-14 h-14 md:w-16 md:h-16 ${item.color} rounded-2xl mb-6 md:mb-8 flex items-center justify-center text-black font-black text-xl md:text-2xl group-hover:rotate-12 transition-transform shadow-lg`}>
                                     {item.id}
                                 </div>
-                                <h3 className="text-3xl font-bold text-white mb-4 tracking-tight">{item.title}</h3>
-                                <p className="text-gray-400 text-lg leading-relaxed">{item.desc}</p>
+                                <h3 className="text-2xl md:text-3xl font-bold text-white mb-4 tracking-tight">{item.title}</h3>
+                                <p className="text-gray-400 text-base md:text-lg leading-relaxed">{item.desc}</p>
                             </motion.div>
                         ))}
                     </div>
@@ -104,22 +104,35 @@ const Home = () => {
                 </div>
             </section>
 
-            <section className="py-20 md:py-32 relative overflow-hidden">
-                <div className="container mx-auto px-6 relative z-10">
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        className="mb-12 md:mb-20 text-center"
-                    >
-                        <span className="text-primary font-bold tracking-[0.2em] uppercase text-xs mb-4 block">Témoignages</span>
-                        <h2 className="text-3xl md:text-6xl font-serif font-bold text-white tracking-tight">
-                            La Preuve par <span className="italic">l'Impact</span>
-                        </h2>
-                    </motion.div>
+                        <section className="py-16 md:py-32 relative overflow-hidden">
+
+                            <div className="container mx-auto px-6 relative z-10">
+
+                                <motion.div
+
+                                    initial={{ opacity: 0 }}
+
+                                    whileInView={{ opacity: 1 }}
+
+                                    className="mb-12 md:mb-20 text-center"
+
+                                >
+
+                                    <span className="text-primary font-bold tracking-[0.2em] uppercase text-xs mb-4 block">Témoignages</span>
+
+                                    <h2 className="text-3xl md:text-6xl font-serif font-bold text-white tracking-tight leading-tight">
+
+                                        La Preuve par <span className="italic">l'Impact</span>
+
+                                    </h2>
+
+                                </motion.div>
+
+            
 
                     {/* Testimonials Section - Horizontal Scroll on Mobile */}
                     <div 
-                        className="flex overflow-x-auto pb-8 gap-6 snap-x snap-mandatory scrollbar-hide md:grid md:grid-cols-2 md:gap-10 md:pb-0 md:overflow-visible"
+                        className="flex md:grid overflow-x-auto md:overflow-visible pb-8 md:pb-0 gap-5 md:gap-10 snap-x snap-mandatory md:grid-cols-2"
                         onScroll={(e) => handleScroll(e, setActiveTestimonial)}
                     >
                         {[
@@ -143,12 +156,12 @@ const Home = () => {
                                 viewport={{ once: true }}
                                 transition={{ delay: i * 0.2 }}
                                 whileHover={{ scale: 1.02 }}
-                                className="min-w-[80vw] md:min-w-0 snap-center p-12 bg-surface/20 backdrop-blur-md rounded-[3rem] border border-white/10 relative group"
+                                className="min-w-[85vw] md:min-w-0 snap-center p-8 md:p-12 bg-surface/20 backdrop-blur-md rounded-[2.5rem] md:rounded-[3rem] border border-white/10 relative group h-full"
                             >
-                                <span className={`text-8xl ${t.color === 'primary' ? 'text-primary/10' : 'text-accent/10'} font-serif absolute top-6 left-10 group-hover:scale-110 transition-transform`}>"</span>
-                                <p className="text-xl text-gray-300 italic mb-10 relative z-10 pt-8 leading-relaxed">"{t.quote}"</p>
-                                <div className="flex items-center relative z-10">
-                                    <div className={`w-14 h-14 ${t.color === 'primary' ? 'bg-primary/10' : 'bg-accent/10'} rounded-2xl mr-5 shadow-xl border border-white/5 overflow-hidden flex items-center justify-center`}>
+                                <span className={`text-6xl md:text-8xl ${t.color === 'primary' ? 'text-primary/10' : 'text-accent/10'} font-serif absolute top-4 left-6 md:top-6 md:left-10 group-hover:scale-110 transition-transform`}>"</span>
+                                <p className="text-base md:text-xl text-gray-300 italic mb-8 md:mb-10 relative z-10 pt-6 md:pt-8 leading-relaxed">"{t.quote}"</p>
+                                <div className="mt-auto flex items-center relative z-10">
+                                    <div className={`w-12 h-12 md:w-14 md:h-14 ${t.color === 'primary' ? 'bg-primary/10' : 'bg-accent/10'} rounded-xl md:rounded-2xl mr-4 md:mr-5 shadow-xl border border-white/5 overflow-hidden flex items-center justify-center`}>
                                         <img
                                             src={i === 0 ? "/kadior_logo.png" : "/linkshop_logo.png"}
                                             alt={t.role}
@@ -156,23 +169,33 @@ const Home = () => {
                                         />
                                     </div>
                                     <div>
-                                        <h4 className="font-bold text-white text-lg">{t.author}</h4>
-                                        <span className={`text-sm font-bold uppercase tracking-widest ${t.color === 'primary' ? 'text-primary' : 'text-accent'}`}>{t.role}</span>
+                                        <h4 className="font-bold text-white text-base md:text-lg">{t.author}</h4>
+                                        <span className={`text-[10px] md:text-sm font-bold uppercase tracking-widest ${t.color === 'primary' ? 'text-primary' : 'text-accent'}`}>{t.role}</span>
                                     </div>
                                 </div>
                             </motion.div>
                         ))}
                     </div>
-                    {/* Pagination Dots for Testimonials (Mobile Only) */}
-                    <div className="flex md:hidden justify-center gap-2 mt-4">
-                        {[0, 1].map((i) => (
-                            <div 
-                                key={i} 
-                                className={`h-1.5 rounded-full transition-all duration-300 ${activeTestimonial === i ? "w-6 bg-accent" : "w-1.5 bg-white/20"}`}
-                            />
-                        ))}
-                    </div>
-                </div>
+
+                                {/* Pagination Dots for Testimonials (Mobile Only) */}
+
+                                <div className="flex md:hidden justify-center gap-2 mt-4">
+
+                                    {[0, 1].map((i) => (
+
+                                        <div 
+
+                                            key={i} 
+
+                                            className={`h-1.5 rounded-full transition-all duration-300 ${activeTestimonial === i ? "w-6 bg-accent" : "w-1.5 bg-white/20"}`}
+
+                                        />
+
+                                    ))}
+
+                                </div>
+
+                            </div>
 
                 {/* Background testimo decoration */}
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-accent/5 rounded-full blur-[150px] -z-10 hidden md:block" />
