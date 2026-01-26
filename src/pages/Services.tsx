@@ -179,7 +179,7 @@ const Services = () => {
 
                 {/* Mobile Carousel Container for Steps */}
                 <div 
-                    className="flex overflow-x-auto snap-x snap-mandatory pb-8 gap-4 md:block scrollbar-hide"
+                    className="flex overflow-x-auto snap-x snap-mandatory pt-12 pb-8 gap-4 md:block md:pt-0 scrollbar-hide"
                     onScroll={(e) => handleScroll(e, setActiveStep)}
                 >
                     {[
@@ -235,7 +235,7 @@ const Services = () => {
                                 >
                                     <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent pointer-events-none rounded-[2.5rem]" />
 
-                                    <div className={`md:hidden absolute -top-6 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-primary rounded-xl flex items-center justify-center text-black font-black z-20 shadow-xl border-4 border-background text-lg`}>
+                                    <div className={`md:hidden absolute -top-8 left-1/2 transform -translate-x-1/2 w-16 h-16 bg-primary rounded-2xl flex items-center justify-center text-black font-black z-30 shadow-[0_10px_20px_rgba(0,0,0,0.3)] border-4 border-surface text-2xl`}>
                                         {item.step}
                                     </div>
 
