@@ -3,64 +3,64 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
     return (
-        <footer className="bg-surface/50 text-white pt-12 pb-8 border-t border-white/5">
+        <footer className="bg-surface/50 text-white pt-16 pb-8 border-t border-white/5">
             <div className="container mx-auto px-6">
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8 text-center md:text-left">
                     {/* Agency Info */}
                     <div className="col-span-1 md:col-span-2">
                         <h3
-                            className="text-3xl mb-4 text-primary italic"
+                            className="text-3xl mb-6 text-primary italic justify-center md:justify-start flex"
                             style={{ fontFamily: 'var(--font-logo)', fontWeight: 900 }}
                         >
                             LOLLY
                         </h3>
-                        <p className="text-gray-400 mb-6 max-w-sm">
+                        <p className="text-gray-400 mb-8 max-w-sm mx-auto md:mx-0 leading-relaxed">
                             Des mots qui touchent, des images qui marquent.
                             Nous sommes une agence de communication basée à Dakar, dédiée à propulser votre image de marque.
                         </p>
-                        <div className="flex space-x-4">
-                            <a href="https://www.linkedin.com/company/lolly-sas" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-primary transition-colors">
-                                <Linkedin size={20} />
+                        <div className="flex justify-center md:justify-start space-x-6">
+                            <a href="https://www.linkedin.com/company/lolly-sas" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-primary transition-colors p-2">
+                                <Linkedin size={22} />
                             </a>
-                            <a href="https://www.instagram.com/agence_lolly/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-primary transition-colors">
-                                <Instagram size={20} />
+                            <a href="https://www.instagram.com/agence_lolly/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-primary transition-colors p-2">
+                                <Instagram size={22} />
                             </a>
-                            <a href="https://www.facebook.com/AGENCELOLLY" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-primary transition-colors">
-                                <Facebook size={20} />
+                            <a href="https://www.facebook.com/AGENCELOLLY" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-primary transition-colors p-2">
+                                <Facebook size={22} />
                             </a>
-                            <a href="https://www.tiktok.com/@agence_lolly" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-primary transition-colors">
-                                <Music2 size={20} />
+                            <a href="https://www.tiktok.com/@agence_lolly" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-primary transition-colors p-2">
+                                <Music2 size={22} />
                             </a>
                         </div>
                     </div>
 
                     {/* Links */}
-                    <div>
-                        <h4 className="text-lg font-semibold mb-4 text-secondary">Liens Rapides</h4>
-                        <ul className="space-y-2">
-                            <li><Link to="/" className="text-gray-400 hover:text-primary transition-colors">Accueil</Link></li>
-                            <li><Link to="/services" className="text-gray-400 hover:text-primary transition-colors">Services</Link></li>
-                            <li><Link to="/portfolio" className="text-gray-400 hover:text-primary transition-colors">Réalisations</Link></li>
-                            <li><Link to="/about" className="text-gray-400 hover:text-primary transition-colors">À propos</Link></li>
-                            <li><Link to="/contact" className="text-gray-400 hover:text-primary transition-colors">Contact</Link></li>
+                    <div className="space-y-4">
+                        <h4 className="text-lg font-bold mb-6 text-secondary uppercase tracking-widest text-sm">Liens Rapides</h4>
+                        <ul className="space-y-3">
+                            <li><Link to="/" className="text-gray-400 hover:text-primary transition-colors py-1 inline-block">Accueil</Link></li>
+                            <li><Link to="/services" className="text-gray-400 hover:text-primary transition-colors py-1 inline-block">Services</Link></li>
+                            <li><Link to="/portfolio" className="text-gray-400 hover:text-primary transition-colors py-1 inline-block">Réalisations</Link></li>
+                            <li><Link to="/about" className="text-gray-400 hover:text-primary transition-colors py-1 inline-block">À propos</Link></li>
+                            <li><Link to="/contact" className="text-gray-400 hover:text-primary transition-colors py-1 inline-block">Contact</Link></li>
                         </ul>
                     </div>
 
                     {/* Contact */}
-                    <div>
-                        <h4 className="text-lg font-semibold mb-4 text-secondary">Contact</h4>
-                        <ul className="space-y-4">
-                            <li className="flex items-start">
-                                <MapPin className="mt-1 mr-3 text-primary" size={18} />
-                                <span className="text-gray-400">LOLLY SAS, Fass Delorme Rue 22x13, Apt 201</span>
+                    <div className="space-y-4">
+                        <h4 className="text-lg font-bold mb-6 text-secondary uppercase tracking-widest text-sm">Contact</h4>
+                        <ul className="space-y-6">
+                            <li className="flex flex-col md:flex-row items-center md:items-start gap-3">
+                                <MapPin className="text-primary shrink-0" size={20} />
+                                <span className="text-gray-400 text-sm">LOLLY SAS, Fass Delorme Rue 22x13, Apt 201</span>
                             </li>
-                            <li className="flex items-center">
-                                <Phone className="mr-3 text-primary" size={18} />
-                                <a href="tel:+221772354747" className="text-gray-400 hover:text-primary transition-colors">+221 77 235 47 47</a>
+                            <li className="flex flex-col md:flex-row items-center md:items-start gap-3">
+                                <Phone className="text-primary shrink-0" size={20} />
+                                <a href="tel:+221772354747" className="text-gray-400 hover:text-primary transition-colors text-sm">+221 77 235 47 47</a>
                             </li>
-                            <li className="flex items-center">
-                                <Mail className="mr-3 text-primary" size={18} />
-                                <a href="mailto:contact@lolly.sn" className="text-gray-400 hover:text-primary transition-colors">contact@lolly.sn</a>
+                            <li className="flex flex-col md:flex-row items-center md:items-start gap-3">
+                                <Mail className="text-primary shrink-0" size={20} />
+                                <a href="mailto:contact@lolly.sn" className="text-gray-400 hover:text-primary transition-colors text-sm">contact@lolly.sn</a>
                             </li>
                         </ul>
                     </div>

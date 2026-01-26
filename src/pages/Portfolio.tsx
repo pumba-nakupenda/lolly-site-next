@@ -148,11 +148,21 @@ const Portfolio = () => {
     const [filter, setFilter] = useState("Tout");
     const [selectedProject, setSelectedProject] = useState<any | null>(null);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const [activeIndex, setActiveIndex] = useState(0);
     const navigate = useNavigate();
 
     const filteredProjects = filter === "Tout"
         ? projects
         : projects.filter(p => p.category === filter);
+
+    const handleScroll = (e: any) => {
+        const scrollLeft = e.target.scrollLeft;
+        const width = e.target.scrollWidth - e.target.clientWidth;
+        const scrollPercentage = scrollLeft / width;
+        const totalItems = filteredProjects.length;
+        const index = Math.round(scrollPercentage * (totalItems - 1));
+        if (!isNaN(index)) setActiveIndex(index);
+    };
 
     const nextImage = (e?: React.MouseEvent) => {
         e?.stopPropagation();
@@ -235,10 +245,10 @@ const Portfolio = () => {
                     ))}
                 </motion.div>
 
-                {/* Grid */}
-                <motion.div
-                    layout
-                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10"
+                {/* Grid / Carousel */}
+                <div 
+                    className="flex overflow-x-auto snap-x snap-mandatory pb-8 gap-6 px-[7.5vw] md:px-0 scrollbar-hide md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-10 md:pb-0 md:overflow-visible"
+                    onScroll={handleScroll}
                 >
                     <AnimatePresence mode="popLayout">
                         {filteredProjects.map((project, index) => (
@@ -250,7 +260,7 @@ const Portfolio = () => {
                                 transition={{ duration: 0.5, delay: index * 0.05 }}
                                 key={project.id}
                                 onClick={() => setSelectedProject(project)}
-                                className="group relative aspect-[4/5] rounded-[2.5rem] overflow-hidden cursor-pointer shadow-2xl bg-surface/20"
+                                className="min-w-[85vw] md:min-w-0 snap-center group relative aspect-[4/5] rounded-[2.5rem] overflow-hidden cursor-pointer shadow-2xl bg-surface/20"
                             >
                                 <img
                                     src={project.image}
@@ -259,24 +269,34 @@ const Portfolio = () => {
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-80 group-hover:opacity-95 transition-all duration-500"></div>
 
-                                <div className="absolute bottom-0 left-0 p-10 w-full transform translate-y-6 group-hover:translate-y-0 transition-all duration-500">
+                                <div className="absolute bottom-0 left-0 p-8 md:p-10 w-full transform md:translate-y-6 md:group-hover:translate-y-0 transition-all duration-500">
                                     <span className="bg-primary/20 text-primary text-[10px] font-black uppercase tracking-[0.3em] px-3 py-1.5 rounded-lg mb-4 block border border-primary/20 w-fit backdrop-blur-md">
                                         {project.category}
                                     </span>
-                                    <h3 className="text-3xl font-bold text-white mb-4 leading-tight group-hover:text-primary transition-colors">
+                                    <h3 className="text-2xl md:text-3xl font-bold text-white mb-4 leading-tight group-hover:text-primary transition-colors">
                                         {project.title}
                                     </h3>
-                                    <p className="text-gray-400 text-sm opacity-0 group-hover:opacity-100 transition-all duration-500 delay-100 line-clamp-2 leading-relaxed">
+                                    <p className="hidden md:block text-gray-400 text-sm opacity-0 group-hover:opacity-100 transition-all duration-500 delay-100 line-clamp-2 leading-relaxed">
                                         {project.description}
                                     </p>
-                                    <div className="mt-8 flex items-center gap-3 text-white text-[10px] font-black uppercase tracking-[0.3em] opacity-0 group-hover:opacity-100 transition-all delay-200">
+                                    <div className="mt-6 md:mt-8 flex items-center gap-3 text-white text-[10px] font-black uppercase tracking-[0.3em] opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all delay-200">
                                         Explorer le cas <div className="h-px w-8 bg-primary" />
                                     </div>
                                 </div>
                             </motion.div>
                         ))}
                     </AnimatePresence>
-                </motion.div>
+                </div>
+
+                {/* Pagination Dots for Portfolio (Mobile Only) */}
+                <div className="flex md:hidden justify-center gap-2 mt-4">
+                    {filteredProjects.map((_, i) => (
+                        <div 
+                            key={i} 
+                            className={`h-1.5 rounded-full transition-all duration-300 ${activeIndex === i ? "w-6 bg-primary" : "w-1.5 bg-white/20"}`}
+                        />
+                    ))}
+                </div>
             </div>
 
             {/* Project Modal */}
@@ -429,20 +449,26 @@ const Portfolio = () => {
             </AnimatePresence>
 
             {/* CTA Final */}
-            <section className="container mx-auto px-6 mt-48 text-center relative z-10">
+            <section className="container mx-auto px-6 mt-24 md:mt-48 text-center relative z-10">
                 <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
-                    className="bg-gradient-to-br from-gray-900 to-black p-16 md:p-24 rounded-[4rem] border border-white/10 shadow-3xl overflow-hidden relative group"
+                    className="bg-gradient-to-br from-gray-900 to-black p-12 md:p-24 rounded-[4rem] border border-white/10 shadow-3xl overflow-hidden relative group"
                 >
                     <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
                     <div className="relative z-10">
                         <h2 className="text-4xl md:text-7xl font-serif font-bold text-white mb-8 tracking-tight leading-tight">Votre futur succès <br /> commence <span className="text-primary italic">ici</span>.</h2>
-                        <p className="text-gray-400 mb-12 max-w-xl mx-auto text-xl leading-relaxed">Prêt à bousculer votre industrie avec une identité forte et une stratégie qui ne laisse rien au hasard ?</p>
+                        <p className="text-gray-400 mb-12 max-w-xl mx-auto text-lg md:text-xl leading-relaxed">Prêt à bousculer votre industrie avec une identité forte et une stratégie qui ne laisse rien au hasard ?</p>
                         <Button
                             className="h-16 px-12 text-lg font-black rounded-2xl shadow-xl"
-                            onClick={() => window.dispatchEvent(new CustomEvent('open-contact-modal'))}
+                            onClick={() => {
+                                if (window.innerWidth < 768) {
+                                    navigate('/contact');
+                                } else {
+                                    window.dispatchEvent(new CustomEvent('open-contact-modal'));
+                                }
+                            }}
                         >
                             Parlons de votre projet
                         </Button>
