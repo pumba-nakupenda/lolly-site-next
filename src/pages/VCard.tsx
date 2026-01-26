@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import { Phone, Mail, Globe, MapPin, Download, Share2, Linkedin, Instagram, Facebook, Music2, Smartphone } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Phone, Mail, Globe, MapPin, Download, Share2, Linkedin, Instagram, Facebook, Music2, Smartphone, QrCode, X } from "lucide-react";
 import { Button } from "../components/ui/Button";
 
 const VCard = () => {
     const [isMobile, setIsMobile] = useState(false);
+    const [showQrCode, setShowQrCode] = useState(false);
 
     useEffect(() => {
         const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -16,7 +17,7 @@ const VCard = () => {
     const contactInfo = {
         firstName: "Amadou Mbaye",
         lastName: "GUEYE",
-        title: "Founder & Chief Visionary",
+        title: "Fondateur et Consultant",
         company: "LOLLY SAS",
         phone: "+221772354747",
         displayPhone: "+221 77 235 47 47",
@@ -24,6 +25,8 @@ const VCard = () => {
         website: "https://lolly.sn",
         address: "Fass Delorme Rue 22x13, Dakar, Sénégal",
         avatar: "/assets/amadou-mbaye-gueye.jpg",
+        bio: "J'accompagne les entreprises et les institutions dans leur stratégie de communication et leur transformation digitale.",
+        services: ["Stratégie", "Branding", "Communication", "Formation"],
         socials: [
             { icon: Linkedin, url: "https://www.linkedin.com/company/lolly-sas" },
             { icon: Instagram, url: "https://www.instagram.com/agence_lolly/" },
@@ -130,6 +133,24 @@ const VCard = () => {
                 {/* Header Image / Banner */}
                 <div className="h-32 bg-gradient-to-r from-primary/20 to-accent/20 relative">
                     <div className="absolute inset-0 bg-[url('/assets/pattern.png')] opacity-10" />
+
+                    {/* Logo Overlay */}
+                    <div className="absolute top-6 left-0 right-0 text-center z-10">
+                        <span
+                            className="text-2xl tracking-tight text-white italic"
+                            style={{ fontFamily: 'var(--font-logo)', fontWeight: 900 }}
+                        >
+                            LOLLY<span className="text-primary">.</span>
+                        </span>
+                    </div>
+
+                    {/* QR Code Toggle */}
+                    <button
+                        onClick={() => setShowQrCode(true)}
+                        className="absolute top-4 right-4 w-10 h-10 bg-black/20 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-black/40 transition-colors"
+                    >
+                        <QrCode size={18} />
+                    </button>
                 </div>
 
                 {/* Profile Picture */}
@@ -143,10 +164,24 @@ const VCard = () => {
                         <div className="absolute bottom-2 right-2 w-5 h-5 bg-green-500 border-4 border-black rounded-full" />
                     </div>
 
-                    <div className="mt-6 space-y-1">
+                    <div className="mt-6 space-y-2">
                         <h1 className="text-2xl font-bold text-white tracking-tight">{contactInfo.firstName} {contactInfo.lastName}</h1>
                         <p className="text-primary font-bold text-xs uppercase tracking-widest">{contactInfo.title}</p>
-                        <p className="text-gray-400 text-sm">{contactInfo.company}</p>
+                        <p className="text-gray-400 text-sm font-medium">{contactInfo.company}</p>
+
+                        {/* Bio */}
+                        <p className="text-gray-400 text-xs leading-relaxed max-w-[280px] mx-auto pt-2">
+                            {contactInfo.bio}
+                        </p>
+
+                        {/* Services Tags */}
+                        <div className="flex flex-wrap justify-center gap-2 pt-3">
+                            {contactInfo.services.map((service, index) => (
+                                <span key={index} className="px-3 py-1 bg-white/5 rounded-full text-[10px] text-gray-300 border border-white/5">
+                                    {service}
+                                </span>
+                            ))}
+                        </div>
                     </div>
                 </div>
 
@@ -228,11 +263,92 @@ const VCard = () => {
                     </div>
                 </div>
 
-                {/* Branding Footer */}
-                <div className="bg-black/40 py-4 text-center">
+
+                <div className="bg-black/40 py-4 text-center pb-24">
                     <p className="text-[10px] text-gray-600 font-bold uppercase tracking-widest">Powered by LOLLY Agency</p>
                 </div>
             </motion.div>
+
+            {/* QR Code Modal */}
+            <AnimatePresence>
+                {showQrCode && (
+                    <div className="fixed inset-0 z-[60] flex items-center justify-center p-4">
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            onClick={() => setShowQrCode(false)}
+                            className="absolute inset-0 bg-black/80 backdrop-blur-sm"
+                        />
+                        <motion.div
+                            initial={{ scale: 0.9, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            exit={{ scale: 0.9, opacity: 0 }}
+                            className="bg-surface border border-white/10 p-8 rounded-3xl relative z-10 w-full max-w-xs text-center shadow-2xl"
+                        >
+                            <button
+                                onClick={() => setShowQrCode(false)}
+                                className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center bg-white/5 rounded-full text-gray-400 hover:text-white"
+                            >
+                                <X size={16} />
+                            </button>
+
+                            <h3 className="text-xl font-bold text-white mb-6">Mon QR Code</h3>
+                            <div className="bg-white p-4 rounded-2xl inline-block mx-auto mb-6">
+                                <img
+                                    src={`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(window.location.href)}&color=000000`}
+                                    alt="QR Code"
+                                    className="w-48 h-48"
+                                />
+                            </div>
+                            <p className="text-sm text-gray-400">
+                                Scannez pour accéder à la carte de visite
+                            </p>
+                        </motion.div>
+                    </div>
+                )}
+            </AnimatePresence>
+
+            {/* Floating Action Buttons */}
+            <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-4 items-center pointer-events-none">
+                {/* Call Button - Top */}
+                <motion.a
+                    href={`tel:${contactInfo.phone}`}
+                    initial={{ scale: 0, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    className="w-14 h-14 bg-orange-500 text-white rounded-full flex items-center justify-center shadow-lg pointer-events-auto"
+                >
+                    <Phone size={24} fill="currentColor" />
+                </motion.a>
+
+                {/* WhatsApp Button - Bottom */}
+                <motion.a
+                    href={`https://wa.me/${contactInfo.phone.replace(/\+/g, '')}?text=Bonjour, je souhaite entrer en contact avec vous.`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    initial={{ scale: 0, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    className="w-14 h-14 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-lg pointer-events-auto relative"
+                >
+                    <svg
+                        viewBox="0 0 24 24"
+                        width="28"
+                        height="28"
+                        fill="currentColor"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.72.94 3.659 1.437 5.634 1.437h.005c6.558 0 11.895-5.335 11.898-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+                    </svg>
+                    <span className="absolute -top-1 -right-1 flex h-3 w-3">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+                    </span>
+                </motion.a>
+            </div>
         </div>
     );
 };
