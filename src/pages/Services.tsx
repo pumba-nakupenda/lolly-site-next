@@ -348,7 +348,7 @@ const Services = () => {
 
                 {/* Grid for other expertises - Horizontal on Mobile */}
                 <div 
-                    className="flex overflow-x-auto snap-x snap-mandatory pb-8 gap-6 scrollbar-hide md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-10 md:pb-0 md:overflow-visible"
+                    className="flex overflow-x-auto snap-x snap-mandatory pt-12 pb-8 gap-6 scrollbar-hide md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-10 md:pb-0 md:overflow-visible"
                     onScroll={(e) => handleScroll(e, setActiveExpertise)}
                 >
                     {standardExpertises.map((service, index) => (
