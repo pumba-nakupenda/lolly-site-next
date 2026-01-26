@@ -199,7 +199,7 @@ const Services = () => {
 
                 {/* Mobile Carousel Container for Steps */}
                 <div 
-                    className="flex overflow-x-auto snap-x snap-mandatory pt-12 pb-8 gap-4 md:block md:pt-0 scrollbar-hide"
+                    className="flex overflow-x-auto snap-x snap-mandatory pt-12 pb-8 gap-4 px-[7.5vw] md:block md:px-0 md:pt-0 scrollbar-hide"
                     onScroll={(e) => handleScroll(e, setActiveStep)}
                 >
                     {[
@@ -368,7 +368,7 @@ const Services = () => {
 
                 {/* Grid for other expertises - Horizontal on Mobile */}
                 <div 
-                    className="flex overflow-x-auto snap-x snap-mandatory pt-12 pb-8 gap-5 px-6 md:px-0 scrollbar-hide md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-10 md:pb-0 md:overflow-visible"
+                    className="flex overflow-x-auto snap-x snap-mandatory pt-12 pb-8 gap-5 px-[7.5vw] md:px-0 scrollbar-hide md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-10 md:pb-0 md:overflow-visible"
                     onScroll={(e) => handleScroll(e, setActiveExpertise)}
                 >
                     {standardExpertises.map((service, index) => (
