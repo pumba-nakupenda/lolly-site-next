@@ -58,7 +58,7 @@ const About = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1, ease: "easeOut" }}
                 >
-                    <span className="bg-primary/10 text-primary font-bold tracking-[0.2em] uppercase text-[10px] px-4 py-1.5 rounded-full mb-6 inline-block border border-primary/20 backdrop-blur-sm">Notre ADN</span>
+                    <span className="bg-primary/10 text-primary font-bold tracking-[0.2em] uppercase text-xs px-4 py-1.5 rounded-full mb-6 inline-block border border-primary/20 backdrop-blur-sm">Notre ADN</span>
                     <h1 className="text-4xl md:text-8xl font-serif font-bold text-white mb-8 md:mb-10 tracking-tight leading-[1.1]">
                         Plus qu'une <span className="italic">agence</span>,<br /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-white to-primary pb-1 px-2">partenaire d'exception.</span>
                     </h1>
@@ -79,7 +79,7 @@ const About = () => {
                         className="space-y-8 md:space-y-10"
                     >
                         <div className="space-y-4">
-                            <span className="text-primary font-black uppercase text-[10px] tracking-[0.3em]">Genèse & Vision</span>
+                            <span className="text-primary font-black uppercase text-xs tracking-[0.3em]">Genèse & Vision</span>
                             <h2 className="text-3xl md:text-5xl font-serif font-bold text-white tracking-tight">Notre <span className="italic">Odyssée</span></h2>
                         </div>
 
@@ -159,7 +159,7 @@ const About = () => {
                         viewport={{ once: true }}
                         className="text-center max-w-4xl mx-auto mb-16 md:mb-24"
                     >
-                        <span className="text-primary font-black uppercase text-[10px] tracking-[0.3em] mb-4 block">Notre Croyance</span>
+                        <span className="text-primary font-black uppercase text-xs tracking-[0.3em] mb-4 block">Notre Croyance</span>
                         <h2 className="text-3xl md:text-7xl font-serif font-bold text-white mb-6 md:mb-8 tracking-tight italic">
                             "Des mots qui touchent,<br />des images qui marquent"
                         </h2>

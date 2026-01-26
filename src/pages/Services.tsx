@@ -178,7 +178,7 @@ const Services = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1, ease: "easeOut" }}
                 >
-                    <span className="bg-primary/10 text-primary font-bold tracking-[0.2em] uppercase text-[10px] px-4 py-1.5 rounded-full mb-6 inline-block border border-primary/20 backdrop-blur-sm">Notre Art & Manière</span>
+                    <span className="bg-primary/10 text-primary font-bold tracking-[0.2em] uppercase text-xs px-4 py-1.5 rounded-full mb-6 inline-block border border-primary/20 backdrop-blur-sm">Notre Art & Manière</span>
                     <h1 className="text-3xl md:text-8xl font-serif font-bold text-white mb-10 tracking-tight leading-[1.1]">
                         Une méthodologie <br /> qui <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-white to-primary italic pb-1 px-2">garantit</span> le succès
                     </h1>
@@ -316,7 +316,7 @@ const Services = () => {
                     viewport={{ once: true }}
                     className="text-center mb-12 md:mb-24"
                 >
-                    <span className="text-primary font-bold tracking-[0.2em] uppercase text-[10px] mb-4 block">Notre Catalogue</span>
+                    <span className="text-primary font-bold tracking-[0.2em] uppercase text-xs mb-4 block">Notre Catalogue</span>
                     <h2 className="text-3xl md:text-7xl font-serif font-bold text-white mb-6">Nos Expertises <span className="text-primary italic">Majeures</span></h2>
                     <p className="text-gray-400 max-w-xl mx-auto text-lg">Des services d'élite conçus pour propulser chaque aspect de votre présence de marque.</p>
                 </motion.div>

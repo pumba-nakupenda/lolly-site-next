@@ -45,11 +45,11 @@ const Home = () => {
                             transition={{ duration: 0.8 }}
                             className="max-w-3xl"
                         >
-                            <span className="text-primary font-bold tracking-[0.2em] uppercase text-[10px] mb-4 block">Notre Philosophie</span>
+                            <span className="text-primary font-bold tracking-[0.2em] uppercase text-xs mb-4 block">Notre Philosophie</span>
                             <h2 className="text-2xl md:text-7xl font-serif font-bold mb-8 text-white tracking-tight">
                                 Nous ne suivons pas <br />les tendances. <span className="text-primary italic pb-1 px-2">On les crée.</span>
                             </h2>
-                            <p className="text-base md:text-xl text-gray-400 leading-relaxed max-w-xl">
+                            <p className="text-lg md:text-xl text-gray-400 leading-relaxed max-w-xl">
                                 LOLLY est votre partenaire stratégique pour dominer le paysage digital sénégalais avec une longueur d'avance.
                             </p>
                         </motion.div>
@@ -111,8 +111,8 @@ const Home = () => {
                         whileInView={{ opacity: 1 }}
                         className="mb-12 md:mb-20 text-center"
                     >
-                        <span className="text-primary font-bold tracking-[0.2em] uppercase text-[10px] mb-4 block">Témoignages</span>
-                        <h2 className="text-4xl md:text-6xl font-serif font-bold text-white tracking-tight">
+                        <span className="text-primary font-bold tracking-[0.2em] uppercase text-xs mb-4 block">Témoignages</span>
+                        <h2 className="text-3xl md:text-6xl font-serif font-bold text-white tracking-tight">
                             La Preuve par <span className="italic">l'Impact</span>
                         </h2>
                     </motion.div>
