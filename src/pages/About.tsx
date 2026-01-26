@@ -6,13 +6,10 @@ import { useRef, useState, useEffect } from "react";
 const About = () => {
     const containerRef = useRef(null);
     const [activeValue, setActiveValue] = useState(0);
-    const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
-        const checkMobile = () => setIsMobile(window.innerWidth < 768);
+        const checkMobile = () => {}; // Keep for consistency if needed or remove
         checkMobile();
-        window.addEventListener("resize", checkMobile);
-        return () => window.removeEventListener("resize", checkMobile);
     }, []);
 
     const handleScroll = (e: any, setIndex: Function) => {
@@ -23,22 +20,6 @@ const About = () => {
         const totalItems = e.target.children.length;
         const index = Math.round(scrollPercentage * (totalItems - 1));
         if (!isNaN(index)) setIndex(index);
-    };
-
-    // Stagger for values
-    const containerVariants = {
-        hidden: { opacity: 0 },
-        show: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.2
-            }
-        }
-    };
-
-    const itemVariants = {
-        hidden: { opacity: 0, y: 30 },
-        show: { opacity: 1, y: 0 }
     };
 
     return (

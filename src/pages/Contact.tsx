@@ -329,8 +329,8 @@ const Contact = () => {
                                         whileHover={{ x: 10, scale: 1.02 }}
                                         className="flex items-center p-4 md:p-6 bg-white/[0.03] rounded-[2rem] border border-white/5 hover:border-white/10 transition-all cursor-default group/card"
                                     >
-                                        <div className={`w-12 h-12 md:w-14 md:h-14 ${item.color.split('-')[1]}/10 rounded-xl md:rounded-2xl flex items-center justify-center mr-4 md:mr-6 group-hover/card:scale-110 transition-transform bg-black/40 flex-shrink-0`}>
-                                            <item.icon size={22} md:size={26} className={item.color} />
+                                        <div className={`w-12 h-12 md:w-14 md:h-14 ${item.color.split('-')[1]}/10 rounded-xl md:rounded-[2rem] flex items-center justify-center mr-4 md:mr-6 group-hover/card:scale-110 transition-transform bg-black/40 flex-shrink-0`}>
+                                            <item.icon size={24} className={item.color} />
                                         </div>
                                         <div className="min-w-0">
                                             <p className="text-[9px] md:text-[10px] font-black text-gray-500 uppercase tracking-widest mb-1">{item.title}</p>
