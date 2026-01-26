@@ -51,6 +51,12 @@ body {
     transition: none !important;
     scroll-behavior: auto !important;
   }
+  
+  /* Add touch feedback since transitions are gone */
+  a:active, button:active {
+    opacity: 0.7 !important;
+    transform: scale(0.98) !important;
+  }
 }
 
 h1,

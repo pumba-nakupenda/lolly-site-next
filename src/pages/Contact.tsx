@@ -187,6 +187,7 @@ const Contact = () => {
                                             <input
                                                 required
                                                 type="email"
+                                                inputMode="email"
                                                 className="w-full bg-background/30 border border-white/5 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-primary/50 focus:bg-background/60 focus:ring-4 focus:ring-primary/5 transition-all placeholder:text-gray-600"
                                                 placeholder="votre@email.pro"
                                                 value={formData.email}
@@ -214,6 +215,7 @@ const Contact = () => {
                                             </select>
                                             <input
                                                 type="tel"
+                                                inputMode="tel"
                                                 className="flex-1 bg-background/30 border border-white/5 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-primary/50 focus:bg-background/60 focus:ring-4 focus:ring-primary/5 transition-all placeholder:text-gray-600"
                                                 placeholder="77 000 00 00"
                                                 value={formData.phone}
@@ -308,8 +310,8 @@ const Contact = () => {
                             <div className="space-y-6">
                                 {[
                                     { icon: MapPin, title: "Notre Siège", content: "LOLLY SAS, Fass Delorme Rue 22x13, Appt 201", color: "text-primary" },
-                                    { icon: Phone, title: "Ligne Directe", content: "+221 77 235 47 47", sub: "Disponibilité immédiate", color: "text-accent" },
-                                    { icon: Mail, title: "Email Général", content: "contact@lolly.sn", color: "text-white" }
+                                    { icon: Phone, title: "Ligne Directe", content: "+221 77 235 47 47", href: "tel:+221772354747", sub: "Disponibilité immédiate", color: "text-accent" },
+                                    { icon: Mail, title: "Email Général", content: "contact@lolly.sn", href: "mailto:contact@lolly.sn", color: "text-white" }
                                 ].map((item, i) => (
                                     <motion.div
                                         key={i}
@@ -321,7 +323,13 @@ const Contact = () => {
                                         </div>
                                         <div>
                                             <p className="text-[10px] font-black text-gray-500 uppercase tracking-widest mb-1">{item.title}</p>
-                                            <p className="text-white font-bold text-lg leading-none mb-1">{item.content}</p>
+                                            {item.href ? (
+                                                <a href={item.href} className="text-white font-bold text-lg leading-none mb-1 hover:text-primary transition-colors">
+                                                    {item.content}
+                                                </a>
+                                            ) : (
+                                                <p className="text-white font-bold text-lg leading-none mb-1">{item.content}</p>
+                                            )}
                                             {item.sub && <p className="text-gray-500 text-xs">{item.sub}</p>}
                                         </div>
                                     </motion.div>
