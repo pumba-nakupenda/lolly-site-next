@@ -31,7 +31,7 @@ const Hero = () => {
     };
 
     return (
-        <section ref={ref} className="relative h-screen flex items-center justify-center overflow-hidden bg-transparent">
+        <section ref={ref} className="relative h-[100dvh] flex items-center justify-center overflow-hidden bg-transparent">
 
             {/* Advanced Background Decorative Elements */}
             <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none hidden md:block">
@@ -56,7 +56,7 @@ const Hero = () => {
                 />
             </div>
 
-            <motion.div style={{ y: textY }} className="container mx-auto px-6 z-10 relative text-center pt-20">
+            <motion.div style={{ y: textY }} className="container mx-auto px-6 z-10 relative text-center pt-10 md:pt-20">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -66,17 +66,17 @@ const Hero = () => {
                         initial={{ opacity: 0, scale: 0.8 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: 0.2 }}
-                        className="inline-block py-2 px-5 rounded-full bg-white/5 backdrop-blur-md text-primary font-bold tracking-[0.2em] uppercase text-xs mb-8 border border-white/10"
+                        className="inline-block py-2 px-5 rounded-full bg-white/5 backdrop-blur-md text-primary font-bold tracking-[0.2em] uppercase text-[10px] md:text-xs mb-6 md:mb-8 border border-white/10"
                     >
                         Agence de Communication & Formation
                     </motion.span>
 
-                    <h1 className="text-4xl md:text-9xl font-serif font-bold text-white mb-8 leading-[1.1] tracking-tight">
+                    <h1 className="text-4xl md:text-9xl font-serif font-bold text-white mb-6 md:mb-8 leading-[1.1] tracking-tight">
                         Des mots qui <span className="text-primary italic">touchent</span>, <br />
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-white to-accent pb-1 px-2">images qui marquent</span>
                     </h1>
 
-                    <p className="text-base md:text-2xl text-gray-400 mb-12 max-w-3xl mx-auto leading-relaxed">
+                    <p className="text-sm md:text-2xl text-gray-400 mb-8 md:mb-12 max-w-3xl mx-auto leading-relaxed px-4 md:px-0">
                         Propulsez votre marque vers l'excellence avec des stratégies créatives
                         et des formations professionnelles de standard international.
                     </p>

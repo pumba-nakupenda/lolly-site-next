@@ -23,7 +23,7 @@ const Home = () => {
 
             <ClientLogos />
 
-            <section className="py-32 relative z-10">
+            <section className="py-20 md:py-32 relative z-10">
                 {/* Background Decorative Element */}
                 <div className="absolute top-1/2 left-0 w-full h-full pointer-events-none overflow-hidden -z-10 hidden md:block">
                     <motion.div
@@ -104,12 +104,12 @@ const Home = () => {
                 </div>
             </section>
 
-            <section className="py-32 relative overflow-hidden">
+            <section className="py-20 md:py-32 relative overflow-hidden">
                 <div className="container mx-auto px-6 relative z-10">
                     <motion.div
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
-                        className="mb-20 text-center"
+                        className="mb-12 md:mb-20 text-center"
                     >
                         <span className="text-primary font-bold tracking-[0.2em] uppercase text-[10px] mb-4 block">Témoignages</span>
                         <h2 className="text-4xl md:text-6xl font-serif font-bold text-white tracking-tight">

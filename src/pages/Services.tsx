@@ -147,7 +147,7 @@ const Services = () => {
     const standardExpertises = expertises.filter(s => s.id !== "consulting");
 
     return (
-        <div className="pt-40 pb-20 px-6 min-h-screen relative overflow-hidden bg-transparent">
+        <div className="pt-24 md:pt-40 pb-16 md:pb-20 px-6 min-h-screen relative overflow-hidden bg-transparent">
             {/* Premium Background Decorative Elements */}
             <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none hidden md:block">
                 <motion.div
@@ -172,7 +172,7 @@ const Services = () => {
             </div>
 
             {/* Header */}
-            <div className="container mx-auto max-w-5xl text-center mb-32 relative z-10">
+            <div className="container mx-auto max-w-5xl text-center mb-16 md:mb-32 relative z-10">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -189,7 +189,7 @@ const Services = () => {
             </div>
 
             {/* Steps Section */}
-            <section className="container mx-auto max-w-6xl mb-48 relative z-10" ref={stepsRef}>
+            <section className="container mx-auto max-w-6xl mb-24 md:mb-48 relative z-10" ref={stepsRef}>
                 <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-white/10 transform -translate-x-1/2">
                     <motion.div
                         style={{ scaleY: scaleY }}
@@ -309,12 +309,12 @@ const Services = () => {
             </section>
 
             {/* Expertises Section */}
-            <section className="container mx-auto px-6 mb-48 relative z-10">
+            <section className="container mx-auto px-6 mb-24 md:mb-48 relative z-10">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-center mb-24"
+                    className="text-center mb-12 md:mb-24"
                 >
                     <span className="text-primary font-bold tracking-[0.2em] uppercase text-[10px] mb-4 block">Notre Catalogue</span>
                     <h2 className="text-4xl md:text-7xl font-serif font-bold text-white mb-6">Nos Expertises <span className="text-primary italic">Majeures</span></h2>
