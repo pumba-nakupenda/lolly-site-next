@@ -29,7 +29,7 @@ const About = () => {
     return (
         <div className="pt-40 pb-20 px-6 min-h-screen relative overflow-hidden bg-transparent" ref={containerRef}>
             {/* Background Decorative Elements */}
-            <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+            <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none hidden md:block">
                 <motion.div
                     animate={{
                         scale: [1, 1.3, 1],

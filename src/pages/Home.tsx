@@ -16,7 +16,7 @@ const Home = () => {
 
             <section className="py-32 relative z-10">
                 {/* Background Decorative Element */}
-                <div className="absolute top-1/2 left-0 w-full h-full pointer-events-none overflow-hidden -z-10">
+                <div className="absolute top-1/2 left-0 w-full h-full pointer-events-none overflow-hidden -z-10 hidden md:block">
                     <motion.div
                         animate={{
                             scale: [1, 1.3, 1],
@@ -55,7 +55,8 @@ const Home = () => {
                         </Link>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    {/* Services Section - Horizontal Scroll on Mobile */}
+                    <div className="flex overflow-x-auto pb-8 gap-6 snap-x snap-mandatory scrollbar-hide md:grid md:grid-cols-3 md:gap-8 md:pb-0 md:overflow-visible">
                         {[
                             { id: "01", title: "Stratégie 360°", color: "bg-primary", desc: "Audit, positionnement et plan d'action pour connecter votre marque à son audience." },
                             { id: "02", title: "Design & Branding", color: "bg-accent", desc: "Identités visuelles fortes, chartes graphiques et supports qui impriment la rétine." },
@@ -68,7 +69,7 @@ const Home = () => {
                                 viewport={{ once: true }}
                                 transition={{ delay: i * 0.2, duration: 0.8 }}
                                 whileHover={{ y: -15, scale: 1.02 }}
-                                className={`p-10 bg-surface/30 backdrop-blur-xl border border-white/5 rounded-[2.5rem] hover:border-primary/30 transition-all duration-500 group relative overflow-hidden ${i === 1 ? 'md:mt-12' : i === 2 ? 'md:mt-24' : ''}`}
+                                className={`min-w-[85vw] md:min-w-0 snap-center p-10 bg-surface/30 backdrop-blur-xl border border-white/5 rounded-[2.5rem] hover:border-primary/30 transition-all duration-500 group relative overflow-hidden ${i === 1 ? 'md:mt-12' : i === 2 ? 'md:mt-24' : ''}`}
                             >
                                 <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent pointer-events-none" />
                                 <div className={`w-16 h-16 ${item.color} rounded-2xl mb-8 flex items-center justify-center text-black font-black text-2xl group-hover:rotate-12 transition-transform shadow-lg`}>
@@ -95,7 +96,8 @@ const Home = () => {
                         </h2>
                     </motion.div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                    {/* Testimonials Section - Horizontal Scroll on Mobile */}
+                    <div className="flex overflow-x-auto pb-8 gap-6 snap-x snap-mandatory scrollbar-hide md:grid md:grid-cols-2 md:gap-10 md:pb-0 md:overflow-visible">
                         {[
                             {
                                 quote: "J'ai été séduite par leur rigueur, leur professionnalisme et leur grande disponibilité. L'équipe de LOLLY a su allier stratégie et pragmatisme pour m'accompagner efficacement. Lors de ma dernière campagne de communication, ils ont été un véritable bouclier.",
@@ -117,7 +119,7 @@ const Home = () => {
                                 viewport={{ once: true }}
                                 transition={{ delay: i * 0.2 }}
                                 whileHover={{ scale: 1.02 }}
-                                className="p-12 bg-surface/20 backdrop-blur-md rounded-[3rem] border border-white/10 relative group"
+                                className="min-w-[85vw] md:min-w-0 snap-center p-12 bg-surface/20 backdrop-blur-md rounded-[3rem] border border-white/10 relative group"
                             >
                                 <span className={`text-8xl ${t.color === 'primary' ? 'text-primary/10' : 'text-accent/10'} font-serif absolute top-6 left-10 group-hover:scale-110 transition-transform`}>"</span>
                                 <p className="text-xl text-gray-300 italic mb-10 relative z-10 pt-8 leading-relaxed">"{t.quote}"</p>
@@ -140,7 +142,7 @@ const Home = () => {
                 </div>
 
                 {/* Background testimo decoration */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-accent/5 rounded-full blur-[150px] -z-10" />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-accent/5 rounded-full blur-[150px] -z-10 hidden md:block" />
             </section>
 
             <Marquee />
