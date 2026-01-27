@@ -88,7 +88,7 @@ const Navbar = () => {
                                         <Link
                                             to={link.href}
                                             className="relative transition-colors font-bold text-[10px] uppercase tracking-[0.2em] group py-2"
-                                            onClick={(e) => {
+                                            onClick={() => {
                                                 // Optional: if clicking "Services" should just open dropdown on touch devices or do nothing if hover works
                                             }}
                                         >
