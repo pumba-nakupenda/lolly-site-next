@@ -73,7 +73,7 @@ const Hero = () => {
 
                     <h1 className="text-3xl md:text-9xl font-serif font-bold text-white mb-6 md:mb-8 leading-[1.1] tracking-tight">
                         Des mots qui <span className="text-primary italic">touchent</span>, <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-white to-accent pb-1 px-2">images qui marquent</span>
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-white to-accent pb-1 px-2">des images qui marquent</span>
                     </h1>
 
                     <p className="text-sm md:text-2xl text-gray-400 mb-8 md:mb-12 max-w-3xl mx-auto leading-relaxed px-4 md:px-0">

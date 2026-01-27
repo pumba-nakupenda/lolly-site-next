@@ -35,6 +35,18 @@ const CommunityManagement = () => {
     const nextSlide = () => setActiveIdx((prev) => (prev + 1) % gallery.length);
     const prevSlide = () => setActiveIdx((prev) => (prev - 1 + gallery.length) % gallery.length);
 
+    const handleDragEnd = (_e: any, { offset, velocity }: any) => {
+        const swipeConfidenceThreshold = 10000;
+        const swipePower = (offset: number, velocity: number) => Math.abs(offset) * velocity;
+        const swipe = swipePower(offset.x, velocity.x);
+
+        if (swipe < -swipeConfidenceThreshold) {
+            nextSlide();
+        } else if (swipe > swipeConfidenceThreshold) {
+            prevSlide();
+        }
+    };
+
     const handleContact = () => {
         if (window.innerWidth < 768) {
             navigate('/contact?subject=Community Management');
@@ -128,7 +140,11 @@ const CommunityManagement = () => {
                                 animate={{ opacity: 1, scale: 1 }}
                                 exit={{ opacity: 0, scale: 1.05 }}
                                 transition={{ duration: 0.8 }}
-                                className="absolute inset-0 w-full h-full object-cover"
+                                drag="x"
+                                dragConstraints={{ left: 0, right: 0 }}
+                                dragElastic={0.2}
+                                onDragEnd={handleDragEnd}
+                                className="absolute inset-0 w-full h-full object-cover cursor-grab active:cursor-grabbing"
                             />
                         </AnimatePresence>
 

@@ -57,18 +57,28 @@ const ProductionVideo = () => {
         }
     ];
 
-    const nextImage = (e: React.MouseEvent, index: number) => {
-        e.stopPropagation();
+    const nextImage = (index: number) => {
         const newIndexes = [...activeIndexes];
         newIndexes[index] = (newIndexes[index] + 1) % equipment[index].images.length;
         setActiveIndexes(newIndexes);
     };
 
-    const prevImage = (e: React.MouseEvent, index: number) => {
-        e.stopPropagation();
+    const prevImage = (index: number) => {
         const newIndexes = [...activeIndexes];
         newIndexes[index] = (newIndexes[index] - 1 + equipment[index].images.length) % equipment[index].images.length;
         setActiveIndexes(newIndexes);
+    };
+
+    const handleDragEnd = (_e: any, { offset, velocity }: any, index: number) => {
+        const swipeConfidenceThreshold = 10000;
+        const swipePower = (offset: number, velocity: number) => Math.abs(offset) * velocity;
+        const swipe = swipePower(offset.x, velocity.x);
+
+        if (swipe < -swipeConfidenceThreshold) {
+            nextImage(index);
+        } else if (swipe > swipeConfidenceThreshold) {
+            prevImage(index);
+        }
     };
 
     const handleContact = () => {
@@ -181,19 +191,23 @@ const ProductionVideo = () => {
                                             animate={{ opacity: 1, x: 0 }}
                                             exit={{ opacity: 0, x: -20 }}
                                             transition={{ duration: 0.4 }}
-                                            className="w-full h-full object-cover"
+                                            drag="x"
+                                            dragConstraints={{ left: 0, right: 0 }}
+                                            dragElastic={0.2}
+                                            onDragEnd={(e, { offset, velocity }) => handleDragEnd(e, { offset, velocity }, i)}
+                                            className="w-full h-full object-cover cursor-grab active:cursor-grabbing"
                                         />
                                     </AnimatePresence>
 
                                     {/* Navigation Arrows */}
                                     <button
-                                        onClick={(e) => prevImage(e, i)}
+                                        onClick={(e) => { e.stopPropagation(); prevImage(i); }}
                                         className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-black/50 backdrop-blur-md rounded-full flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-600 z-20"
                                     >
                                         <ArrowRight className="rotate-180" size={20} />
                                     </button>
                                     <button
-                                        onClick={(e) => nextImage(e, i)}
+                                        onClick={(e) => { e.stopPropagation(); nextImage(i); }}
                                         className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-black/50 backdrop-blur-md rounded-full flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-600 z-20"
                                     >
                                         <ArrowRight size={20} />
