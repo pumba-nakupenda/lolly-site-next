@@ -236,15 +236,20 @@ const VCard = () => {
                             </div>
                         </a>
 
-                        <div className="flex items-center p-4 bg-white/5 rounded-2xl border border-white/5 transition-all">
-                            <div className="w-10 h-10 bg-white/5 rounded-xl flex items-center justify-center text-white shrink-0">
+                        <a
+                            href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(contactInfo.address)}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center p-4 bg-white/5 hover:bg-white/10 rounded-2xl border border-white/5 transition-all group cursor-pointer"
+                        >
+                            <div className="w-10 h-10 bg-white/5 rounded-xl flex items-center justify-center text-white shrink-0 group-hover:scale-110 transition-transform">
                                 <MapPin size={20} />
                             </div>
                             <div className="ml-4">
                                 <p className="text-[10px] uppercase text-gray-500 font-bold tracking-wider">Adresse</p>
                                 <p className="text-white font-medium text-sm">{contactInfo.address}</p>
                             </div>
-                        </div>
+                        </a>
                     </div>
 
                     {/* Socials */}
