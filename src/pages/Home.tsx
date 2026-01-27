@@ -161,11 +161,11 @@ const Home = () => {
                                 <span className={`text-6xl md:text-8xl ${t.color === 'primary' ? 'text-primary/10' : 'text-accent/10'} font-serif absolute top-4 left-6 md:top-6 md:left-10 group-hover:scale-110 transition-transform`}>"</span>
                                 <p className="text-base md:text-xl text-gray-300 italic mb-8 md:mb-10 relative z-10 pt-6 md:pt-8 leading-relaxed">"{t.quote}"</p>
                                 <div className="mt-auto flex items-center relative z-10">
-                                    <div className={`w-12 h-12 md:w-14 md:h-14 ${t.color === 'primary' ? 'bg-primary/10' : 'bg-accent/10'} rounded-xl md:rounded-2xl mr-4 md:mr-5 shadow-xl border border-white/5 overflow-hidden flex items-center justify-center`}>
+                                    <div className="w-12 h-12 md:w-14 md:h-14 bg-white rounded-xl md:rounded-2xl mr-4 md:mr-5 shadow-xl border border-white/5 overflow-hidden flex items-center justify-center">
                                         <img
-                                            src={i === 0 ? "/kadior_logo.png" : "/linkshop_logo.png"}
+                                            src={i === 0 ? "/assets/logos/kadior.jpg" : "/assets/logos/linkshop.png"}
                                             alt={t.role}
-                                            className="w-full h-full object-cover"
+                                            className="w-full h-full object-contain p-2"
                                         />
                                     </div>
                                     <div>

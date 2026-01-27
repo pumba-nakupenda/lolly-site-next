@@ -1,5 +1,4 @@
-import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { motion } from "framer-motion";
 import { PenTool, ArrowRight, Layers, Palette, Monitor, Type, Cpu, Sparkles, Search, RefreshCw, CheckCircle } from "lucide-react";
 import { Button } from "../../components/ui/Button";
 import { useNavigate } from "react-router-dom";
@@ -7,45 +6,7 @@ import { useNavigate } from "react-router-dom";
 const DesignGraphique = () => {
     const navigate = useNavigate();
 
-    const [activeIdx, setActiveIdx] = useState(0);
 
-    const gallery = [
-        {
-            image: "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&q=80&w=1200",
-            title: "Le Laboratoire d'Idées",
-            desc: "Un environnement conçu pour stimuler la créativité et l'innovation visuelle."
-        },
-        {
-            image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&q=80&w=1200",
-            title: "Branding & Stratégie",
-            desc: "Nous traduisons vos valeurs en langage visuel universel."
-        },
-        {
-            image: "https://images.unsplash.com/photo-1586717791821-3f44a563eb4c?auto=format&fit=crop&q=80&w=1200",
-            title: "Excellence Créative",
-            desc: "Chaque pixel est pensé pour servir votre message et votre image."
-        },
-        {
-            image: "https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&q=80&w=1200",
-            title: "Design Multi-supports",
-            desc: "Une cohérence parfaite du print au digital pour une marque forte."
-        }
-    ];
-
-    const nextSlide = () => setActiveIdx((prev) => (prev + 1) % gallery.length);
-    const prevSlide = () => setActiveIdx((prev) => (prev - 1 + gallery.length) % gallery.length);
-
-    const handleDragEnd = (_e: any, { offset, velocity }: any) => {
-        const swipeConfidenceThreshold = 10000;
-        const swipePower = (offset: number, velocity: number) => Math.abs(offset) * velocity;
-        const swipe = swipePower(offset.x, velocity.x);
-
-        if (swipe < -swipeConfidenceThreshold) {
-            nextSlide();
-        } else if (swipe > swipeConfidenceThreshold) {
-            prevSlide();
-        }
-    };
 
     const handleContact = () => {
         if (window.innerWidth < 768) {
@@ -123,75 +84,29 @@ const DesignGraphique = () => {
                     </motion.div>
                 </div>
 
-                {/* Creative Space Carousel */}
+                {/* Creative Design Atmosphere */}
                 <div className="mb-20 md:mb-32">
                     <motion.div
                         initial={{ opacity: 0, scale: 0.95 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
-                        className="relative rounded-[3rem] overflow-hidden border border-white/10 group aspect-video md:aspect-[21/9] bg-gray-900 shadow-2xl"
+                        className="relative h-[300px] md:h-[400px] rounded-[2rem] md:rounded-[3rem] overflow-hidden border border-white/10"
                     >
-                        <AnimatePresence mode="wait">
-                            <motion.img
-                                key={activeIdx}
-                                src={gallery[activeIdx].image}
-                                alt={gallery[activeIdx].title}
-                                initial={{ opacity: 0, scale: 1.1 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                exit={{ opacity: 0, scale: 1.05 }}
-                                transition={{ duration: 0.8 }}
-                                drag="x"
-                                dragConstraints={{ left: 0, right: 0 }}
-                                dragElastic={0.2}
-                                onDragEnd={handleDragEnd}
-                                className="absolute inset-0 w-full h-full object-cover cursor-grab active:cursor-grabbing"
-                            />
-                        </AnimatePresence>
-
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
-
-                        <div className="absolute bottom-10 md:bottom-12 left-8 md:left-12 right-8 md:right-12 z-10">
-                            <motion.div
-                                key={`content-${activeIdx}`}
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.2 }}
-                            >
-                                <h2 className="text-2xl md:text-5xl font-serif font-bold mb-3 md:mb-4 uppercase tracking-tighter">
-                                    {gallery[activeIdx].title.split(' ').map((word, i) =>
-                                        i === gallery[activeIdx].title.split(' ').length - 1 ?
-                                            <span key={i} className="text-purple-400 italic">{word}</span> : word + ' '
-                                    )}
+                        <img
+                            src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&q=80&w=1200"
+                            alt="Design Graphique"
+                            className="w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 bg-purple-900/40 mix-blend-multiply" />
+                        <div className="absolute inset-0 flex items-center justify-center">
+                            <div className="text-center p-8 bg-black/40 backdrop-blur-md rounded-2xl border border-white/10 max-w-xl">
+                                <h2 className="text-3xl md:text-5xl font-serif font-bold mb-4">
+                                    Votre Identité <span className="text-purple-400 italic">Visuelle</span>
                                 </h2>
-                                <p className="text-gray-300 max-w-xl text-base md:text-lg">{gallery[activeIdx].desc}</p>
-                            </motion.div>
-                        </div>
-
-                        {/* Arrows */}
-                        <div className="absolute top-1/2 -translate-y-1/2 left-6 right-6 flex justify-between z-20 opacity-0 group-hover:opacity-100 transition-opacity">
-                            <button
-                                onClick={prevSlide}
-                                className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-purple-500 transition-colors"
-                            >
-                                <ArrowRight className="rotate-180" size={20} />
-                            </button>
-                            <button
-                                onClick={nextSlide}
-                                className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-purple-500 transition-colors"
-                            >
-                                <ArrowRight size={20} />
-                            </button>
-                        </div>
-
-                        {/* Indicators */}
-                        <div className="absolute bottom-6 right-12 flex gap-3 z-20">
-                            {gallery.map((_, i) => (
-                                <button
-                                    key={i}
-                                    onClick={() => setActiveIdx(i)}
-                                    className={`h-1.5 rounded-full transition-all duration-300 ${i === activeIdx ? 'w-12 bg-purple-500' : 'w-4 bg-white/20'}`}
-                                />
-                            ))}
+                                <p className="text-gray-300 text-base md:text-lg">
+                                    Nous créons des designs qui marquent les esprits et subliment votre marque.
+                                </p>
+                            </div>
                         </div>
                     </motion.div>
                 </div>

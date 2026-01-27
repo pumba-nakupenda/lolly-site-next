@@ -17,9 +17,9 @@ const ProductionVideo = () => {
             category: "Caméras",
             detail: "2x 6K PRO, DZO Film, SSD, V-Mount",
             images: [
-                "https://images.unsplash.com/photo-1574717024458-388ee71c178d?auto=format&fit=crop&q=80&w=1200",
-                "https://images.unsplash.com/photo-1581591524425-c7e0978865fc?auto=format&fit=crop&q=80&w=1200",
-                "https://images.unsplash.com/photo-1599021419847-d8a7a6aba5b4?auto=format&fit=crop&q=80&w=1200"
+                "/assets/Video/bmpcc01.jpeg",
+                "/assets/Video/bmpcc02.jpg",
+                "/assets/Video/bmpcc03.jpeg"
             ]
         },
         {
@@ -28,9 +28,9 @@ const ProductionVideo = () => {
             category: "Lumière",
             detail: "Amaran 150c/60c, Softbox, Hexa",
             images: [
-                "https://images.unsplash.com/photo-1543039625-14bc3f99056d?auto=format&fit=crop&q=80&w=1200",
-                "https://images.unsplash.com/photo-1621619856624-42fd07b94998?auto=format&fit=crop&q=80&w=1200",
-                "https://images.unsplash.com/photo-1510127034890-ba27508e9f1c?auto=format&fit=crop&q=80&w=1200"
+                "/assets/Video/aputure_150c_01.png",
+                "/assets/Video/aputure_60x_01.png",
+                "/assets/Video/aputure_setup_01.png"
             ]
         },
         {
@@ -39,9 +39,9 @@ const ProductionVideo = () => {
             category: "Audio",
             detail: "Lark K2, Blimp, Micro Podcast, Perche",
             images: [
-                "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&q=80&w=1200",
-                "https://images.unsplash.com/photo-1595066117565-98cc78fb5737?auto=format&fit=crop&q=80&w=1200",
-                "https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&q=80&w=1200"
+                "/assets/Video/zoom_f8n_01.jpg",
+                "/assets/Video/ntg_mic_01.jpg",
+                "/assets/Video/hollyland_wireless_01.png"
             ]
         },
         {
@@ -50,9 +50,9 @@ const ProductionVideo = () => {
             category: "Post-Prod",
             detail: "RTX 4090, 128GB RAM, 70TB, OLED G9",
             images: [
-                "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=1200",
-                "https://images.unsplash.com/photo-1593305841991-05c297ba4575?auto=format&fit=crop&q=80&w=1200",
-                "https://images.unsplash.com/photo-1547082299-de196ea013d6?auto=format&fit=crop&q=80&w=1200"
+                "/assets/Video/workstation_i9_01.png",
+                "/assets/Video/workstation_i9_02.jpg",
+                "/assets/Video/workstation_i9_03.png"
             ]
         }
     ];

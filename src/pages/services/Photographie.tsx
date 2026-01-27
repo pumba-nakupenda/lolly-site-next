@@ -17,10 +17,9 @@ const Photographie = () => {
             category: "Setup Principal",
             detail: "Full Frame, Optique F/2.8, Piqué Chirurgical & Bokeh Soyeux",
             images: [
-                "https://images.unsplash.com/photo-1552168324-d612d77725e3?auto=format&fit=crop&q=80&w=1200",
-                "https://images.unsplash.com/photo-1617005082133-548c4dd27f35?auto=format&fit=crop&q=80&w=1200",
-                "https://images.unsplash.com/photo-1452784444945-3f422708fe5e?auto=format&fit=crop&q=80&w=1200",
-                "https://images.unsplash.com/photo-1495707902641-75cac588d2e9?auto=format&fit=crop&q=80&w=1200"
+                "/assets/Photo/sony_a7ii_01.jpg",
+                "/assets/Photo/gmaster_lens_01.jpg",
+                "/assets/Photo/sony_a7ii_02.jpg"
             ]
         },
         {
@@ -29,9 +28,9 @@ const Photographie = () => {
             category: "Éclairage",
             detail: "2x AD600 (Studio), V1 (Local), Speedlite",
             images: [
-                "https://images.unsplash.com/photo-1621619856624-42fd07b94998?auto=format&fit=crop&q=80&w=1200",
-                "https://images.unsplash.com/photo-1510127034890-ba27508e9f1c?auto=format&fit=crop&q=80&w=1200",
-                "https://images.unsplash.com/photo-1543039625-14bc3f99056d?auto=format&fit=crop&q=80&w=1200"
+                "/assets/Photo/godox_v1_01.png",
+                "/assets/Photo/godox_v1_02.png",
+                "/assets/Photo/godox_s85_01.png"
             ]
         },
         {
@@ -40,9 +39,9 @@ const Photographie = () => {
             category: "Espace",
             detail: "Cyclorama, Fonds Multi-couleurs, Diffusion",
             images: [
-                "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&q=80&w=1200",
-                "https://images.unsplash.com/photo-1520390138845-fd2d229dd553?auto=format&fit=crop&q=80&w=1200",
-                "https://images.unsplash.com/photo-1540331547168-8b6472b78339?auto=format&fit=crop&q=80&w=1200"
+                "/assets/Photo/studio_01.jpg",
+                "/assets/Photo/studio_02.jpg",
+                "/assets/Photo/studio_03.png"
             ]
         },
         {
@@ -51,9 +50,9 @@ const Photographie = () => {
             category: "Packshot",
             detail: "Surface acrylique, Éclairage 360°, Macro",
             images: [
-                "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&q=80&w=1200",
-                "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&q=80&w=1200",
-                "https://images.unsplash.com/photo-1511556820780-d912e42b4980?auto=format&fit=crop&q=80&w=1200"
+                "/assets/Photo/packshot_01.png",
+                "/assets/Photo/packshot_02.png",
+                "/assets/Photo/packshot_03.png"
             ]
         }
     ];

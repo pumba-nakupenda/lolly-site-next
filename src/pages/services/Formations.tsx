@@ -11,24 +11,19 @@ const Formations = () => {
 
     const gallery = [
         {
-            image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&q=80&w=1200",
-            title: "Apprentissage par l'Action",
-            desc: "Des environnements modernes conçus pour favoriser l'échange et la pratique."
+            image: "/assets/Formations/formation01.png",
+            title: "Immersion & Pratique",
+            desc: "Apprenez dans des conditions réelles avec nos sessions intensives de prise de parole."
         },
         {
-            image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=1200",
-            title: "Workshops Collaboratifs",
-            desc: "Travaillez en équipe sur des cas concrets de votre entreprise."
+            image: "/assets/Formations/formation02.png",
+            title: "Coaching Personnalisé",
+            desc: "Bénéficiez de l'expertise de nos formateurs seniors certifiés."
         },
         {
-            image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80&w=1200",
-            title: "Expertise Digitale",
-            desc: "Maîtrisez les outils de pointe avec nos formateurs experts."
-        },
-        {
-            image: "https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&q=80&w=1200",
-            title: "Transmission de Savoir",
-            desc: "Un accompagnement personnalisé pour une progression garantie."
+            image: "/assets/Formations/formation03.png",
+            title: "L'équipe Lolly Academy",
+            desc: "Une équipe passionnée dédiée à votre montée en compétences digitale."
         }
     ];
 

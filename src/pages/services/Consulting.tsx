@@ -11,24 +11,14 @@ const Consulting = () => {
 
     const gallery = [
         {
-            image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=1200",
-            title: "Le Hub Stratégique",
-            desc: "C'est ici que nous brainstormons et analysons vos données pour construire le futur de votre marque."
+            image: "/assets/Consulting/consulting01.png",
+            title: "Expertise Stratégique",
+            desc: "Un accompagnement sur-mesure pour définir et sculpter votre identité de marque."
         },
         {
-            image: "https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&q=80&w=1200",
-            title: "Vision & Expertise",
-            desc: "Un espace dédié à la réflexion profonde et à la prise de décision éclairée."
-        },
-        {
-            image: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=1200",
-            title: "Innovation Collaborative",
-            desc: "Nous fusionnons créativité et data pour transformer votre communication."
-        },
-        {
-            image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=1200",
-            title: "Succès Durable",
-            desc: "Un accompagnement stratégique pour une croissance pérenne et mesurable."
+            image: "/assets/Consulting/consulting02.png",
+            title: "Vision Collaborative",
+            desc: "Nous travaillons à vos côtés pour transformer vos ambitions en stratégies concrètes."
         }
     ];
 
