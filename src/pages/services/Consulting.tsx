@@ -64,7 +64,7 @@ const Consulting = () => {
                     <h1 className="text-4xl md:text-7xl font-serif font-bold mb-8 tracking-tight">
                         Consulting en <span className="text-primary italic">Communication</span>
                     </h1>
-                    <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
+                    <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
                         Plus qu'un conseil, une vision. Nous structurons votre image pour qu'elle devienne votre meilleur levier de croissance.
                     </p>
                 </motion.div>
@@ -78,10 +78,10 @@ const Consulting = () => {
                     >
                         <h2 className="text-3xl font-bold mb-6">Une approche <span className="text-primary">360°</span></h2>
                         <div className="space-y-6">
-                            <p className="text-gray-400 leading-relaxed">
+                            <p className="text-gray-300 leading-relaxed">
                                 Dans un monde saturé d'informations, être visible ne suffit plus. Il faut être remarquable. Notre pôle consulting audite, analyse et redéfinit votre positionnement pour vous donner un avantage déloyal sur vos concurrents.
                             </p>
-                            <p className="text-gray-400 leading-relaxed">
+                            <p className="text-gray-300 leading-relaxed">
                                 De la communication de crise à la stratégie de marque employeur, nous vous accompagnons sur les enjeux critiques qui définissent la pérennité de votre entreprise.
                             </p>
                         </div>
@@ -110,7 +110,7 @@ const Consulting = () => {
                                     <item.icon className="text-white group-hover:text-primary" size={24} />
                                 </div>
                                 <h3 className="font-bold text-lg mb-2">{item.title}</h3>
-                                <p className="text-sm text-gray-400">{item.desc}</p>
+                                <p className="text-sm text-gray-300">{item.desc}</p>
                             </div>
                         ))}
                     </motion.div>

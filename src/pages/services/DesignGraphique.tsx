@@ -33,7 +33,7 @@ const DesignGraphique = () => {
                     <h1 className="text-4xl md:text-7xl font-serif font-bold mb-8 tracking-tight">
                         Design <span className="text-purple-400 italic">Graphique</span>
                     </h1>
-                    <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
+                    <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
                         Le design n'est pas juste "joli". C'est l'interface entre votre marque et le monde. Nous créons des identités qui marquent les esprits.
                     </p>
                 </motion.div>
@@ -56,7 +56,7 @@ const DesignGraphique = () => {
                                     <item.icon className="text-white group-hover:text-purple-400" size={24} />
                                 </div>
                                 <h3 className="font-bold text-lg mb-2">{item.title}</h3>
-                                <p className="text-sm text-gray-400">{item.desc}</p>
+                                <p className="text-sm text-gray-300">{item.desc}</p>
                             </div>
                         ))}
                     </motion.div>
@@ -68,10 +68,10 @@ const DesignGraphique = () => {
                     >
                         <h2 className="text-3xl font-bold mb-6">Sublimer pour <span className="text-purple-400">convaincre</span></h2>
                         <div className="space-y-6">
-                            <p className="text-gray-400 leading-relaxed">
+                            <p className="text-gray-300 leading-relaxed">
                                 Votre logo est souvent le premier contact qu'un client a avec vous. Il doit inspirer confiance, professionnalisme et modernité.
                             </p>
-                            <p className="text-gray-400 leading-relaxed">
+                            <p className="text-gray-300 leading-relaxed">
                                 Nos directeurs artistiques ne font pas que dessiner, ils traduisent vos valeurs en langage visuel universel. Du print au digital, nous assurons une cohérence parfaite de votre image de marque.
                             </p>
                         </div>
@@ -95,6 +95,8 @@ const DesignGraphique = () => {
                         <img
                             src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&q=80&w=1200"
                             alt="Design Graphique"
+                            loading="lazy"
+                            decoding="async"
                             className="w-full h-full object-cover"
                         />
                         <div className="absolute inset-0 bg-purple-900/40 mix-blend-multiply" />
@@ -120,7 +122,7 @@ const DesignGraphique = () => {
                         className="text-center mb-16"
                     >
                         <h2 className="text-3xl md:text-5xl font-serif font-bold mb-4">Notre <span className="text-purple-400 italic">Tech Stack</span></h2>
-                        <p className="text-gray-400 max-w-2xl mx-auto">Les meilleurs outils pour une exécution chirurgicale.</p>
+                        <p className="text-gray-300 max-w-2xl mx-auto">Les meilleurs outils pour une exécution chirurgicale.</p>
                     </motion.div>
 
                     <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
@@ -158,7 +160,7 @@ const DesignGraphique = () => {
                         className="text-center mb-16"
                     >
                         <h2 className="text-3xl md:text-5xl font-serif font-bold mb-4">Le Process <span className="text-purple-400 italic">Créatif</span></h2>
-                        <p className="text-gray-400 max-w-2xl mx-auto">Une méthodologie rigoureuse pour des visuels qui convertissent.</p>
+                        <p className="text-gray-300 max-w-2xl mx-auto">Une méthodologie rigoureuse pour des visuels qui convertissent.</p>
                     </motion.div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -180,7 +182,7 @@ const DesignGraphique = () => {
                                     {item.step}
                                 </div>
                                 <h3 className="text-xl font-bold text-white mb-3">{item.title}</h3>
-                                <p className="text-gray-400 text-sm leading-relaxed">{item.desc}</p>
+                                <p className="text-gray-300 text-sm leading-relaxed">{item.desc}</p>
                             </motion.div>
                         ))}
                     </div>
@@ -217,7 +219,7 @@ const DesignGraphique = () => {
 
                 <div className="text-center bg-surface/30 backdrop-blur-xl p-8 md:p-12 rounded-[2rem] md:rounded-[3rem] border border-white/10">
                     <h2 className="text-3xl font-bold mb-6">Votre image a besoin d'un refresh ?</h2>
-                    <p className="text-gray-400 mb-8 max-w-xl mx-auto">
+                    <p className="text-gray-300 mb-8 max-w-xl mx-auto">
                         Donnez un coup de jeune à votre marque avec une identité visuelle forte et mémorable.
                     </p>
                     <Button

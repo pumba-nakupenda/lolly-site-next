@@ -218,7 +218,7 @@ const Portfolio = () => {
                     <h1 className="text-3xl md:text-8xl font-serif font-bold text-white mb-8 tracking-tight leading-[1.1]">
                         Réalisations <br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-white to-primary italic pb-1 px-2">d'Excellence</span>
                     </h1>
-                    <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
+                    <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
                         Chaque projet est une preuve de notre engagement à bousculer les codes et à marquer l'histoire de nos clients.
                     </p>
                 </motion.div>
@@ -237,7 +237,7 @@ const Portfolio = () => {
                             className={`whitespace-nowrap px-6 md:px-8 py-3 rounded-2xl text-[10px] uppercase font-black tracking-[0.2em] transition-all duration-500 backdrop-blur-md border shadow-lg
                                 ${filter === cat
                                     ? 'bg-primary text-black border-primary scale-105 shadow-primary/20'
-                                    : 'bg-white/5 text-gray-400 border-white/5 hover:border-white/20 hover:text-white'
+                                    : 'bg-white/5 text-gray-300 border-white/5 hover:border-white/20 hover:text-white'
                                 }`}
                         >
                             {cat}
@@ -265,6 +265,8 @@ const Portfolio = () => {
                                 <img
                                     src={project.image}
                                     alt={project.title}
+                                    width="800"
+                                    height="1000"
                                     className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                                 />
                                 {/* Category Tag - Top Left */}
@@ -280,7 +282,7 @@ const Portfolio = () => {
                                     <h3 className="text-xl md:text-2xl font-bold text-white mb-3 leading-tight group-hover:text-primary transition-colors drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)] line-clamp-2">
                                         {project.title}
                                     </h3>
-                                    <p className="hidden md:block text-gray-400 text-[11px] opacity-0 group-hover:opacity-100 transition-all duration-500 delay-100 line-clamp-2 leading-relaxed">
+                                    <p className="hidden md:block text-gray-300 text-[11px] opacity-0 group-hover:opacity-100 transition-all duration-500 delay-100 line-clamp-2 leading-relaxed">
                                         {project.description}
                                     </p>
                                     <div className="mt-4 flex items-center gap-2 text-white text-[9px] font-black uppercase tracking-[0.3em] opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all delay-200">
@@ -352,6 +354,8 @@ const Portfolio = () => {
                                                 exit={{ opacity: 0, scale: 0.9 }}
                                                 transition={{ duration: 0.6 }}
                                                 className="w-full h-full object-cover"
+                                                width="1200"
+                                                height="800"
                                             />
                                         </AnimatePresence>
 
@@ -397,7 +401,7 @@ const Portfolio = () => {
                                     <h2 className="text-3xl md:text-5xl font-serif font-bold text-white mb-6 md:mb-8 tracking-tight leading-tight">
                                         {selectedProject.title}
                                     </h2>
-                                    <p className="text-gray-400 text-base md:text-lg leading-relaxed mb-8 md:mb-10">
+                                    <p className="text-gray-300 text-base md:text-lg leading-relaxed mb-8 md:mb-10">
                                         {selectedProject.description}
                                     </p>
 
@@ -462,7 +466,7 @@ const Portfolio = () => {
                     <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
                     <div className="relative z-10">
                         <h2 className="text-3xl md:text-7xl font-serif font-bold text-white mb-6 md:mb-8 tracking-tight leading-tight">Votre futur succès <br /> commence <span className="text-primary italic">ici</span>.</h2>
-                        <p className="text-gray-400 mb-10 md:mb-12 max-w-xl mx-auto text-base md:text-xl leading-relaxed px-4 md:px-0">Prêt à bousculer votre industrie avec une identité forte et une stratégie qui ne laisse rien au hasard ?</p>
+                        <p className="text-gray-300 mb-10 md:mb-12 max-w-xl mx-auto text-base md:text-xl leading-relaxed px-4 md:px-0">Prêt à bousculer votre industrie avec une identité forte et une stratégie qui ne laisse rien au hasard ?</p>
                         <Button
                             className="w-full md:w-auto h-14 md:h-16 px-8 md:px-12 text-base md:text-lg font-black rounded-xl md:rounded-2xl shadow-xl"
                             onClick={() => {

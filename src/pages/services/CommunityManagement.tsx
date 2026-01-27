@@ -33,7 +33,7 @@ const CommunityManagement = () => {
                     <h1 className="text-4xl md:text-7xl font-serif font-bold mb-8 tracking-tight">
                         Community <span className="text-pink-400 italic">Management</span>
                     </h1>
-                    <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
+                    <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
                         Ne laissez pas vos réseaux sociaux dormir. Nous créons de l'engagement, de la conversation et in fine, du business.
                     </p>
                 </motion.div>
@@ -56,7 +56,7 @@ const CommunityManagement = () => {
                                     <item.icon className="text-white group-hover:text-pink-400" size={24} />
                                 </div>
                                 <h3 className="font-bold text-lg mb-2">{item.title}</h3>
-                                <p className="text-sm text-gray-400">{item.desc}</p>
+                                <p className="text-sm text-gray-300">{item.desc}</p>
                             </div>
                         ))}
                     </motion.div>
@@ -68,10 +68,10 @@ const CommunityManagement = () => {
                     >
                         <h2 className="text-3xl font-bold mb-6">Votre voix <span className="text-pink-400">digitalisée</span></h2>
                         <div className="space-y-6">
-                            <p className="text-gray-400 leading-relaxed">
+                            <p className="text-gray-300 leading-relaxed">
                                 Être sur les réseaux sociaux ne suffit pas. Il faut y être stratégique. Nous définissons une ligne éditoriale claire qui reflète vos valeurs et attire vos clients idéaux.
                             </p>
-                            <p className="text-gray-400 leading-relaxed">
+                            <p className="text-gray-300 leading-relaxed">
                                 Fini le stress de "quoi poster aujourd'hui ?". Nous planifions, créons et publions pour vous, tout en vous fournissant des rapports mensuels détaillés sur vos performances.
                             </p>
                         </div>
@@ -95,6 +95,8 @@ const CommunityManagement = () => {
                         <img
                             src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&q=80&w=1200"
                             alt="Social Media Management"
+                            loading="lazy"
+                            decoding="async"
                             className="w-full h-full object-cover"
                         />
                         <div className="absolute inset-0 bg-pink-900/40 mix-blend-multiply" />
@@ -120,7 +122,7 @@ const CommunityManagement = () => {
                         className="text-center mb-16"
                     >
                         <h2 className="text-3xl md:text-5xl font-serif font-bold mb-4">Notre <span className="text-pink-400 italic">Social Stack</span></h2>
-                        <p className="text-gray-400 max-w-2xl mx-auto">Précision, réactivité et data au cœur de notre gestion.</p>
+                        <p className="text-gray-300 max-w-2xl mx-auto">Précision, réactivité et data au cœur de notre gestion.</p>
                     </motion.div>
 
                     <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
@@ -157,7 +159,7 @@ const CommunityManagement = () => {
                         className="text-center mb-16"
                     >
                         <h2 className="text-3xl md:text-5xl font-serif font-bold mb-4">Cycle de <span className="text-pink-400 italic">Gestion</span></h2>
-                        <p className="text-gray-400 max-w-2xl mx-auto">Une méthode itérative pour une croissance constante.</p>
+                        <p className="text-gray-300 max-w-2xl mx-auto">Une méthode itérative pour une croissance constante.</p>
                     </motion.div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-8">
@@ -180,7 +182,7 @@ const CommunityManagement = () => {
                                 </div>
                                 <div>
                                     <h3 className="text-xl font-bold mb-2">{item.title}</h3>
-                                    <p className="text-sm text-gray-400 leading-relaxed">{item.desc}</p>
+                                    <p className="text-sm text-gray-300 leading-relaxed">{item.desc}</p>
                                 </div>
                             </motion.div>
                         ))}
@@ -218,7 +220,7 @@ const CommunityManagement = () => {
 
                 <div className="text-center bg-surface/30 backdrop-blur-xl p-8 md:p-12 rounded-[2rem] md:rounded-[3rem] border border-white/10">
                     <h2 className="text-3xl font-bold mb-6">On booste votre visibilité ?</h2>
-                    <p className="text-gray-400 mb-8 max-w-xl mx-auto">
+                    <p className="text-gray-300 mb-8 max-w-xl mx-auto">
                         Choisissez le forfait qui vous convient et regardez votre communauté grandir.
                     </p>
                     <Button

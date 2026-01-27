@@ -41,6 +41,8 @@ const ClientLogos = () => {
                             <img
                                 src={logo.src}
                                 alt="Client Logo"
+                                loading="lazy"
+                                decoding="async"
                                 style={{ transform: `scale(${logo.scale})` }}
                                 className="max-h-full w-auto object-contain grayscale brightness-0 invert group-hover:grayscale-0 group-hover:brightness-100 group-hover:invert-0 transition-all duration-500"
                             />

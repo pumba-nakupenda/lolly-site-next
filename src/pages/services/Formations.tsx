@@ -67,7 +67,7 @@ const Formations = () => {
                     <h1 className="text-4xl md:text-7xl font-serif font-bold mb-8 tracking-tight">
                         Formations <span className="text-indigo-400 italic">Professionnelles</span>
                     </h1>
-                    <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
+                    <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
                         Ne dépendez plus d'agences pour tout. Montez en compétence et maîtrisez les codes du digital en interne.
                     </p>
                 </motion.div>
@@ -90,7 +90,7 @@ const Formations = () => {
                                     <item.icon className="text-white group-hover:text-indigo-400" size={24} />
                                 </div>
                                 <h3 className="font-bold text-lg mb-2">{item.title}</h3>
-                                <p className="text-sm text-gray-400">{item.desc}</p>
+                                <p className="text-sm text-gray-300">{item.desc}</p>
                             </div>
                         ))}
                     </motion.div>
@@ -102,10 +102,10 @@ const Formations = () => {
                     >
                         <h2 className="text-3xl font-bold mb-6">L'autonomie est votre <span className="text-indigo-400">pouvoir</span></h2>
                         <div className="space-y-6">
-                            <p className="text-gray-400 leading-relaxed">
+                            <p className="text-gray-300 leading-relaxed">
                                 Le digital évolue vite. Très vite. Nos formations sont mises à jour en permanence pour vous donner les clés des outils d'aujourd'hui et de demain.
                             </p>
-                            <p className="text-gray-400 leading-relaxed">
+                            <p className="text-gray-300 leading-relaxed">
                                 Que vous soyez une équipe marketing souhaitant internaliser la création de contenu, ou un dirigeant voulant comprendre les leviers de sa croissance, nous avons le module adapté.
                             </p>
                         </div>
@@ -200,7 +200,7 @@ const Formations = () => {
                         className="text-center mb-16"
                     >
                         <h2 className="text-3xl md:text-5xl font-serif font-bold mb-4">Notre <span className="text-indigo-400 italic">Écosystème</span> Apprenant</h2>
-                        <p className="text-gray-400 max-w-2xl mx-auto">Des outils modernes pour une immersion totale et une progression rapide.</p>
+                        <p className="text-gray-300 max-w-2xl mx-auto">Des outils modernes pour une immersion totale et une progression rapide.</p>
                     </motion.div>
 
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
@@ -222,7 +222,7 @@ const Formations = () => {
                                     <item.icon className="text-indigo-400" size={28} />
                                 </div>
                                 <h3 className="text-lg font-bold mb-2">{item.title}</h3>
-                                <p className="text-sm text-gray-400 leading-relaxed">{item.desc}</p>
+                                <p className="text-sm text-gray-300 leading-relaxed">{item.desc}</p>
                             </motion.div>
                         ))}
                     </div>
@@ -238,7 +238,7 @@ const Formations = () => {
                             className="text-center mb-16"
                         >
                             <h2 className="text-3xl md:text-5xl font-serif font-bold mb-4">Votre <span className="text-indigo-400 italic">Parcours</span> de Réussite</h2>
-                            <p className="text-gray-400 max-w-2xl mx-auto">Une méthodologie structurée pour passer de novice à expert.</p>
+                            <p className="text-gray-300 max-w-2xl mx-auto">Une méthodologie structurée pour passer de novice à expert.</p>
                         </motion.div>
 
                         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
@@ -301,7 +301,7 @@ const Formations = () => {
 
                 <div className="text-center bg-surface/30 backdrop-blur-xl p-8 md:p-12 rounded-[2rem] md:rounded-[3rem] border border-white/10">
                     <h2 className="text-3xl font-bold mb-6">Besoin d'un plan de formation sur-mesure ?</h2>
-                    <p className="text-gray-400 mb-8 max-w-xl mx-auto">
+                    <p className="text-gray-300 mb-8 max-w-xl mx-auto">
                         Nous analysons les besoins de vos équipes et construisons un parcours pédagogique adapté à vos objectifs business.
                     </p>
                     <Button

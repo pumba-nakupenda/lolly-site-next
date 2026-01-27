@@ -91,7 +91,7 @@ const VCard = () => {
                         <Smartphone size={32} />
                     </div>
                     <h1 className="text-2xl font-bold text-white">Version Mobile Uniquement</h1>
-                    <p className="text-gray-400">
+                    <p className="text-gray-300">
                         Cette carte de visite digitale est conçue pour être visualisée sur votre téléphone pour une meilleure expérience.
                     </p>
                     <div className="p-4 bg-white/5 rounded-xl border border-white/10 mt-8">
@@ -159,6 +159,8 @@ const VCard = () => {
                         <img
                             src={contactInfo.avatar}
                             alt={contactInfo.firstName}
+                            width="128"
+                            height="128"
                             className="w-full h-full object-cover rounded-[1.5rem]"
                         />
                         <div className="absolute bottom-2 right-2 w-5 h-5 bg-green-500 border-4 border-black rounded-full" />
@@ -167,10 +169,10 @@ const VCard = () => {
                     <div className="mt-6 space-y-2">
                         <h1 className="text-2xl font-bold text-white tracking-tight">{contactInfo.firstName} {contactInfo.lastName}</h1>
                         <p className="text-primary font-bold text-xs uppercase tracking-widest">{contactInfo.title}</p>
-                        <p className="text-gray-400 text-sm font-medium">{contactInfo.company}</p>
+                        <p className="text-gray-300 text-sm font-medium">{contactInfo.company}</p>
 
                         {/* Bio */}
-                        <p className="text-gray-400 text-xs leading-relaxed max-w-[280px] mx-auto pt-2">
+                        <p className="text-gray-300 text-xs leading-relaxed max-w-[280px] mx-auto pt-2">
                             {contactInfo.bio}
                         </p>
 
@@ -293,7 +295,8 @@ const VCard = () => {
                         >
                             <button
                                 onClick={() => setShowQrCode(false)}
-                                className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center bg-white/5 rounded-full text-gray-400 hover:text-white"
+                                className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center bg-white/5 rounded-full text-gray-300 hover:text-white"
+                                aria-label="Fermer le QR Code"
                             >
                                 <X size={16} />
                             </button>
@@ -301,12 +304,14 @@ const VCard = () => {
                             <h3 className="text-xl font-bold text-white mb-6">Mon QR Code</h3>
                             <div className="bg-white p-4 rounded-2xl inline-block mx-auto mb-6">
                                 <img
-                                    src={`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(window.location.href)}&color=000000`}
+                                    src={`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(window.location.href)}&bgcolor=111&color=fff&margin=10`}
                                     alt="QR Code"
+                                    width="192"
+                                    height="192"
                                     className="w-48 h-48"
                                 />
                             </div>
-                            <p className="text-sm text-gray-400">
+                            <p className="text-sm text-gray-300">
                                 Scannez pour accéder à la carte de visite
                             </p>
                         </motion.div>

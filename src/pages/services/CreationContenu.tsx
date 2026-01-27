@@ -31,7 +31,7 @@ const CreationContenu = () => {
                     <h1 className="text-4xl md:text-7xl font-serif font-bold mb-8 tracking-tight">
                         Création de <span className="text-green-400 italic">Contenu</span>
                     </h1>
-                    <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
+                    <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
                         Le contenu est roi. Nous écrivons les textes qui séduisent Google et vos clients. Donnez de la voix à votre expertise.
                     </p>
                 </motion.div>
@@ -44,10 +44,10 @@ const CreationContenu = () => {
                     >
                         <h2 className="text-3xl font-bold mb-6">Des mots qui <span className="text-green-400">marchent</span></h2>
                         <div className="space-y-6">
-                            <p className="text-gray-400 leading-relaxed">
+                            <p className="text-gray-300 leading-relaxed">
                                 Un beau site web sans bon contenu est une coquille vide. Nos rédacteurs et copywriters conçoivent des textes percutants, optimisés pour le référencement (SEO) et orientés conversion.
                             </p>
-                            <p className="text-gray-400 leading-relaxed">
+                            <p className="text-gray-300 leading-relaxed">
                                 Du script de votre vidéo institutionnelle à vos newsletters hebdomadaires, nous trouvons le ton juste pour engager votre audience.
                             </p>
                         </div>
@@ -76,7 +76,7 @@ const CreationContenu = () => {
                                     <item.icon className="text-white group-hover:text-green-400" size={24} />
                                 </div>
                                 <h3 className="font-bold text-lg mb-2">{item.title}</h3>
-                                <p className="text-sm text-gray-400">{item.desc}</p>
+                                <p className="text-sm text-gray-300">{item.desc}</p>
                             </div>
                         ))}
                     </motion.div>
@@ -93,6 +93,10 @@ const CreationContenu = () => {
                         <img
                             src={contentImg}
                             alt="Content Lab"
+                            width="1200"
+                            height="800"
+                            loading="lazy"
+                            decoding="async"
                             className="w-full h-full object-cover"
                         />
                         <div className="absolute inset-0 bg-green-900/40 mix-blend-multiply" />
@@ -116,7 +120,7 @@ const CreationContenu = () => {
                         className="bg-white/5 border border-white/10 rounded-[2rem] md:rounded-[3rem] p-8 md:p-12 text-center"
                     >
                         <h2 className="text-3xl md:text-5xl font-serif font-bold mb-4">Notre <span className="text-green-400 italic">Content Lab</span></h2>
-                        <p className="text-gray-400 max-w-2xl mx-auto mb-16">L'intelligence des mots couplée à la puissance des outils modernes.</p>
+                        <p className="text-gray-300 max-w-2xl mx-auto mb-16">L'intelligence des mots couplée à la puissance des outils modernes.</p>
 
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
                             {[
@@ -146,7 +150,7 @@ const CreationContenu = () => {
                         className="text-center mb-16"
                     >
                         <h2 className="text-3xl md:text-5xl font-serif font-bold mb-4">La Fabrique à <span className="text-green-400 italic">Histoires</span></h2>
-                        <p className="text-gray-400 max-w-2xl mx-auto">Un workflow rigoureux pour des contenus qui marquent les esprits.</p>
+                        <p className="text-gray-300 max-w-2xl mx-auto">Un workflow rigoureux pour des contenus qui marquent les esprits.</p>
                     </motion.div>
 
                     <div className="space-y-4 max-w-4xl mx-auto">
@@ -172,7 +176,7 @@ const CreationContenu = () => {
                                         <item.icon size={20} className="text-green-400" />
                                         {item.title}
                                     </h3>
-                                    <p className="text-sm text-gray-400 leading-relaxed">{item.desc}</p>
+                                    <p className="text-sm text-gray-300 leading-relaxed">{item.desc}</p>
                                 </div>
                             </motion.div>
                         ))}
@@ -210,7 +214,7 @@ const CreationContenu = () => {
 
                 <div className="text-center bg-surface/30 backdrop-blur-xl p-8 md:p-12 rounded-[2rem] md:rounded-[3rem] border border-white/10">
                     <h2 className="text-3xl font-bold mb-6">Vous avez les idées, nous avons la plume.</h2>
-                    <p className="text-gray-400 mb-8 max-w-xl mx-auto">
+                    <p className="text-gray-300 mb-8 max-w-xl mx-auto">
                         Ne perdez plus de temps devant une page blanche. Laissez des professionnels écrire pour vous.
                     </p>
                     <Button

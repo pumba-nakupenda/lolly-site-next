@@ -2,6 +2,7 @@ import { Button } from "../components/ui/Button";
 import { motion } from "framer-motion";
 import { Mail, MapPin, Phone, Loader2, CheckCircle2, Linkedin, Instagram, Facebook, Music2 } from "lucide-react";
 import { useState } from "react";
+import SEO from "../components/SEO";
 
 const WEBHOOK_URL = "https://n8n.srv812544.hstgr.cloud/webhook/2ee87114-da42-4f38-85e8-c4a99ba04a3f";
 
@@ -76,6 +77,10 @@ const Contact = () => {
 
     return (
         <div className="pt-24 md:pt-40 pb-16 md:pb-20 px-0 md:px-6 min-h-screen bg-transparent relative overflow-hidden">
+            <SEO
+                title="Contact"
+                description="Contactez LOLLY pour discuter de votre projet. Consulting, formation, production : nous sommes prêts à relever vos défis."
+            />
             {/* Background Decorative Elements */}
             <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
                 <motion.div
@@ -118,7 +123,7 @@ const Contact = () => {
                     <h1 className="text-3xl md:text-8xl font-serif font-bold text-white mb-6 md:mb-8 tracking-tight">
                         Parlons de <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-white to-primary">votre projet</span>
                     </h1>
-                    <p className="text-gray-400 max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
+                    <p className="text-gray-300 max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
                         Que vous soyez au début de votre réflexion ou prêt à lancer votre campagne, nous sommes là pour vous accompagner vers l'excellence.
                     </p>
                 </motion.div>
@@ -149,7 +154,7 @@ const Contact = () => {
                                     <CheckCircle2 size={40} className="md:size-[56px] text-green-500" />
                                 </motion.div>
                                 <h1 className="text-3xl md:text-4xl font-bold text-white mb-4 md:mb-6">Merci infiniment !</h1>
-                                <p className="text-gray-400 max-w-sm text-base md:text-lg mb-8 md:mb-10 leading-relaxed">
+                                <p className="text-gray-300 max-w-sm text-base md:text-lg mb-8 md:mb-10 leading-relaxed">
                                     Votre demande a été transmise avec succès. Notre équipe s'engage à vous répondre sous 24h.
                                 </p>
                                 <Button
@@ -306,7 +311,7 @@ const Contact = () => {
                             className="bg-surface/20 backdrop-blur-md p-6 md:p-10 rounded-[2.5rem] border border-white/5"
                         >
                             <h2 className="text-2xl md:text-3xl font-serif font-bold text-white mb-4 md:mb-6">On reste à votre écoute.</h2>
-                            <p className="text-gray-400 mb-8 md:mb-10 leading-relaxed text-sm md:text-base">
+                            <p className="text-gray-300 mb-8 md:mb-10 leading-relaxed text-sm md:text-base">
                                 Besoin d'un conseil immédiat ? N'hésitez pas à nous solliciter via nos différents canaux. On adore discuter nouvelles idées !
                             </p>
 
@@ -359,22 +364,23 @@ const Contact = () => {
                         >
                             <div className="relative z-10">
                                 <h3 className="text-2xl font-bold text-white mb-4">Suivez-nous</h3>
-                                <p className="text-gray-400 text-sm mb-6 uppercase tracking-widest font-bold">@lolly_agency</p>
+                                <p className="text-gray-300 text-sm mb-6 uppercase tracking-widest font-bold">@lolly_agency</p>
                                 <div className="flex gap-4">
                                     {[
-                                        { icon: Linkedin, url: "https://www.linkedin.com/company/lolly-sas" },
-                                        { icon: Instagram, url: "https://www.instagram.com/agence_lolly/" },
-                                        { icon: Facebook, url: "https://www.facebook.com/AGENCELOLLY" },
-                                        { icon: Music2, url: "https://www.tiktok.com/@agence_lolly" }
-                                    ].map((social, i) => (
+                                        { icon: Linkedin, url: "https://www.linkedin.com/company/lolly-sas", label: "LinkedIn" },
+                                        { icon: Instagram, url: "https://www.instagram.com/agence_lolly/", label: "Instagram" },
+                                        { icon: Facebook, url: "https://www.facebook.com/AGENCELOLLY", label: "Facebook" },
+                                        { icon: Music2, url: "https://www.tiktok.com/@agence_lolly", label: "TikTok" }
+                                    ].map((item, i) => (
                                         <a
                                             key={i}
-                                            href={social.url}
+                                            href={item.url}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="w-10 h-10 bg-white/5 rounded-full hover:bg-primary hover:text-black transition-all flex items-center justify-center border border-white/5"
+                                            className="w-12 h-12 flex items-center justify-center rounded-full bg-white/5 hover:bg-white/10 text-white hover:text-primary transition-all border border-white/5"
+                                            aria-label={item.label}
                                         >
-                                            <social.icon size={18} />
+                                            <item.icon size={20} />
                                         </a>
                                     ))}
                                 </div>
@@ -409,7 +415,7 @@ const Contact = () => {
                         {/* Overlay info for mobile or context */}
                         <div className="absolute bottom-10 left-1/2 -translate-x-1/2 bg-black/60 backdrop-blur-xl border border-white/10 p-6 md:p-8 rounded-[2rem] text-center w-[90%] md:w-auto min-w-[320px] shadow-2xl z-20 pointer-events-none group-hover/map:translate-y-[-10px] transition-transform">
                             <h3 className="text-xl font-bold text-white mb-2">LOLLY SAS</h3>
-                            <p className="text-gray-400 text-sm mb-4">Fass Delorme Rue 22x13, Dakar</p>
+                            <p className="text-gray-300 text-sm mb-4">Fass Delorme Rue 22x13, Dakar</p>
                             <div className="flex items-center justify-center gap-2 text-primary text-[10px] font-black uppercase tracking-widest">
                                 <MapPin size={12} />
                                 Siège Social

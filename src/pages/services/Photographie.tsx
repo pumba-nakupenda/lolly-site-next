@@ -105,7 +105,7 @@ const Photographie = () => {
                     <h1 className="text-4xl md:text-7xl font-serif font-bold mb-8 tracking-tight">
                         Photographie <span className="text-blue-400 italic">Pro</span>
                     </h1>
-                    <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
+                    <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
                         Une image vaut mille mots. Assurez-vous qu'elle dise les bons. Des visuels haute définition pour sublimer vos produits et équipes.
                     </p>
                 </motion.div>
@@ -118,10 +118,10 @@ const Photographie = () => {
                     >
                         <h2 className="text-3xl font-bold mb-6">L'art de <span className="text-blue-400">capter</span> l'instant</h2>
                         <div className="space-y-6">
-                            <p className="text-gray-400 leading-relaxed">
+                            <p className="text-gray-300 leading-relaxed">
                                 Oubliez les photos ternes et mal éclairées. Notre studio mobile se déplace chez vous pour capturer l'essence de votre activité avec un matériel de pointe.
                             </p>
-                            <p className="text-gray-400 leading-relaxed">
+                            <p className="text-gray-300 leading-relaxed">
                                 Que ce soit pour un catalogue e-commerce, des portraits LinkedIn ou un reportage événementiel, nous livrons des photos retouchées prêtes à l'emploi.
                             </p>
                         </div>
@@ -150,7 +150,7 @@ const Photographie = () => {
                                     <item.icon className="text-white group-hover:text-blue-400" size={24} />
                                 </div>
                                 <h3 className="font-bold text-lg mb-2">{item.title}</h3>
-                                <p className="text-sm text-gray-400">{item.desc}</p>
+                                <p className="text-sm text-gray-300">{item.desc}</p>
                             </div>
                         ))}
                     </motion.div>
@@ -165,7 +165,7 @@ const Photographie = () => {
                         className="text-center mb-16"
                     >
                         <h2 className="text-3xl md:text-5xl font-serif font-bold mb-6">Notre <span className="text-blue-400 italic">Arsenal</span> Technique</h2>
-                        <p className="text-gray-400 max-w-2xl mx-auto leading-relaxed">
+                        <p className="text-gray-300 max-w-2xl mx-auto leading-relaxed">
                             Nous utilisons le matériel le plus précis pour garantir un piqué exceptionnel et une fidélité des couleurs irréprochable.
                         </p>
                     </motion.div>
@@ -186,6 +186,8 @@ const Photographie = () => {
                                             key={activeIndexes[i]}
                                             src={item.images[activeIndexes[i]]}
                                             alt={item.title}
+                                            loading="lazy"
+                                            decoding="async"
                                             initial={{ opacity: 0, x: 20 }}
                                             animate={{ opacity: 1, x: 0 }}
                                             exit={{ opacity: 0, x: -20 }}
@@ -232,7 +234,7 @@ const Photographie = () => {
 
                                 <div className="p-8 md:p-10">
                                     <h4 className="text-2xl md:text-3xl font-bold text-white mb-4 leading-tight">{item.title}</h4>
-                                    <p className="text-gray-400 text-base md:text-lg leading-relaxed font-medium">{item.detail}</p>
+                                    <p className="text-gray-300 text-base md:text-lg leading-relaxed font-medium">{item.detail}</p>
                                 </div>
                             </motion.div>
                         ))}
@@ -248,7 +250,7 @@ const Photographie = () => {
                         className="text-center mb-16"
                     >
                         <h2 className="text-3xl md:text-5xl font-serif font-bold mb-4">Workflow <span className="text-blue-400 italic">Créatif</span></h2>
-                        <p className="text-gray-400 max-w-2xl mx-auto">De la conception à la livraison finale, chaque étape est maîtrisée.</p>
+                        <p className="text-gray-300 max-w-2xl mx-auto">De la conception à la livraison finale, chaque étape est maîtrisée.</p>
                     </motion.div>
 
                     <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
@@ -271,7 +273,7 @@ const Photographie = () => {
                                     {item.step}
                                 </div>
                                 <h3 className="font-bold text-white mb-2">{item.title}</h3>
-                                <p className="text-gray-400 text-xs leading-relaxed">{item.desc}</p>
+                                <p className="text-gray-300 text-xs leading-relaxed">{item.desc}</p>
                             </motion.div>
                         ))}
                     </div>
@@ -308,7 +310,7 @@ const Photographie = () => {
 
                 <div className="text-center bg-surface/30 backdrop-blur-xl p-8 md:p-12 rounded-[2rem] md:rounded-[3rem] border border-white/10">
                     <h2 className="text-3xl font-bold mb-6">Réservez votre shooting</h2>
-                    <p className="text-gray-400 mb-8 max-w-xl mx-auto">
+                    <p className="text-gray-300 mb-8 max-w-xl mx-auto">
                         Studio ou extérieur ? Définissons ensemble l'univers visuel qui correspond à votre marque.
                     </p>
                     <Button

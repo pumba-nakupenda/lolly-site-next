@@ -3,6 +3,7 @@ import { BookOpen, Target, PenTool, BarChart, Rocket, HeartHandshake, Award, Che
 import { useState, useRef, useEffect } from "react";
 import { Button } from "../components/ui/Button";
 import { useNavigate } from "react-router-dom";
+import SEO from "../components/SEO";
 
 const Services = () => {
     const stepsRef = useRef(null);
@@ -159,8 +160,13 @@ const Services = () => {
     // Filter out consulting for the general grid/carousel
     const standardExpertises = expertises.filter(s => s.id !== "consulting");
 
+    // ... inside component return
     return (
         <div className="pt-24 md:pt-40 pb-16 md:pb-20 px-0 md:px-6 min-h-screen relative overflow-hidden bg-transparent">
+            <SEO
+                title="Nos Expertises"
+                description="Découvrez nos expertises : Consulting, Formation, Production Vidéo, Design Graphique, et Community Management. Une approche 360° pour votre réussite."
+            />
             {/* Premium Background Decorative Elements */}
             <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none hidden md:block">
                 <motion.div
@@ -195,7 +201,7 @@ const Services = () => {
                     <h1 className="text-3xl md:text-8xl font-serif font-bold text-white mb-10 tracking-tight leading-[1.1]">
                         Une méthodologie <br /> qui <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-white to-primary italic pb-1 px-2">garantit</span> le succès
                     </h1>
-                    <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
+                    <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
                         Chaque projet est une œuvre unique guidée par un processus rigoureux et créatif pour extraire le meilleur de votre marque.
                     </p>
                 </motion.div>
@@ -285,7 +291,7 @@ const Services = () => {
                                         <span className="text-primary text-[10px] font-black uppercase tracking-[0.3em] mb-2 block">{item.subtitle}</span>
                                         {item.title}
                                     </h3>
-                                    <p className="text-gray-400 mb-8 text-base md:text-lg leading-relaxed text-center md:text-inherit">{item.content}</p>
+                                    <p className="text-gray-300 mb-8 text-base md:text-lg leading-relaxed text-center md:text-inherit">{item.content}</p>
 
                                     <div className={`flex flex-wrap gap-2 justify-center mb-8 ${index % 2 === 0 ? 'md:justify-start' : 'md:justify-end'}`}>
                                         {item.details.map((detail, i) => (
@@ -331,7 +337,7 @@ const Services = () => {
                 >
                     <span className="text-primary font-bold tracking-[0.2em] uppercase text-xs mb-4 block">Notre Catalogue</span>
                     <h2 className="text-3xl md:text-7xl font-serif font-bold text-white mb-6">Nos Expertises <span className="text-primary italic">Majeures</span></h2>
-                    <p className="text-gray-400 max-w-xl mx-auto text-lg">Des services d'élite conçus pour propulser chaque aspect de votre présence de marque.</p>
+                    <p className="text-gray-300 max-w-xl mx-auto text-lg">Des services d'élite conçus pour propulser chaque aspect de votre présence de marque.</p>
                 </motion.div>
 
                 {/* Consulting Highlight */}
@@ -355,7 +361,7 @@ const Services = () => {
                             </motion.div>
                             <div className="text-center lg:text-left">
                                 <h3 className="text-4xl md:text-5xl font-serif font-bold text-white mb-4 tracking-tight">Consulting en Communication</h3>
-                                <p className="text-gray-400 text-xl mb-10 max-w-3xl leading-relaxed">Le socle de votre succès. Nous ne nous contentons pas de communiquer, nous bâtissons l'influence stratégique qui transformera votre business.</p>
+                                <p className="text-gray-300 text-xl mb-10 max-w-3xl leading-relaxed">Le socle de votre succès. Nous ne nous contentons pas de communiquer, nous bâtissons l'influence stratégique qui transformera votre business.</p>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                                     {[
                                         "Audit & diagnostic 360°",
@@ -404,7 +410,7 @@ const Services = () => {
                                 <div className="text-white font-black text-6xl mb-2 opacity-[0.03] absolute top-8 right-8 font-serif select-none">{index + 1}</div>
 
                                 <h3 className="text-2xl font-bold text-white mb-4 tracking-tight">{service.title}</h3>
-                                <p className="text-gray-400 text-sm mb-8 leading-relaxed line-clamp-2">{service.description}</p>
+                                <p className="text-gray-300 text-sm mb-8 leading-relaxed line-clamp-2">{service.description}</p>
 
                                 <ul className="space-y-4 mb-8">
                                     {service.items.map((item, i) => (
@@ -417,7 +423,7 @@ const Services = () => {
 
                                 {service.extra && (
                                     <div className="bg-white/5 px-4 py-3 rounded-xl border border-white/5 mb-2">
-                                        <p className="text-[10px] text-gray-400 italic font-medium leading-none">{service.extra}</p>
+                                        <p className="text-[10px] text-gray-300 italic font-medium leading-none">{service.extra}</p>
                                     </div>
                                 )}
                             </div>
@@ -489,7 +495,7 @@ const Services = () => {
                                     <item.icon size={28} className="text-primary" />
                                 </div>
                                 <h3 className="text-lg font-bold text-white mb-3 tracking-tight">{item.title}</h3>
-                                <p className="text-gray-400 text-[13px] leading-relaxed">{item.desc}</p>
+                                <p className="text-gray-300 text-[13px] leading-relaxed">{item.desc}</p>
                             </motion.div>
                         ))}
                     </div>
@@ -546,7 +552,7 @@ const Services = () => {
                                     {stat.val}
                                 </motion.div>
                                 <div className={`text-primary font-black uppercase tracking-[0.2em] text-[10px] mb-6 block`}>{stat.label}</div>
-                                <p className="text-gray-400 text-sm leading-relaxed">{stat.desc}</p>
+                                <p className="text-gray-300 text-sm leading-relaxed">{stat.desc}</p>
                             </div>
                             {/* Inner Glow */}
                             <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-primary/10 rounded-full blur-[50px] pointer-events-none" />
@@ -609,7 +615,7 @@ const Services = () => {
                 >
                     <span className="text-primary font-bold tracking-[0.2em] uppercase text-[10px] mb-4 block">Catalogue Exhaustif</span>
                     <h2 className="text-4xl md:text-8xl font-serif font-bold text-white mb-6">37 Services d'exception à <span className="text-primary italic">votre service</span></h2>
-                    <p className="text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed">
+                    <p className="text-gray-300 max-w-2xl mx-auto text-lg leading-relaxed">
                         Parce que votre marque mérite une expertise chirurgicale dans chaque domaine de la communication moderne.
                     </p>
                 </motion.div>
@@ -623,7 +629,7 @@ const Services = () => {
                             onClick={() => setActiveCatalogue(i)}
                             className={`whitespace-nowrap px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest transition-all ${activeCatalogue === i
                                 ? "bg-primary text-black"
-                                : "bg-white/5 text-gray-400 border border-white/10"
+                                : "bg-white/5 text-gray-300 border border-white/10"
                                 }`}
                         >
                             {tab}
@@ -675,7 +681,7 @@ const Services = () => {
                         <h2 className="text-4xl md:text-7xl font-serif font-bold text-white mb-8 tracking-tight leading-tight">
                             Prêt à bousculer <br /> votre <span className="text-primary italic">marché</span> ?
                         </h2>
-                        <p className="text-gray-400 mb-12 max-w-2xl mx-auto text-xl leading-relaxed">
+                        <p className="text-gray-300 mb-12 max-w-2xl mx-auto text-xl leading-relaxed">
                             Nous offrons une heure de consultation stratégique aux marques ambitieuses. Analysons ensemble votre potentiel.
                         </p>
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
@@ -730,7 +736,7 @@ const FAQItem = ({ q, a }: { q: string, a: string }) => {
                         exit={{ height: 0, opacity: 0 }}
                         transition={{ duration: 0.5, ease: [0.76, 0, 0.24, 1] }}
                     >
-                        <div className="px-8 pb-8 text-gray-400 leading-relaxed text-sm">
+                        <div className="px-8 pb-8 text-gray-300 leading-relaxed text-sm">
                             {a}
                         </div>
                     </motion.div>

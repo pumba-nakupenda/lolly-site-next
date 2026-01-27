@@ -106,7 +106,7 @@ const ProductionVideo = () => {
                     <h1 className="text-4xl md:text-7xl font-serif font-bold mb-8 tracking-tight">
                         Production <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-orange-500 italic">Vidéo</span>
                     </h1>
-                    <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
+                    <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
                         L'image en mouvement a le pouvoir de captiver, d'émouvoir et de convaincre en quelques secondes. Nous racontons votre histoire.
                     </p>
                 </motion.div>
@@ -119,10 +119,10 @@ const ProductionVideo = () => {
                     >
                         <h2 className="text-3xl font-bold mb-6">De l'idée à <span className="text-red-500">l'écran</span></h2>
                         <div className="space-y-6">
-                            <p className="text-gray-400 leading-relaxed">
+                            <p className="text-gray-300 leading-relaxed">
                                 Que ce soit pour un spot publicitaire TV, une vidéo corporate ou du contenu snackable pour TikTok et Instagram, nous maîtrisons toute la chaîne de production.
                             </p>
-                            <p className="text-gray-400 leading-relaxed">
+                            <p className="text-gray-300 leading-relaxed">
                                 Écriture de scénario, casting, tournage 4K/6K, montage dynamique, color grading, motion design... Rien n'est laissé au hasard pour un rendu cinématographique.
                             </p>
                         </div>
@@ -151,7 +151,7 @@ const ProductionVideo = () => {
                                     <item.icon className="text-white group-hover:text-red-500" size={24} />
                                 </div>
                                 <h3 className="font-bold text-lg mb-2">{item.title}</h3>
-                                <p className="text-sm text-gray-400">{item.desc}</p>
+                                <p className="text-sm text-gray-300">{item.desc}</p>
                             </div>
                         ))}
                     </motion.div>
@@ -166,7 +166,7 @@ const ProductionVideo = () => {
                         className="text-center mb-16"
                     >
                         <h2 className="text-3xl md:text-5xl font-serif font-bold mb-6">Notre <span className="text-red-500 italic">Arsenal</span> Technique</h2>
-                        <p className="text-gray-400 max-w-2xl mx-auto leading-relaxed">
+                        <p className="text-gray-300 max-w-2xl mx-auto leading-relaxed">
                             Nous utilisons les meilleurs outils du marché pour garantir une qualité d'image irréprochable et un rendu cinématographique.
                         </p>
                     </motion.div>
@@ -187,6 +187,8 @@ const ProductionVideo = () => {
                                             key={activeIndexes[i]}
                                             src={item.images[activeIndexes[i]]}
                                             alt={item.title}
+                                            loading="lazy"
+                                            decoding="async"
                                             initial={{ opacity: 0, x: 20 }}
                                             animate={{ opacity: 1, x: 0 }}
                                             exit={{ opacity: 0, x: -20 }}
@@ -233,7 +235,7 @@ const ProductionVideo = () => {
 
                                 <div className="p-8 md:p-10">
                                     <h4 className="text-2xl md:text-3xl font-bold text-white mb-4 leading-tight">{item.title}</h4>
-                                    <p className="text-gray-400 text-base md:text-lg leading-relaxed font-medium">{item.detail}</p>
+                                    <p className="text-gray-300 text-base md:text-lg leading-relaxed font-medium">{item.detail}</p>
                                 </div>
                             </motion.div>
                         ))}
@@ -249,7 +251,7 @@ const ProductionVideo = () => {
                         className="text-center mb-16"
                     >
                         <h2 className="text-3xl md:text-5xl font-serif font-bold mb-4">La Méthode <span className="text-red-500 italic">Lolly</span></h2>
-                        <p className="text-gray-400 max-w-2xl mx-auto">Un processus fluide et structuré pour garantir un résultat d'exception.</p>
+                        <p className="text-gray-300 max-w-2xl mx-auto">Un processus fluide et structuré pour garantir un résultat d'exception.</p>
                     </motion.div>
 
                     <div className="space-y-4 max-w-4xl mx-auto">
@@ -272,7 +274,7 @@ const ProductionVideo = () => {
                                 </div>
                                 <div className="pt-2">
                                     <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
-                                    <p className="text-gray-400 text-sm leading-relaxed">{item.desc}</p>
+                                    <p className="text-gray-300 text-sm leading-relaxed">{item.desc}</p>
                                 </div>
                             </motion.div>
                         ))}
@@ -310,7 +312,7 @@ const ProductionVideo = () => {
 
                 <div className="text-center bg-surface/30 backdrop-blur-xl p-8 md:p-12 rounded-[2rem] md:rounded-[3rem] border border-white/10">
                     <h2 className="text-3xl font-bold mb-6">Un projet vidéo en tête ?</h2>
-                    <p className="text-gray-400 mb-8 max-w-xl mx-auto">
+                    <p className="text-gray-300 mb-8 max-w-xl mx-auto">
                         Discutons de votre scénario. Nous transformons vos idées en images percutantes.
                     </p>
                     <Button

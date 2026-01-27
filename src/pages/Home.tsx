@@ -4,13 +4,14 @@ import ClientLogos from "../components/ClientLogos";
 import { motion } from "framer-motion";
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import SEO from "../components/SEO";
 
 const Home = () => {
     const containerRef = useRef(null);
     const [activeService, setActiveService] = useState(0);
     const [activeTestimonial, setActiveTestimonial] = useState(0);
 
-    const handleScroll = (e: any, setIndex: Function) => {
+    const handleScroll = (e: any, setIndex: any) => {
         const scrollLeft = e.target.scrollLeft;
         const width = e.target.offsetWidth;
         const index = Math.round(scrollLeft / width);
@@ -19,6 +20,10 @@ const Home = () => {
 
     return (
         <div className="relative overflow-hidden bg-transparent" ref={containerRef}>
+            <SEO
+                title="Agence de Conseil en Communication"
+                description="LOLLY est votre partenaire stratégique pour dominer le paysage digital sénégalais. Stratégie 360, Branding, Formation et Production Vidéo."
+            />
             <Hero />
 
             <ClientLogos />
@@ -49,7 +54,7 @@ const Home = () => {
                             <h2 className="text-3xl md:text-7xl font-serif font-bold mb-8 text-white tracking-tight leading-tight">
                                 Nous ne suivons pas <br />les tendances. <span className="text-primary italic pb-1 px-2">On les crée.</span>
                             </h2>
-                            <p className="text-lg md:text-xl text-gray-400 leading-relaxed max-w-xl">
+                            <p className="text-lg md:text-xl text-gray-300 leading-relaxed max-w-xl">
                                 Agence de Conseil en Communication. LOLLY est votre partenaire stratégique pour dominer le paysage digital sénégalais avec une longueur d'avance.
                             </p>
                         </motion.div>
@@ -88,7 +93,7 @@ const Home = () => {
                                     {item.id}
                                 </div>
                                 <h3 className="text-2xl md:text-3xl font-bold text-white mb-4 tracking-tight">{item.title}</h3>
-                                <p className="text-gray-400 text-base md:text-lg leading-relaxed">{item.desc}</p>
+                                <p className="text-gray-300 text-base md:text-lg leading-relaxed">{item.desc}</p>
                             </motion.div>
                         ))}
                     </div>
@@ -165,6 +170,10 @@ const Home = () => {
                                         <img
                                             src={i === 0 ? "/assets/logos/kadior.jpg" : "/assets/logos/linkshop.png"}
                                             alt={t.role}
+                                            width="100"
+                                            height="100"
+                                            loading="lazy"
+                                            decoding="async"
                                             className="w-full h-full object-contain p-2"
                                         />
                                     </div>

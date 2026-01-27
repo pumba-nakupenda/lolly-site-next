@@ -36,7 +36,7 @@ const NotFound = () => {
                     <h2 className="text-4xl md:text-6xl font-serif font-bold text-white mb-6">
                         Signal <span className="text-primary italic">Perdu</span>.
                     </h2>
-                    <p className="text-gray-400 text-lg md:text-xl mb-12 max-w-lg mx-auto leading-relaxed">
+                    <p className="text-gray-300 text-lg md:text-xl mb-12 max-w-lg mx-auto leading-relaxed">
                         Le lien que vous suivez n'existe plus ou a été déplacé. Mais rassurez-vous, votre vision reste intacte.
                     </p>
 

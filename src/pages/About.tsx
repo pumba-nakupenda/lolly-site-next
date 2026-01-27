@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { CheckCircle, Award, Users, Lightbulb, Target, Rocket } from "lucide-react";
 import { Button } from "../components/ui/Button";
 import { useRef, useState, useEffect } from "react";
+import SEO from "../components/SEO";
 
 const About = () => {
     const containerRef = useRef(null);
@@ -12,7 +13,7 @@ const About = () => {
         checkMobile();
     }, []);
 
-    const handleScroll = (e: any, setIndex: Function) => {
+    const handleScroll = (e: any, setIndex: any) => {
         const scrollLeft = e.target.scrollLeft;
         const width = e.target.scrollWidth - e.target.clientWidth;
         if (width <= 0) return;
@@ -24,6 +25,10 @@ const About = () => {
 
     return (
         <div className="pt-24 md:pt-40 pb-16 md:pb-20 px-0 md:px-6 min-h-screen relative overflow-hidden bg-transparent" ref={containerRef}>
+            <SEO
+                title="À Propos"
+                description="Découvrez l'histoire de LOLLY, une agence fondée sur l'excellence et l'innovation. Notre mission : bâtir l'élite créative du continent."
+            />
             {/* Background Decorative Elements */}
             <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none hidden md:block">
                 <motion.div
@@ -58,7 +63,7 @@ const About = () => {
                     <h1 className="text-3xl md:text-8xl font-serif font-bold text-white mb-8 md:mb-10 tracking-tight leading-[1.1]">
                         Plus qu'une <span className="italic">agence</span>,<br /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-white to-primary pb-1 px-2">partenaire d'exception.</span>
                     </h1>
-                    <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
+                    <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
                         Nous croyons au pouvoir des idées qui bousculent le statu quo et aux images qui impriment une vision durable.
                     </p>
                 </motion.div>
@@ -88,7 +93,7 @@ const About = () => {
                             >
                                 <div className="absolute left-[-2px] top-2 w-1 h-8 bg-primary shadow-[0_0_15px_rgba(255,215,0,0.5)] transition-all group-hover:h-full" />
                                 <h3 className="text-xl md:text-2xl font-bold text-white mb-3 md:mb-4">L'Origine</h3>
-                                <p className="text-gray-400 text-sm md:text-lg leading-relaxed">
+                                <p className="text-gray-300 text-sm md:text-lg leading-relaxed">
                                     Née d'une vision audacieuse en plein cœur de Dakar, LOLLY est l'histoire d'un engagement : transformer des idées en messages puissants. Fondée par Amadou Mbaye GUEYE, nous portons la conviction que la communication africaine mérite une excellence sans compromis.
                                 </p>
                             </motion.div>
@@ -99,7 +104,7 @@ const About = () => {
                             >
                                 <div className="absolute left-[-2px] top-2 w-1 h-8 bg-accent shadow-[0_0_15px_rgba(255,215,0,0.5)] transition-all group-hover:h-full" />
                                 <h3 className="text-xl md:text-2xl font-bold text-white mb-3 md:mb-4">L'Évolution</h3>
-                                <p className="text-gray-400 text-sm md:text-lg leading-relaxed">
+                                <p className="text-gray-300 text-sm md:text-lg leading-relaxed">
                                     Aujourd'hui, nous nous positionnons comme une pure agence de conseil. Nous structurons la communication des entreprises pour en faire un levier de croissance durable, soutenue par nos pôles de production et de formation.
                                 </p>
                             </motion.div>
@@ -118,6 +123,8 @@ const About = () => {
                             <img
                                 src="/assets/notre-odyssee.png"
                                 alt="L'Odyssée LOLLY"
+                                width="800"
+                                height="600"
                                 className="rounded-[2rem] md:rounded-[2.5rem] w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
@@ -159,7 +166,7 @@ const About = () => {
                         <h2 className="text-2xl md:text-7xl font-serif font-bold text-white mb-6 md:mb-8 tracking-tight italic">
                             "Des mots qui touchent,<br />des images qui marquent"
                         </h2>
-                        <p className="text-gray-400 text-base md:text-xl leading-relaxed max-w-2xl mx-auto">
+                        <p className="text-gray-300 text-base md:text-xl leading-relaxed max-w-2xl mx-auto">
                             Plus qu'un slogan, c'est notre boussole. Nous refusons le bruit inutile pour ne créer que du sens à haute intensité.
                         </p>
                     </motion.div>
@@ -190,7 +197,7 @@ const About = () => {
                                     <item.icon size={26} className="text-primary group-hover:scale-110 transition-transform" />
                                 </div>
                                 <h3 className="text-xl md:text-2xl font-bold text-white mb-3 md:mb-4 tracking-tight">{item.title}</h3>
-                                <p className="text-gray-400 text-sm md:text-base leading-relaxed">{item.desc}</p>
+                                <p className="text-gray-300 text-sm md:text-base leading-relaxed">{item.desc}</p>
                             </motion.div>
                         ))}
                     </div>
@@ -221,6 +228,8 @@ const About = () => {
                                 <img
                                     src="/assets/amadou-mbaye-gueye.jpg"
                                     alt="Amadou Mbaye GUEYE"
+                                    width="800"
+                                    height="800"
                                     className="rounded-[2rem] md:rounded-[2.5rem] w-full aspect-square object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-105"
                                 />
                                 <div className="absolute bottom-4 left-4 right-4 md:bottom-6 md:left-6 md:right-6 p-4 md:p-6 bg-black/40 backdrop-blur-md rounded-2xl border border-white/10 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-500">
@@ -230,7 +239,7 @@ const About = () => {
                             </div>
                             <div className="space-y-4 md:space-y-6">
                                 <h3 className="text-xl md:text-3xl font-serif font-bold text-white tracking-tight italic leading-snug">"Notre héritage sera l'autonomie des talents que nous formons."</h3>
-                                <p className="text-gray-400 text-base md:text-lg leading-relaxed">Amadou Mbaye GUEYE incarne l'alliance rare entre une créativité organique et une maîtrise technique pointue en automatisation et IA.</p>
+                                <p className="text-gray-300 text-base md:text-lg leading-relaxed">Amadou Mbaye GUEYE incarne l'alliance rare entre une créativité organique et une maîtrise technique pointue en automatisation et IA.</p>
                             </div>
                         </div>
                     </motion.div>
@@ -258,7 +267,7 @@ const About = () => {
                                     </div>
                                     <div>
                                         <h3 className="text-xl md:text-2xl font-bold text-white mb-3 md:mb-4">Conseil Stratégique High-End</h3>
-                                        <p className="text-gray-400 text-base md:text-lg leading-relaxed mb-6">Nous auditons vos structures de communication pour y injecter de l'intelligence et de la performance durable.</p>
+                                        <p className="text-gray-300 text-base md:text-lg leading-relaxed mb-6">Nous auditons vos structures de communication pour y injecter de l'intelligence et de la performance durable.</p>
                                         <div className="flex flex-wrap gap-2">
                                             {["Communication de Crise", "Branding Architecture", "Digital Transformation"].map((tag, i) => (
                                                 <span key={i} className="px-3 py-1 bg-white/5 rounded-lg text-[10px] font-bold text-gray-300 border border-white/5">{tag}</span>
@@ -285,7 +294,7 @@ const About = () => {
                                             <box.icon size={22} className="text-white group-hover:text-primary transition-colors" />
                                         </div>
                                         <h3 className="text-lg md:text-xl font-bold text-white mb-3 md:mb-4">{box.title}</h3>
-                                        <p className="text-gray-400 text-sm leading-relaxed">{box.desc}</p>
+                                        <p className="text-gray-300 text-sm leading-relaxed">{box.desc}</p>
                                     </motion.div>
                                 ))}
                             </div>
@@ -307,7 +316,7 @@ const About = () => {
                     <div className="relative z-10 max-w-4xl mx-auto text-center">
                         <span className="bg-primary/20 text-primary font-black uppercase text-[10px] tracking-[0.2em] px-4 py-2 rounded-full mb-8 md:mb-10 inline-block border border-primary/20">Horizon 2030</span>
                         <h2 className="text-3xl md:text-7xl font-serif font-bold text-white mb-8 md:mb-10 tracking-tight leading-tight">Bâtir l'élite créative du <span className="text-primary italic">continent</span>.</h2>
-                        <p className="text-gray-400 text-base md:text-xl leading-relaxed mb-10 md:mb-16 max-w-2xl mx-auto">Notre ambition est claire : devenir la référence absolue de la formation digitale en Afrique de l'Ouest d'ici 5 ans.</p>
+                        <p className="text-gray-300 text-base md:text-xl leading-relaxed mb-10 md:mb-16 max-w-2xl mx-auto">Notre ambition est claire : devenir la référence absolue de la formation digitale en Afrique de l'Ouest d'ici 5 ans.</p>
 
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
                             <Button

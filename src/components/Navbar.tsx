@@ -148,6 +148,7 @@ const Navbar = () => {
                         <button
                             className="md:hidden relative z-10 w-10 h-10 flex items-center justify-center rounded-xl bg-white/5 border border-white/10 text-white"
                             onClick={() => setIsOpen(!isOpen)}
+                            aria-label={isOpen ? "Fermer le menu" : "Ouvrir le menu"}
                         >
                             <AnimatePresence mode="wait">
                                 {isOpen ? <X key="x" size={20} /> : <Menu key="menu" size={20} />}

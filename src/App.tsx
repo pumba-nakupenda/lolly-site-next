@@ -24,6 +24,7 @@ import CustomCursor from "./components/CustomCursor";
 import PageTransition from "./components/PageTransition";
 import WhatsAppButton from "./components/WhatsAppButton";
 import VCard from "./pages/VCard";
+import ScrollToTop from "./components/ScrollToTop";
 
 // Hook to detect mobile screen (width < 768px)
 const useIsMobile = () => {
@@ -56,7 +57,7 @@ function App() {
     return () => window.removeEventListener('open-contact-modal', handleOpenContact);
   }, []);
 
-  const isVCardPage = location.pathname === '/vcard';
+  const isVCardPage = location.pathname.toLowerCase().startsWith('/vcard');
 
   return (
     <MotionConfig reducedMotion={isMobile ? "always" : "user"}>
@@ -64,6 +65,7 @@ function App() {
         {!isMobile && !isVCardPage && <Preloader />}
         {!isVCardPage && <CustomCursor />}
         {!isVCardPage && <Navbar />}
+        <ScrollToTop />
         <ContactModal
           isOpen={isContactModalOpen}
           onClose={() => setIsContactModalOpen(false)}
