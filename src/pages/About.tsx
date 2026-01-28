@@ -125,6 +125,7 @@ const About = () => {
                                 alt="L'Odyssée LOLLY"
                                 width="800"
                                 height="600"
+                                loading="lazy"
                                 className="rounded-[2rem] md:rounded-[2.5rem] w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
@@ -230,6 +231,7 @@ const About = () => {
                                     alt="Amadou Mbaye GUEYE"
                                     width="800"
                                     height="800"
+                                    loading="lazy"
                                     className="rounded-[2rem] md:rounded-[2.5rem] w-full aspect-square object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-105"
                                 />
                                 <div className="absolute bottom-4 left-4 right-4 md:bottom-6 md:left-6 md:right-6 p-4 md:p-6 bg-black/40 backdrop-blur-md rounded-2xl border border-white/10 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-500">
