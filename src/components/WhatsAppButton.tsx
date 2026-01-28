@@ -38,7 +38,7 @@ const WhatsAppButton = () => {
                 url: 'https://lolly.sn',
             });
         } catch (err) {
-            console.log('Share failed', err);
+            // User cancelled share or share failed
         }
     };
 

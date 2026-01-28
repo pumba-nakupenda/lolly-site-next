@@ -6,8 +6,6 @@ import { useNavigate } from "react-router-dom";
 const DesignGraphique = () => {
     const navigate = useNavigate();
 
-
-
     const handleContact = () => {
         if (window.innerWidth < 768) {
             navigate('/contact?subject=Design & Branding');

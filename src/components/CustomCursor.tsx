@@ -19,7 +19,7 @@ const CustomCursor = () => {
 
         window.addEventListener("mousemove", moveMouse);
         return () => window.removeEventListener("mousemove", moveMouse);
-    }, [isVisible]);
+    }, [isVisible, mouseX, mouseY]);
 
     if (!isVisible) return null;
 

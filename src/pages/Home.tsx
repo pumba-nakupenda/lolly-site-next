@@ -122,18 +122,11 @@ const Home = () => {
                         className="mb-12 md:mb-20 text-center"
 
                     >
-
                         <span className="text-primary font-bold tracking-[0.2em] uppercase text-xs mb-4 block">Témoignages</span>
-
                         <h2 className="text-3xl md:text-6xl font-serif font-bold text-white tracking-tight leading-tight">
-
                             La Preuve par <span className="italic">l'Impact</span>
-
                         </h2>
-
                     </motion.div>
-
-
 
                     {/* Testimonials Section - Horizontal Scroll on Mobile */}
                     <div
@@ -187,23 +180,14 @@ const Home = () => {
                     </div>
 
                     {/* Pagination Dots for Testimonials (Mobile Only) */}
-
                     <div className="flex md:hidden justify-center gap-2 mt-4">
-
                         {[0, 1].map((i) => (
-
                             <div
-
                                 key={i}
-
                                 className={`h-1.5 rounded-full transition-all duration-300 ${activeTestimonial === i ? "w-6 bg-accent" : "w-1.5 bg-white/20"}`}
-
                             />
-
                         ))}
-
                     </div>
-
                 </div>
 
                 {/* Background testimo decoration */}

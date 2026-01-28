@@ -1,18 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Phone, Mail, Globe, MapPin, Download, Share2, Linkedin, Instagram, Facebook, Music2, Smartphone, QrCode, X } from "lucide-react";
 import { Button } from "../components/ui/Button";
+import { useIsMobile } from "../hooks/useIsMobile";
 
 const VCard = () => {
-    const [isMobile, setIsMobile] = useState(false);
+    const isMobile = useIsMobile();
     const [showQrCode, setShowQrCode] = useState(false);
-
-    useEffect(() => {
-        const checkMobile = () => setIsMobile(window.innerWidth < 768);
-        checkMobile();
-        window.addEventListener("resize", checkMobile);
-        return () => window.removeEventListener("resize", checkMobile);
-    }, []);
 
     const contactInfo = {
         firstName: "Amadou Mbaye",
@@ -73,7 +67,7 @@ const VCard = () => {
                     url: window.location.href
                 });
             } catch (error) {
-                console.log('Error sharing:', error);
+                // User cancelled share or share failed
             }
         } else {
             // Fallback: Copy to clipboard

@@ -155,7 +155,7 @@ const CreationContenu = () => {
 
                     <div className="space-y-4 max-w-4xl mx-auto">
                         {[
-                            { step: "01", title: "Curaion & Idéation", desc: "Brainstorming et recherche d'angles originaux pour votre sujet.", icon: Lightbulb },
+                            { step: "01", title: "Curation & Idéation", desc: "Brainstorming et recherche d'angles originaux pour votre sujet.", icon: Lightbulb },
                             { step: "02", title: "Rédaction & Optimisation", desc: "Écriture du premier jet et raffinement SEO / Conversion.", icon: FileEdit },
                             { step: "03", title: "Révision & QC", desc: "Relecture chirurgicale pour une qualité irréprochable.", icon: CheckCircle },
                             { step: "04", title: "Distribution", desc: "Adaptation du contenu pour tous vos canaux de diffusion.", icon: Share2 }

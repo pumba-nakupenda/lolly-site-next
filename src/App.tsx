@@ -1,5 +1,4 @@
 import { Routes, Route, useLocation } from "react-router-dom";
-// Force redeploy
 import { AnimatePresence, MotionConfig } from "framer-motion";
 import { useState, useEffect, lazy, Suspense } from "react";
 import Navbar from "./components/Navbar";
@@ -11,6 +10,7 @@ import CustomCursor from "./components/CustomCursor";
 import PageTransition from "./components/PageTransition";
 import WhatsAppButton from "./components/WhatsAppButton";
 import ScrollToTop from "./components/ScrollToTop";
+import { useIsMobile } from "./hooks/useIsMobile";
 
 // Lazy Load Pages
 const Home = lazy(() => import("./pages/Home"));
@@ -29,18 +29,6 @@ const Photographie = lazy(() => import("./pages/services/Photographie"));
 const CommunityManagement = lazy(() => import("./pages/services/CommunityManagement"));
 const CreationContenu = lazy(() => import("./pages/services/CreationContenu"));
 const VCard = lazy(() => import("./pages/VCard"));
-
-// Hook to detect mobile screen (width < 768px)
-const useIsMobile = () => {
-  const [isMobile, setIsMobile] = useState(false);
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
-  return isMobile;
-};
 
 function App() {
   const location = useLocation();
