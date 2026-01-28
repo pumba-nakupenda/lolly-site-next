@@ -66,7 +66,7 @@ function App() {
 
         <main className="flex-grow">
           <AnimatePresence mode="wait">
-            <Suspense fallback={<PageLoader />}>
+            <Suspense fallback={isMobile ? null : <PageLoader />}>
               <Routes location={location} key={location.pathname}>
                 <Route path="/" element={<PageTransition><Home /></PageTransition>} />
                 <Route path="/services" element={<PageTransition><Services /></PageTransition>} />

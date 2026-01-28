@@ -29,9 +29,41 @@ const VCard = () => {
         ]
     };
 
+    const getBase64Image = async (url: string): Promise<string> => {
+        try {
+            const response = await fetch(url);
+            const blob = await response.blob();
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onloadend = () => {
+                    const result = reader.result as string;
+                    // Remove the data:image/...;base64, prefix
+                    resolve(result.split(',')[1]);
+                };
+                reader.onerror = reject;
+                reader.readAsDataURL(blob);
+            });
+        } catch (error) {
+            console.error("Error converting image to Base64:", error);
+            return "";
+        }
+    };
+
+    const formatVCardLine = (key: string, value: string) => {
+        const line = `${key}:${value}`;
+        // Fold lines longer than 75 characters as per vCard 3.0 spec
+        const foldedLines = [];
+        for (let i = 0; i < line.length; i += 75) {
+            foldedLines.push(line.substring(i, i + 75));
+        }
+        return foldedLines.join('\r\n ');
+    };
+
     const generateVCard = async () => {
-        // VCard 3.0 requires CRLF (\r\n) line endings
-        const vcard = [
+        const photoBase64 = await getBase64Image(contactInfo.avatar);
+
+        // VCard 3.0 elements
+        let vcard = [
             'BEGIN:VCARD',
             'VERSION:3.0',
             `N:${contactInfo.lastName};${contactInfo.firstName};;;`,
@@ -39,19 +71,24 @@ const VCard = () => {
             `ORG:${contactInfo.company}`,
             `TITLE:${contactInfo.title}`,
             `TEL;TYPE=CELL:${contactInfo.phone}`,
-            `EMAIL:${contactInfo.email}`,
+            `EMAIL;TYPE=INTERNET:${contactInfo.email}`,
             `URL:${contactInfo.website}`,
             `ADR;TYPE=WORK:;;${contactInfo.address};;;;`,
-            'END:VCARD'
-        ].join('\r\n');
+            `NOTE:${contactInfo.bio.replace(/\n/g, ' ')}`,
+        ].join('\r\n') + '\r\n';
 
-        // text/x-vcard is often more compatible for direct sharing on mobile
-        // Trigger download - on mobile this typically prompts to "Open in Contacts"
-        const blob = new Blob([vcard], { type: "text/x-vcard;charset=utf-8" });
+        // Add Photo if available with proper binary encoding and line folding
+        if (photoBase64) {
+            vcard += formatVCardLine('PHOTO;TYPE=JPEG;VALUE=BINARY;ENCODING=B', photoBase64) + '\r\n';
+        }
+
+        vcard += 'END:VCARD';
+
+        const blob = new Blob([vcard], { type: "text/vcard;charset=utf-8" });
         const url = window.URL.createObjectURL(blob);
         const link = document.createElement("a");
         link.href = url;
-        link.setAttribute("download", "amadou_mbaye_gueye.vcf");
+        link.setAttribute("download", `${contactInfo.firstName.toLowerCase()}_${contactInfo.lastName.toLowerCase()}.vcf`);
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
