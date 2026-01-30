@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { FileText, ArrowRight, PenTool, Search, Mail, Mic, Laptop, Sparkles, Layout, Globe, Lightbulb, FileEdit, CheckCircle, Share2 } from "lucide-react";
 import { Button } from "../../components/ui/Button";
 import { useNavigate } from "react-router-dom";
+import SEO from "../../components/SEO";
 import contentImg from "../../assets/office_vibe.webp";
 
 const CreationContenu = () => {
@@ -17,6 +18,12 @@ const CreationContenu = () => {
 
     return (
         <div className="pt-24 md:pt-40 pb-20 px-4 md:px-6 min-h-screen relative overflow-hidden bg-black text-white">
+            <SEO
+                title="Création de Contenu"
+                description="Rédaction SEO, copywriting et storytelling. Donnez de la voix à votre expertise avec du contenu qui convertit au Sénégal."
+                keywords="rédaction seo dakar, copywriting sénégal, brand content dakar, storytelling"
+                url="https://lolly.sn/services/content"
+            />
             <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
                 <div className="absolute top-[10%] left-[50%] transform -translate-x-1/2 w-[800px] h-[800px] bg-green-500/10 rounded-full blur-[120px]" />
             </div>

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { MessageSquare, CheckCircle, ArrowRight, Target, BarChart, Users, Search, ClipboardList, PenTool, TrendingUp } from "lucide-react";
 import { Button } from "../../components/ui/Button";
 import { useNavigate } from "react-router-dom";
+import SEO from "../../components/SEO";
 
 const Consulting = () => {
     const navigate = useNavigate();
@@ -47,6 +48,12 @@ const Consulting = () => {
 
     return (
         <div className="pt-24 md:pt-40 pb-20 px-4 md:px-6 min-h-screen relative overflow-hidden bg-black text-white">
+            <SEO
+                title="Consulting en Communication"
+                description="Plus qu'un conseil, une vision. Nous structurons votre image pour qu'elle devienne votre meilleur levier de croissance au Sénégal."
+                keywords="consulting communication dakar, stratégie de marque sénégal, audit communication, gestion de crise"
+                url="https://lolly.sn/services/consulting"
+            />
             {/* Background Elements */}
             <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
                 <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px]" />

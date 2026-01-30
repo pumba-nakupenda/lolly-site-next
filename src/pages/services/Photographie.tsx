@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Image, ArrowRight, Camera, User, ShoppingBag, Sun, Layers, Zap, Search, CheckCircle } from "lucide-react";
 import { Button } from "../../components/ui/Button";
 import { useNavigate } from "react-router-dom";
+import SEO from "../../components/SEO";
 
 const Photographie = () => {
     const navigate = useNavigate();
@@ -91,6 +92,12 @@ const Photographie = () => {
 
     return (
         <div className="pt-24 md:pt-40 pb-20 px-4 md:px-6 min-h-screen relative overflow-hidden bg-black text-white">
+            <SEO
+                title="Photographie Professionnelle"
+                description="Photographie de haute précision à Dakar. Portrait, packshot, événementiel et studio pour sublimer votre image de marque."
+                keywords="photographe professionnel dakar, shooting photo sénégal, packshot produit, photo studio"
+                url="https://lolly.sn/services/photo"
+            />
             <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
                 <div className="absolute top-[30%] left-[30%] w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-[120px]" />
             </div>

@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { PenTool, ArrowRight, Layers, Palette, Monitor, Type, Cpu, Sparkles, Search, RefreshCw, CheckCircle } from "lucide-react";
 import { Button } from "../../components/ui/Button";
 import { useNavigate } from "react-router-dom";
+import SEO from "../../components/SEO";
 
 const DesignGraphique = () => {
     const navigate = useNavigate();
@@ -16,6 +17,12 @@ const DesignGraphique = () => {
 
     return (
         <div className="pt-24 md:pt-40 pb-20 px-4 md:px-6 min-h-screen relative overflow-hidden bg-black text-white">
+            <SEO
+                title="Design Graphique & Branding"
+                description="Identité visuelle, logos, et charte graphique. Nous créons des designs qui marquent les esprits et subliment votre marque au Sénégal."
+                keywords="design graphique dakar, branding sénégal, création logo, charte graphique"
+                url="https://lolly.sn/services/design"
+            />
             <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
                 <div className="absolute top-[20%] left-[-10%] w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-[120px]" />
                 <div className="absolute bottom-[10%] right-[10%] w-[400px] h-[400px] bg-accent/5 rounded-full blur-[100px]" />

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { BookOpen, ArrowRight, GraduationCap, Users, Award, Laptop, Zap, Globe, MessageSquare, ClipboardCheck, Sparkles } from "lucide-react";
 import { Button } from "../../components/ui/Button";
 import { useNavigate } from "react-router-dom";
+import SEO from "../../components/SEO";
 
 const Formations = () => {
     const navigate = useNavigate();
@@ -52,6 +53,12 @@ const Formations = () => {
 
     return (
         <div className="pt-24 md:pt-40 pb-20 px-4 md:px-6 min-h-screen relative overflow-hidden bg-black text-white">
+            <SEO
+                title="Formations Digitales"
+                description="Montez en compétence et maîtrisez les codes du digital. Des formations professionnelles certifiantes à Dakar pour booster votre autonomie."
+                keywords="formation digitale dakar, lolly academy, formation marketing sénégal, compétences numériques"
+                url="https://lolly.sn/services/formations"
+            />
             <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
                 <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-indigo-500/10 rounded-full blur-[120px]" />
                 <div className="absolute top-[40%] right-[-10%] w-[400px] h-[400px] bg-primary/5 rounded-full blur-[100px]" />

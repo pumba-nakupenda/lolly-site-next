@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../components/ui/Button";
 import { X, ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
+import SEO from "../components/SEO";
 
 const categories = [
     "Tout",
@@ -196,6 +197,12 @@ const Portfolio = () => {
 
     return (
         <div className="pt-24 md:pt-40 pb-16 md:pb-20 px-0 md:px-6 min-h-screen bg-transparent relative overflow-hidden">
+            <SEO
+                title="Portfolio"
+                description="Découvrez nos réalisations en consulting, branding, vidéo, design et photographie. Des projets à fort impact pour nos clients au Sénégal."
+                keywords="portfolio communication dakar, réalisations agence lolly, branding sénégal, production vidéo dakar"
+                url="https://lolly.sn/portfolio"
+            />
             {/* Background Decorative Elements */}
             <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
                 <motion.div

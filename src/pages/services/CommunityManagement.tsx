@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Users, ArrowRight, MessageCircle, Heart, Share2, TrendingUp, Calendar, BarChart3, ShieldCheck, Zap, Search, Layout, PenTool, PieChart } from "lucide-react";
 import { Button } from "../../components/ui/Button";
 import { useNavigate } from "react-router-dom";
+import SEO from "../../components/SEO";
 
 const CommunityManagement = () => {
     const navigate = useNavigate();
@@ -18,6 +19,12 @@ const CommunityManagement = () => {
 
     return (
         <div className="pt-24 md:pt-40 pb-20 px-4 md:px-6 min-h-screen relative overflow-hidden bg-black text-white">
+            <SEO
+                title="Community Management"
+                description="Gérez votre présence sur les réseaux sociaux. Stratégie, modération et engagement pour vos communautés au Sénégal."
+                keywords="community management dakar, gestion réseaux sociaux sénégal, social media agence, engagement digital"
+                url="https://lolly.sn/services/social"
+            />
             <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
                 <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-pink-500/10 rounded-full blur-[120px]" />
                 <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-indigo-500/10 rounded-full blur-[100px]" />

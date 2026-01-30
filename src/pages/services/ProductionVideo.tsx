@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Video, ArrowRight, Play, Film, Camera, Clapperboard, Monitor, Mic, Settings, Search, Edit } from "lucide-react";
 import { Button } from "../../components/ui/Button";
 import { useNavigate } from "react-router-dom";
+import SEO from "../../components/SEO";
 
 const ProductionVideo = () => {
     const navigate = useNavigate();
@@ -91,6 +92,12 @@ const ProductionVideo = () => {
 
     return (
         <div className="pt-24 md:pt-40 pb-20 px-4 md:px-6 min-h-screen relative overflow-hidden bg-black text-white">
+            <SEO
+                title="Production Vidéo"
+                description="Des images qui marquent. Production vidéo haute qualité à Dakar : spots publicitaires, documentaires, et contenu social media."
+                keywords="production vidéo dakar, agence audiovisuelle sénégal, montage vidéo, tournage 6k"
+                url="https://lolly.sn/services/video"
+            />
             <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
                 <div className="absolute bottom-[20%] right-[-5%] w-[600px] h-[600px] bg-red-600/10 rounded-full blur-[120px]" />
                 <div className="absolute top-[10%] left-[20%] w-[300px] h-[300px] bg-primary/5 rounded-full blur-[80px]" />

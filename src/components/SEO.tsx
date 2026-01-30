@@ -30,6 +30,9 @@ const SEO = ({
             <meta property="og:url" content={url} />
             <meta property="og:type" content="website" />
 
+            {/* Canonical */}
+            <link rel="canonical" href={url} />
+
             {/* Twitter */}
             <meta name="twitter:card" content="summary_large_image" />
             <meta name="twitter:title" content={siteTitle} />
