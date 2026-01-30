@@ -161,7 +161,7 @@ const Home = () => {
                                 <div className="mt-auto flex items-center relative z-10">
                                     <div className="w-12 h-12 md:w-14 md:h-14 bg-white rounded-xl md:rounded-2xl mr-4 md:mr-5 shadow-xl border border-white/5 overflow-hidden flex items-center justify-center">
                                         <img
-                                            src={i === 0 ? "/assets/logos/kadior.jpg" : "/assets/logos/linkshop.png"}
+                                            src={i === 0 ? "/assets/logos/kadior.webp" : "/assets/logos/linkshop.webp"}
                                             alt={t.role}
                                             width="100"
                                             height="100"

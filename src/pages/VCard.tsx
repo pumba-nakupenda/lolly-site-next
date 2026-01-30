@@ -18,7 +18,7 @@ const VCard = () => {
         email: "contact@lolly.sn",
         website: "https://lolly.sn",
         address: "Fass Delorme Rue 22x13, Dakar, Sénégal",
-        avatar: "/assets/amadou-mbaye-gueye.jpg",
+        avatar: "/assets/amadou-mbaye-gueye.webp",
         bio: "Agence de conseil en communication. Nous accompagnons les entreprises et institutions dans leur stratégie et leur transformation.",
         services: ["Conseil", "stratégie", "Branding", "Formation"],
         socials: [
@@ -163,7 +163,6 @@ const VCard = () => {
             >
                 {/* Header Image / Banner */}
                 <div className="h-32 bg-gradient-to-r from-primary/20 to-accent/20 relative">
-                    <div className="absolute inset-0 bg-[url('/assets/pattern.png')] opacity-10" />
 
                     {/* Logo Overlay */}
                     <div className="absolute top-6 left-0 right-0 text-center z-10">

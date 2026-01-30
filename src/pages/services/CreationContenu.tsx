@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { FileText, ArrowRight, PenTool, Search, Mail, Mic, Laptop, Sparkles, Layout, Globe, Lightbulb, FileEdit, CheckCircle, Share2 } from "lucide-react";
 import { Button } from "../../components/ui/Button";
 import { useNavigate } from "react-router-dom";
-import contentImg from "../../assets/office_vibe.png";
+import contentImg from "../../assets/office_vibe.webp";
 
 const CreationContenu = () => {
     const navigate = useNavigate();
@@ -92,6 +92,8 @@ const CreationContenu = () => {
                     >
                         <img
                             src={contentImg}
+                            srcSet={`${contentImg.replace('.webp', '-400.webp')} 400w, ${contentImg.replace('.webp', '-800.webp')} 800w, ${contentImg.replace('.webp', '-1200.webp')} 1200w`}
+                            sizes="(max-width: 768px) 100vw, 80vw"
                             alt="Content Lab"
                             width="1200"
                             height="800"

@@ -1,15 +1,15 @@
 import { motion } from "framer-motion";
 
 const logos = [
-    { src: "/assets/logos/bis.png", scale: 1.0 },
-    { src: "/assets/logos/firdo_trans.png", scale: 1.1 },
-    { src: "/assets/logos/men.png", scale: 1.2 },
-    { src: "/assets/logos/ia_groups.png", scale: 1.0 },
-    { src: "/assets/logos/studio_sankara.png", scale: 1.0 },
-    { src: "/assets/logos/aphrc.png", scale: 1.0 },
-    { src: "/assets/logos/ifes.png", scale: 1.0 },
-    { src: "/assets/logos/ndi.png", scale: 1.1 },
-    { src: "/assets/logos/kadior.png", scale: 1.1 }
+    { src: "/assets/logos/bis.webp", scale: 1.0 },
+    { src: "/assets/logos/firdo_trans.webp", scale: 1.1 },
+    { src: "/assets/logos/men.webp", scale: 1.2 },
+    { src: "/assets/logos/ia_groups.webp", scale: 1.0 },
+    { src: "/assets/logos/studio_sankara.webp", scale: 1.0 },
+    { src: "/assets/logos/aphrc.webp", scale: 1.0 },
+    { src: "/assets/logos/ifes.webp", scale: 1.0 },
+    { src: "/assets/logos/ndi.webp", scale: 1.1 },
+    { src: "/assets/logos/kadior.webp", scale: 1.1 }
 ];
 
 // Duplicate for seamless loop

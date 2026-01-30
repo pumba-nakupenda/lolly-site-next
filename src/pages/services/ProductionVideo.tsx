@@ -17,9 +17,9 @@ const ProductionVideo = () => {
             category: "Caméras",
             detail: "2x 6K PRO, DZO Film, SSD, V-Mount",
             images: [
-                "/assets/Video/bmpcc01.jpeg",
-                "/assets/Video/bmpcc02.jpg",
-                "/assets/Video/bmpcc03.jpeg"
+                "/assets/Video/bmpcc01.webp",
+                "/assets/Video/bmpcc02.webp",
+                "/assets/Video/bmpcc03.webp"
             ]
         },
         {
@@ -28,9 +28,9 @@ const ProductionVideo = () => {
             category: "Lumière",
             detail: "Amaran 150c/60c, Softbox, Hexa",
             images: [
-                "/assets/Video/aputure_150c_01.png",
-                "/assets/Video/aputure_60x_01.png",
-                "/assets/Video/aputure_setup_01.png"
+                "/assets/Video/aputure_150c_01.webp",
+                "/assets/Video/aputure_60x_01.webp",
+                "/assets/Video/aputure_setup_01.webp"
             ]
         },
         {
@@ -39,9 +39,9 @@ const ProductionVideo = () => {
             category: "Audio",
             detail: "Lark K2, Blimp, Micro Podcast, Perche",
             images: [
-                "/assets/Video/zoom_f8n_01.jpg",
-                "/assets/Video/ntg_mic_01.jpg",
-                "/assets/Video/hollyland_wireless_01.png"
+                "/assets/Video/zoom_f8n_01.webp",
+                "/assets/Video/ntg_mic_01.webp",
+                "/assets/Video/hollyland_wireless_01.webp"
             ]
         },
         {
@@ -50,9 +50,9 @@ const ProductionVideo = () => {
             category: "Post-Prod",
             detail: "RTX 4090, 128GB RAM, 70TB, OLED G9",
             images: [
-                "/assets/Video/workstation_i9_01.png",
-                "/assets/Video/workstation_i9_02.jpg",
-                "/assets/Video/workstation_i9_03.png"
+                "/assets/Video/workstation_i9_01.webp",
+                "/assets/Video/workstation_i9_02.webp",
+                "/assets/Video/workstation_i9_03.webp"
             ]
         }
     ];
@@ -186,6 +186,8 @@ const ProductionVideo = () => {
                                         <motion.img
                                             key={activeIndexes[i]}
                                             src={item.images[activeIndexes[i]]}
+                                            srcSet={`${item.images[activeIndexes[i]].replace('.webp', '-400.webp')} 400w, ${item.images[activeIndexes[i]].replace('.webp', '-800.webp')} 800w, ${item.images[activeIndexes[i]].replace('.webp', '-1200.webp')} 1200w`}
+                                            sizes="(max-width: 768px) 100vw, 50vw"
                                             alt={item.title}
                                             loading="lazy"
                                             decoding="async"

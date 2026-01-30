@@ -17,9 +17,9 @@ const Photographie = () => {
             category: "Setup Principal",
             detail: "Full Frame, Optique F/2.8, Piqué Chirurgical & Bokeh Soyeux",
             images: [
-                "/assets/Photo/sony_a7ii_01.jpg",
-                "/assets/Photo/gmaster_lens_01.jpg",
-                "/assets/Photo/sony_a7ii_02.jpg"
+                "/assets/Photo/sony_a7ii_01.webp",
+                "/assets/Photo/gmaster_lens_01.webp",
+                "/assets/Photo/sony_a7ii_02.webp"
             ]
         },
         {
@@ -28,9 +28,9 @@ const Photographie = () => {
             category: "Éclairage",
             detail: "2x AD600 (Studio), V1 (Local), Speedlite",
             images: [
-                "/assets/Photo/godox_v1_01.png",
-                "/assets/Photo/godox_v1_02.png",
-                "/assets/Photo/godox_s85_01.png"
+                "/assets/Photo/godox_v1_01.webp",
+                "/assets/Photo/godox_v1_02.webp",
+                "/assets/Photo/godox_s85_01.webp"
             ]
         },
         {
@@ -39,9 +39,9 @@ const Photographie = () => {
             category: "Espace",
             detail: "Cyclorama, Fonds Multi-couleurs, Diffusion",
             images: [
-                "/assets/Photo/studio_01.jpg",
-                "/assets/Photo/studio_02.jpg",
-                "/assets/Photo/studio_03.png"
+                "/assets/Photo/studio_01.webp",
+                "/assets/Photo/studio_02.webp",
+                "/assets/Photo/studio_03.webp"
             ]
         },
         {
@@ -50,9 +50,9 @@ const Photographie = () => {
             category: "Packshot",
             detail: "Surface acrylique, Éclairage 360°, Macro",
             images: [
-                "/assets/Photo/packshot_01.png",
-                "/assets/Photo/packshot_02.png",
-                "/assets/Photo/packshot_03.png"
+                "/assets/Photo/packshot_01.webp",
+                "/assets/Photo/packshot_02.webp",
+                "/assets/Photo/packshot_03.webp"
             ]
         }
     ];
@@ -185,6 +185,8 @@ const Photographie = () => {
                                         <motion.img
                                             key={activeIndexes[i]}
                                             src={item.images[activeIndexes[i]]}
+                                            srcSet={`${item.images[activeIndexes[i]].replace('.webp', '-400.webp')} 400w, ${item.images[activeIndexes[i]].replace('.webp', '-800.webp')} 800w, ${item.images[activeIndexes[i]].replace('.webp', '-1200.webp')} 1200w`}
+                                            sizes="(max-width: 768px) 100vw, 50vw"
                                             alt={item.title}
                                             loading="lazy"
                                             decoding="async"

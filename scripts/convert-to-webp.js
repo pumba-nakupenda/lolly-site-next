@@ -6,7 +6,11 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const ASSETS_DIR = path.join(__dirname, '../public/assets');
+const ASSETS_DIRS = [
+    path.join(__dirname, '../public/assets'),
+    path.join(__dirname, '../public/portfolio'),
+    path.join(__dirname, '../src/assets')
+];
 const SUPPORTED_FORMATS = ['.jpg', '.jpeg', '.png'];
 const WEBP_QUALITY = 85;
 
@@ -52,8 +56,9 @@ async function convertToWebP(imagePath) {
         const webpSize = (await fs.stat(webpPath)).size;
         const savings = ((1 - webpSize / originalSize) * 100).toFixed(1);
 
-        console.log(`✅ ${path.relative(ASSETS_DIR, imagePath)}`);
-        console.log(`   → ${path.basename(webpPath)} (${savings}% plus léger)`);
+        const relativePath = path.relative(path.join(__dirname, '../public'), imagePath);
+        console.log(`✅ ${relativePath}`);
+        console.log(`   → ${baseName}.webp (${savings}% plus léger)`);
 
         for (const size of RESPONSIVE_SIZES) {
             const responsiveWebpPath = path.join(dir, `${baseName}${size.suffix}.webp`);
@@ -75,28 +80,31 @@ async function convertToWebP(imagePath) {
 
 async function main() {
     console.log('🚀 Conversion des images en WebP...\n');
-    console.log(`📁 Dossier: ${ASSETS_DIR}\n`);
-
     try {
-        const images = await getAllImages(ASSETS_DIR);
-        console.log(`📸 ${images.length} images trouvées\n`);
-
+        let totalImages = 0;
+        let totalSuccessCount = 0;
         let totalSavings = 0;
-        let successCount = 0;
 
-        for (const imagePath of images) {
-            const result = await convertToWebP(imagePath);
-            if (result.success) {
-                successCount++;
-                totalSavings += parseFloat(result.savings);
+        for (const dir of ASSETS_DIRS) {
+            console.log(`📁 Dossier: ${path.relative(path.join(__dirname, '..'), dir)}\n`);
+            const images = await getAllImages(dir);
+            console.log(`📸 ${images.length} images trouvées\n`);
+            totalImages += images.length;
+
+            for (const imagePath of images) {
+                const result = await convertToWebP(imagePath);
+                if (result.success) {
+                    totalSuccessCount++;
+                    totalSavings += parseFloat(result.savings);
+                }
+                console.log('');
             }
-            console.log('');
         }
 
-        const avgSavings = (totalSavings / successCount).toFixed(1);
+        const avgSavings = totalSuccessCount > 0 ? (totalSavings / totalSuccessCount).toFixed(1) : 0;
 
         console.log('✨ Conversion terminée!');
-        console.log(`📊 ${successCount}/${images.length} images converties`);
+        console.log(`📊 ${totalSuccessCount}/${totalImages} images converties`);
         console.log(`💾 Économie moyenne: ${avgSavings}%`);
 
     } catch (error) {

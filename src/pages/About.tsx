@@ -121,7 +121,9 @@ const About = () => {
                         <div className="absolute -inset-4 bg-gradient-to-tr from-primary/20 via-transparent to-accent/20 rounded-[3rem] blur-2xl opacity-50" />
                         <div className="relative rounded-[2.5rem] md:rounded-[3rem] overflow-hidden border border-white/10 shadow-3xl bg-surface/20 backdrop-blur-sm p-3 md:p-4">
                             <img
-                                src="/assets/notre-odyssee.png"
+                                src="/assets/notre-odyssee.webp"
+                                srcSet="/assets/notre-odyssee-400.webp 400w, /assets/notre-odyssee-800.webp 800w, /assets/notre-odyssee-1200.webp 1200w"
+                                sizes="(max-width: 768px) 100vw, 50vw"
                                 alt="L'Odyssée LOLLY"
                                 width="800"
                                 height="600"
@@ -227,7 +229,9 @@ const About = () => {
                         <div className="md:sticky md:top-24">
                             <div className="relative rounded-[2.5rem] md:rounded-[3rem] overflow-hidden group mb-8 md:mb-10 border border-white/10 shadow-3xl bg-surface/20 p-2">
                                 <img
-                                    src="/assets/amadou-mbaye-gueye.jpg"
+                                    src="/assets/amadou-mbaye-gueye.webp"
+                                    srcSet="/assets/amadou-mbaye-gueye-400.webp 400w, /assets/amadou-mbaye-gueye-800.webp 800w, /assets/amadou-mbaye-gueye-1200.webp 1200w"
+                                    sizes="(max-width: 768px) 100vw, 33vw"
                                     alt="Amadou Mbaye GUEYE"
                                     width="800"
                                     height="800"

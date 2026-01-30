@@ -19,128 +19,140 @@ const categories = [
 const projects = [
     {
         id: 1,
-        title: "Audit Stratégique - ONG Internationale",
-        category: "Consulting",
-        image: "https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        title: "Branding OMVS - FORUM",
+        category: "Branding",
+        image: "/portfolio/omvs/OMVS.webp",
         images: [
-            "https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-            "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-            "https://images.unsplash.com/photo-1517048676732-d65bc937f952?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+            "/portfolio/omvs/OMVS.webp",
+            "/portfolio/omvs/MOCKUP OMVS.webp",
+            "/portfolio/omvs/SAVE THE DATE.webp",
+            "/portfolio/omvs/hivernage 225.webp"
         ],
-        description: "Diagnostic complet de la communication globale et plan de redressement de l'image de marque. Nous avons analysé les processus internes et externes pour proposer une feuille de route sur 24 mois permettant d'unifier la voix de l'organisation à travers 15 pays.",
-        hasReport: true,
-        reportLabel: "Étude de cas complète"
+        description: "Accompagnement stratégique et design pour l'OMVS, incluant des supports de communication pour les événements majeurs.",
+        reportUrl: "/assets/pdfs/Proposition.pdf",
+        client: "OMVS",
+        date: "2025-2026",
+        hasReport: false,
+        reportLabel: "Proposition Stratégique"
     },
     {
         id: 2,
-        title: "Formation Digital Skills for Business",
-        category: "Formation",
-        image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        title: "Investment Advice",
+        category: "Consulting",
+        image: "/portfolio/investiment advice/investiment advice.webp",
         images: [
-            "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-            "https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-            "https://images.unsplash.com/photo-1516321318423-f06f85e514b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+            "/portfolio/investiment advice/investiment advice.webp",
+            "/portfolio/investiment advice/investiment advice (1).webp",
+            "/portfolio/investiment advice/investiment advice (2).webp"
         ],
-        description: "Programme intensif de 4 semaines pour une équipe de 20 collaborateurs corporate. Couvrant de l'IA générative au Social Media Management, cette formation a permis d'augmenter l'efficacité opérationnelle du département marketing de 35%.",
+        description: "Impression et communication pour un cabinet d'investissement.",
+        client: "Confidentiel",
+        date: "2025",
         hasReport: false
     },
     {
         id: 3,
-        title: "Film Institutionnel - Ministère",
-        category: "Vidéo",
-        videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-        image: "https://images.unsplash.com/photo-1536240478700-b869070f9279?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        title: "ISD Group",
+        category: "Design",
+        image: "/portfolio/isd groups/carreaux.webp",
         images: [
-            "https://images.unsplash.com/photo-1536240478700-b869070f9279?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-            "https://images.unsplash.com/photo-1492724441997-5dc865305da7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-            "https://images.unsplash.com/photo-1485846234645-a62644f84728?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+            "/portfolio/isd groups/carreaux.webp",
+            "/portfolio/isd groups/carreaux-01.webp",
+            "/portfolio/isd groups/carreaux-02.webp",
+            "/portfolio/isd groups/carreaux-03.webp",
+            "/portfolio/isd groups/PEINTURE.webp",
+            "/portfolio/isd groups/fer a beton.webp"
         ],
-        description: "Réalisation d'une vidéo 4K présentant les accomplissements majeurs de l'année. Une narration puissante alliant prises de vues aériennes et interviews intimistes pour valoriser l'impact direct des politiques publiques.",
+        description: "Identité visuelle et supports de communication pour un groupe industriel diversifié. Focus sur la robustesse et l'innovation.",
+        client: "ISD Group",
+        date: "2025",
         hasReport: false
     },
     {
         id: 4,
-        title: "Branding Complet - Fintech Sénégal",
-        category: "Design",
-        image: "https://images.unsplash.com/photo-1558655146-d09347e92766?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        title: "Kadior - Melokaan",
+        category: "Branding",
+        image: "/portfolio/kadior/MELOKAAN.webp",
         images: [
-            "https://images.unsplash.com/photo-1558655146-d09347e92766?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-            "https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-            "https://images.unsplash.com/photo-1626785774573-4b799315345d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+            "/portfolio/kadior/MELOKAAN.webp"
         ],
-        description: "Création de l'identité visuelle, logo, charte graphique et supports digitaux. Un design moderne, sécurisant et ancré dans les codes de la finance technologique africaine.",
-        hasReport: true
+        description: "Création d'identité visuelle pour Kadior, capturant l'essence du 'Melokaan' à travers un design épuré et moderne.",
+        client: "Kadior",
+        date: "2025",
+        hasReport: false
     },
     {
         id: 5,
-        title: "Portraits Corporate - Cabinet d'Avocats",
-        category: "Photo",
-        image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        title: "Lolly Branding",
+        category: "Branding",
+        image: "/portfolio/lolly/sercive lolly-01.webp",
         images: [
-            "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-            "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-            "https://images.unsplash.com/photo-1521791136364-703a1d41f775?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+            "/portfolio/lolly/sercive lolly-01.webp",
+            "/portfolio/lolly/3 INGREDIENTS DUN BRANDING (1)-01.webp"
         ],
-        description: "Série de portraits professionnels et mise en situation dans les locaux. L'objectif était de retranscrire à la fois l'excellence rigoureuse et l'aspect humain du cabinet.",
+        description: "Branding global pour lolly, incluant la stratégie de contenu et le design des supports digitaux.",
+        client: "Lolly",
+        date: "2025",
         hasReport: false
     },
     {
         id: 6,
-        title: "Gestion Social Media - Chaîne de Retail",
-        category: "CM",
-        image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        title: "Luxia Boutique",
+        category: "Branding",
+        image: "/portfolio/luxia/branding boutique-01.webp",
         images: [
-            "https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-            "https://images.unsplash.com/photo-1611162617474-5b21e879e113?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-            "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+            "/portfolio/luxia/branding boutique-01.webp",
+            "/portfolio/luxia/branding boutique-02.webp",
+            "/portfolio/luxia/oudama_photo_of_a_black_woman_with_facial_care_product_red_ba_24cd30d9-b16a-40ae-803b-ad2da8a563c0_0-Recovered.webp"
         ],
-        description: "Animation quotidienne, création de contenus (Reels) et modération pour 5 plateformes. Une stratégie communautaire ayant généré +150% d'engagement organique en 6 mois.",
+        description: "Univers visuel pour une boutique de luxe, alliant élégance et raffinement pour une expérience client d'exception.",
+        client: "Luxia",
+        date: "2025",
         hasReport: false
     },
     {
         id: 7,
-        title: "Stratégie de Contenu - Groupe Immobilier",
-        category: "Contenu",
-        image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        title: "NDI Institutionnel",
+        category: "Design",
+        image: "/portfolio/ndi/9291816[1].webp",
         images: [
-            "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-            "https://images.unsplash.com/photo-1542435503-956c469947f6?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-            "https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+            "/portfolio/ndi/9291816[1].webp",
+            "/portfolio/ndi/KAKEMONO.webp",
+            "/portfolio/ndi/MOCKUP - Echarpe - Atelier de capitalisation - V01.webp",
+            "/portfolio/ndi/plastic-tree-interior-decoration-Recovered.webp"
         ],
-        description: "Rédaction d'articles de blog SEO, newsletters et scripts pour vidéos explicatives. Un storytelling axé sur l'accessibilité à la propriété et la confiance.",
+        description: "Supports de communication institutionnelle et événementielle pour NDI. Conception de kakemonos et goodies personnalisés.",
+        client: "NDI",
+        date: "2025",
         hasReport: false
     },
     {
         id: 8,
-        title: "Campagne 360° - Laiterie du Berger",
-        category: "Vidéo",
-        videoUrl: "https://www.youtube.com/embed/jNQXAC9IVRw",
-        image: "https://images.unsplash.com/photo-1579548122080-c35fd6820ecb?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        title: "RAOB Branding",
+        category: "Branding",
+        image: "/portfolio/raob/agenda raob.webp",
         images: [
-            "https://images.unsplash.com/photo-1579548122080-c35fd6820ecb?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-            "https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-            "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+            "/portfolio/raob/agenda raob.webp",
+            "/portfolio/raob/bache raob.webp",
+            "/portfolio/raob/Notepad8[1].webp"
         ],
-        description: "Spots publicitaires combinés à une stratégie digitale et de l'affichage. Une campagne intégrée célébrant le terroir sénégalais et l'innovation laitière.",
-        reportUrl: "https://example.com/rapport-laiterie.pdf",
-        hasReport: true
+        description: "Identité visuelle et supports print pour le RAOB. Création d'agendas et de bâches événementielles.",
+        client: "RAOB",
+        date: "2025",
+        hasReport: false
     },
     {
         id: 9,
-        title: "Branding OMVS TEST - FORUM",
-        category: "Branding",
-        image: "https://images.unsplash.com/photo-1579548122080-c35fd6820ecb?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        title: "Tapisserie Torrejon",
+        category: "Design",
+        image: "/portfolio/tapicerie torrejon/LOGO TAPICERIE TORREJON THIAM.webp",
         images: [
-            "https://images.unsplash.com/photo-1579548122080-c35fd6820ecb?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-            "https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-            "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+            "/portfolio/tapicerie torrejon/LOGO TAPICERIE TORREJON THIAM.webp"
         ],
-        description: "ndey sane Spots publicitaires combinés à une stratégie digitale et de l'affichage. Une campagne intégrée célébrant le terroir sénégalais et l'innovation laitière.",
-        reportUrl: "/assets/pdfs/Proposition.pdf",
-        client: "OMVS",
-        date: "2024",
-        hasReport: true,
-        reportLabel: "Proposition Stratégique"
+        description: "Création du logotype pour la Tapisserie Torrejon. Un design qui reflète le savoir-faire artisanal et l'élégance du métier.",
+        client: "Tapisserie Torrejon",
+        date: "2025",
+        hasReport: false
     }
 ];
 
@@ -264,6 +276,8 @@ const Portfolio = () => {
                             >
                                 <img
                                     src={project.image}
+                                    srcSet={`${project.image.replace('.webp', '-400.webp')} 400w, ${project.image.replace('.webp', '-800.webp')} 800w, ${project.image.replace('.webp', '-1200.webp')} 1200w`}
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                     alt={project.title}
                                     width="800"
                                     height="1000"
@@ -349,6 +363,8 @@ const Portfolio = () => {
                                             <motion.img
                                                 key={currentImageIndex}
                                                 src={selectedProject.images ? selectedProject.images[currentImageIndex] : selectedProject.image}
+                                                srcSet={`${(selectedProject.images ? selectedProject.images[currentImageIndex] : selectedProject.image).replace('.webp', '-400.webp')} 400w, ${(selectedProject.images ? selectedProject.images[currentImageIndex] : selectedProject.image).replace('.webp', '-800.webp')} 800w, ${(selectedProject.images ? selectedProject.images[currentImageIndex] : selectedProject.image).replace('.webp', '-1200.webp')} 1200w`}
+                                                sizes="(max-width: 1024px) 100vw, 60vw"
                                                 alt={selectedProject.title}
                                                 initial={{ opacity: 0, scale: 1.1 }}
                                                 animate={{ opacity: 1, scale: 1 }}

@@ -11,12 +11,12 @@ const Consulting = () => {
 
     const gallery = [
         {
-            image: "/assets/Consulting/consulting01.png",
+            image: "/assets/Consulting/consulting01.webp",
             title: "Expertise Stratégique",
             desc: "Un accompagnement sur-mesure pour définir et sculpter votre identité de marque."
         },
         {
-            image: "/assets/Consulting/consulting02.png",
+            image: "/assets/Consulting/consulting02.webp",
             title: "Vision Collaborative",
             desc: "Nous travaillons à vos côtés pour transformer vos ambitions en stratégies concrètes."
         }
@@ -128,6 +128,8 @@ const Consulting = () => {
                             <motion.img
                                 key={activeIdx}
                                 src={gallery[activeIdx].image}
+                                srcSet={`${gallery[activeIdx].image.replace('.webp', '-400.webp')} 400w, ${gallery[activeIdx].image.replace('.webp', '-800.webp')} 800w, ${gallery[activeIdx].image.replace('.webp', '-1200.webp')} 1200w`}
+                                sizes="100vw"
                                 alt={gallery[activeIdx].title}
                                 initial={{ opacity: 0, scale: 1.1 }}
                                 animate={{ opacity: 1, scale: 1 }}

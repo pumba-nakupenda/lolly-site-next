@@ -11,17 +11,17 @@ const Formations = () => {
 
     const gallery = [
         {
-            image: "/assets/Formations/formation01.png",
+            image: "/assets/Formations/formation01.webp",
             title: "Immersion & Pratique",
             desc: "Apprenez dans des conditions réelles avec nos sessions intensives de prise de parole."
         },
         {
-            image: "/assets/Formations/formation02.png",
+            image: "/assets/Formations/formation02.webp",
             title: "Coaching Personnalisé",
             desc: "Bénéficiez de l'expertise de nos formateurs seniors certifiés."
         },
         {
-            image: "/assets/Formations/formation03.png",
+            image: "/assets/Formations/formation03.webp",
             title: "L'équipe Lolly Academy",
             desc: "Une équipe passionnée dédiée à votre montée en compétences digitale."
         }
@@ -130,6 +130,8 @@ const Formations = () => {
                             <motion.img
                                 key={activeIdx}
                                 src={gallery[activeIdx].image}
+                                srcSet={`${gallery[activeIdx].image.replace('.webp', '-400.webp')} 400w, ${gallery[activeIdx].image.replace('.webp', '-800.webp')} 800w, ${gallery[activeIdx].image.replace('.webp', '-1200.webp')} 1200w`}
+                                sizes="100vw"
                                 alt={gallery[activeIdx].title}
                                 initial={{ opacity: 0, scale: 1.1 }}
                                 animate={{ opacity: 1, scale: 1 }}
