@@ -1,13 +1,20 @@
-"use client";
+import { Metadata, Viewport } from "next";
+import Studio from "./Studio";
 
-import { NextStudio } from "next-sanity/studio";
-import config from "../../../../../studio/sanity.config";
+export const metadata: Metadata = {
+    title: "Sanity Studio",
+    robots: {
+        index: false,
+        follow: false,
+    },
+};
+
+export const viewport: Viewport = {
+    maximumScale: 1,
+};
 
 export const dynamic = "force-static";
 
-export { viewport } from "next-sanity/studio";
-export { metadata } from "next-sanity/studio/metadata";
-
 export default function StudioPage() {
-    return <NextStudio config={config} />;
+    return <Studio />;
 }
