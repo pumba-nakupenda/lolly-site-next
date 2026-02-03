@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { Button } from "./ui/Button";
 import { useRef, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
@@ -62,25 +62,37 @@ const Hero = ({ data }: HeroProps) => {
 
             {/* Advanced Background Decorative Elements */}
             <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-                <motion.div
-                    animate={{
-                        scale: [1, 1.2, 1],
-                        rotate: [0, 45, 0],
-                        x: [0, 30, 0],
-                        y: [0, -20, 0]
-                    }}
-                    transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-                    className="absolute top-[-5%] right-[-10%] w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-primary/10 rounded-full blur-[80px] md:blur-[120px]"
-                />
-                <motion.div
-                    animate={{
-                        scale: [1, 1.4, 1],
-                        x: [0, -50, 0],
-                        y: [0, 60, 0]
-                    }}
-                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                    className="absolute bottom-[-10%] left-[-15%] w-[250px] md:w-[500px] h-[250px] md:h-[500px] bg-accent/10 rounded-full blur-[70px] md:blur-[100px]"
-                />
+                <AnimatePresence>
+                    {!isMobile && (
+                        <>
+                            <motion.div
+                                initial={{ opacity: 0 }}
+                                animate={{
+                                    opacity: 1,
+                                    scale: [1, 1.2, 1],
+                                    rotate: [0, 45, 0],
+                                    x: [0, 30, 0],
+                                    y: [0, -20, 0]
+                                }}
+                                exit={{ opacity: 0 }}
+                                transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+                                className="absolute top-[-5%] right-[-10%] w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-primary/10 rounded-full blur-[80px] md:blur-[120px]"
+                            />
+                            <motion.div
+                                initial={{ opacity: 0 }}
+                                animate={{
+                                    opacity: 1,
+                                    scale: [1, 1.4, 1],
+                                    x: [0, -50, 0],
+                                    y: [0, 60, 0]
+                                }}
+                                exit={{ opacity: 0 }}
+                                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                                className="absolute bottom-[-10%] left-[-15%] w-[250px] md:w-[500px] h-[250px] md:h-[500px] bg-accent/10 rounded-full blur-[70px] md:blur-[100px]"
+                            />
+                        </>
+                    )}
+                </AnimatePresence>
                 <div className="md:hidden absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(circle_at_center,rgba(255,215,0,0.05)_0%,transparent_70%)]" />
             </div>
 
@@ -94,7 +106,7 @@ const Hero = ({ data }: HeroProps) => {
                         initial={{ opacity: 0, scale: 0.8 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: 0.2 }}
-                        className="inline-block py-2 px-5 rounded-full bg-primary/10 backdrop-blur-md text-primary font-bold tracking-[0.2em] uppercase text-[9px] md:text-xs mb-8 md:mb-8 border border-primary/20"
+                        className="inline-block py-2 px-5 rounded-full bg-primary/10 md:backdrop-blur-md text-primary font-bold tracking-[0.2em] uppercase text-[9px] md:text-xs mb-8 md:mb-8 border border-primary/20"
                     >
                         {badge}
                     </motion.span>

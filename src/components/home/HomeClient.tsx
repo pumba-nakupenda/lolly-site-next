@@ -4,7 +4,7 @@ import Hero from "../Hero";
 import Marquee from "../Marquee";
 import ClientLogos from "../ClientLogos";
 import { motion } from "framer-motion";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import Link from "next/link";
 import OptimizedImage from "../OptimizedImage";
 import { Star } from "lucide-react";
@@ -36,6 +36,14 @@ const HomeClient = ({ testimonials, partners, hero }: HomeClientProps) => {
     const containerRef = useRef(null);
     const [activeService, setActiveService] = useState(0);
     const [activeTestimonial, setActiveTestimonial] = useState(0);
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth < 768);
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
 
     const handleScroll = (e: any, setIndex: any) => {
         const scrollLeft = e.target.scrollLeft;
@@ -61,14 +69,16 @@ const HomeClient = ({ testimonials, partners, hero }: HomeClientProps) => {
             <section className="py-16 md:py-32 relative z-10">
                 {/* Background Decorative Element */}
                 <div className="absolute top-1/2 left-0 w-full h-full pointer-events-none -z-10 hidden md:block">
-                    <motion.div
-                        animate={{
-                            scale: [1, 1.3, 1],
-                            x: [-20, 20, -20]
-                        }}
-                        transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
-                        className="absolute top-0 right-[-10%] w-[600px] h-[600px] bg-primary/10 rounded-full blur-[140px]"
-                    />
+                    {!isMobile && (
+                        <motion.div
+                            animate={{
+                                scale: [1, 1.3, 1],
+                                x: [-20, 20, -20]
+                            }}
+                            transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+                            className="absolute top-0 right-[-10%] w-[600px] h-[600px] bg-primary/10 rounded-full blur-[140px]"
+                        />
+                    )}
                 </div>
 
                 <div className="container mx-auto px-6">
@@ -112,7 +122,7 @@ const HomeClient = ({ testimonials, partners, hero }: HomeClientProps) => {
                                 viewport={{ once: true }}
                                 transition={{ delay: i * 0.2, duration: 0.8 }}
                                 whileHover={{ y: -15, scale: 1.02 }}
-                                className={`min-w-[85vw] md:min-w-0 snap-center p-8 md:p-10 bg-surface/30 backdrop-blur-xl border border-white/5 rounded-[2.5rem] hover:border-primary/30 transition-all duration-500 group relative overflow-hidden ${i === 1 ? 'md:mt-12' : i === 2 ? 'md:mt-24' : ''}`}
+                                className={`min-w-[85vw] md:min-w-0 snap-center p-8 md:p-10 bg-surface/30 md:backdrop-blur-xl border border-white/5 rounded-[2.5rem] hover:border-primary/30 transition-all duration-500 group relative overflow-hidden ${i === 1 ? 'md:mt-12' : i === 2 ? 'md:mt-24' : ''}`}
                             >
                                 <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent pointer-events-none" />
                                 <div className={`w-14 h-14 md:w-16 md:h-16 ${item.color} rounded-2xl mb-6 md:mb-8 flex items-center justify-center text-black font-black text-xl md:text-2xl group-hover:rotate-12 transition-transform shadow-lg`}>
@@ -192,6 +202,7 @@ const HomeClient = ({ testimonials, partners, hero }: HomeClientProps) => {
                                                 alt={t.role}
                                                 width={100}
                                                 height={100}
+                                                sizes="60px"
                                                 className="w-full h-full object-contain p-2"
                                             />
                                         </div>

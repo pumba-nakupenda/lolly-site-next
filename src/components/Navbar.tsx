@@ -171,7 +171,7 @@ const Navbar = () => {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
-                            className="fixed inset-0 z-[-1] bg-black/98 flex flex-col pt-32 px-10 pb-10 overflow-y-auto backdrop-blur-3xl"
+                            className="fixed inset-0 z-[-1] bg-black/95 md:bg-black/98 flex flex-col pt-32 px-10 pb-10 overflow-y-auto md:backdrop-blur-3xl"
                         >
                             <div className="flex flex-col space-y-8">
                                 {navLinks.map((link, i) => (

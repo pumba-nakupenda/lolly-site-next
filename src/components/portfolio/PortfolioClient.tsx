@@ -30,7 +30,15 @@ const PortfolioClient = ({ projects: initialProjects }: { projects: Project[] })
     const [selectedProject, setSelectedProject] = useState<any | null>(null);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [activeIndex, setActiveIndex] = useState(0);
+    const [isMobile, setIsMobile] = useState(false);
     const router = useRouter();
+
+    useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth < 768);
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
 
     const filteredProjects = filter === "Tout"
         ? initialProjects
@@ -69,25 +77,37 @@ const PortfolioClient = ({ projects: initialProjects }: { projects: Project[] })
 
             {/* Background Decorative Elements */}
             <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-                <motion.div
-                    animate={{
-                        scale: [1, 1.3, 1],
-                        rotate: [0, -45, 0],
-                        x: [0, -40, 0],
-                        y: [0, 30, 0]
-                    }}
-                    transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-                    className="absolute top-[-10%] left-[-5%] w-[600px] h-[600px] bg-primary/5 rounded-full blur-[140px]"
-                />
-                <motion.div
-                    animate={{
-                        scale: [1, 1.2, 1],
-                        x: [0, 50, 0],
-                        y: [0, -20, 0]
-                    }}
-                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                    className="absolute bottom-[20%] right-[-10%] w-[500px] h-[500px] bg-accent/5 rounded-full blur-[120px]"
-                />
+                <AnimatePresence>
+                    {!isMobile && (
+                        <>
+                            <motion.div
+                                initial={{ opacity: 0 }}
+                                animate={{
+                                    opacity: 1,
+                                    scale: [1, 1.3, 1],
+                                    rotate: [0, -45, 0],
+                                    x: [0, -40, 0],
+                                    y: [0, 30, 0]
+                                }}
+                                exit={{ opacity: 0 }}
+                                transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+                                className="absolute top-[-10%] left-[-5%] w-[600px] h-[600px] bg-primary/5 rounded-full blur-[140px]"
+                            />
+                            <motion.div
+                                initial={{ opacity: 0 }}
+                                animate={{
+                                    opacity: 1,
+                                    scale: [1, 1.2, 1],
+                                    x: [0, 50, 0],
+                                    y: [0, -20, 0]
+                                }}
+                                exit={{ opacity: 0 }}
+                                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                                className="absolute bottom-[20%] right-[-10%] w-[500px] h-[500px] bg-accent/5 rounded-full blur-[120px]"
+                            />
+                        </>
+                    )}
+                </AnimatePresence>
             </div>
 
             <div className="container mx-auto relative z-10 px-0 md:px-6">
@@ -97,7 +117,7 @@ const PortfolioClient = ({ projects: initialProjects }: { projects: Project[] })
                     transition={{ duration: 1, ease: "easeOut" }}
                     className="text-center mb-16 md:mb-24 px-6 md:px-0"
                 >
-                    <span className="bg-primary/10 text-primary font-bold tracking-[0.2em] uppercase text-[10px] px-4 py-1.5 rounded-full mb-6 inline-block border border-primary/20 backdrop-blur-sm">Notre Galerie</span>
+                    <span className="bg-primary/10 text-primary font-bold tracking-[0.2em] uppercase text-[10px] px-4 py-1.5 rounded-full mb-6 inline-block border border-primary/20 md:backdrop-blur-sm">Notre Galerie</span>
                     <h1 className="text-3xl md:text-8xl font-serif font-bold text-white mb-8 tracking-tight leading-[1.1]">
                         Réalisations <br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-white to-primary italic pb-1 px-2">d'Excellence</span>
                     </h1>
@@ -148,6 +168,7 @@ const PortfolioClient = ({ projects: initialProjects }: { projects: Project[] })
                                 <OptimizedImage
                                     src={project.image}
                                     alt={project.title}
+                                    sizes="(max-width: 768px) 90vw, (max-width: 1200px) 45vw, 30vw"
                                     className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                                 />
                                 {/* Category Tag - Top Left */}

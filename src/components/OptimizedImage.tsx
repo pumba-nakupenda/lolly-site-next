@@ -68,6 +68,7 @@ export const OptimizedImage = ({
             onLoad={handleLoad}
             className={`${className} ${!loaded ? 'opacity-0' : 'opacity-100'} transition-opacity duration-300`}
             style={style}
+            sizes={props.sizes || (isFill ? "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" : undefined)}
             {...props}
         />
     );
