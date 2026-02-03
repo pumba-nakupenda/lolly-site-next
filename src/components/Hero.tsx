@@ -43,6 +43,7 @@ const Hero = ({ data }: HeroProps) => {
         offset: ["start start", "end start"],
     });
 
+    const scrollYOpacity = useTransform(scrollYProgress, [0, 0.1], [1, 0]);
     const textY = useTransform(scrollYProgress, [0, 1], ["0%", isMobile ? "0%" : "200%"]);
 
     const handleContactClick = () => {
@@ -145,7 +146,7 @@ const Hero = ({ data }: HeroProps) => {
             {/* Scroll indicator */}
             <motion.div
                 className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-3 z-30"
-                style={{ opacity: isMobile ? 1 : useTransform(scrollYProgress, [0, 0.1], [1, 0]) }}
+                style={{ opacity: isMobile ? 1 : scrollYOpacity }}
             >
                 <span className="text-[9px] uppercase tracking-[0.3em] text-gray-500 font-bold">Scroll</span>
                 <motion.div

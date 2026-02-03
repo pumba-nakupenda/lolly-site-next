@@ -37,7 +37,6 @@ body {
   background-attachment: scroll;
   overflow-x: hidden;
   width: 100%;
-  hanging-punctuation: first last;
 }
 
 html {
