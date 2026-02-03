@@ -144,14 +144,14 @@ const Hero = ({ data }: HeroProps) => {
 
             {/* Scroll indicator */}
             <motion.div
-                className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-3"
-                style={{ opacity: useTransform(scrollYProgress, [0, 0.1], [1, 0]) }}
+                className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-3 z-30"
+                style={{ opacity: isMobile ? 1 : useTransform(scrollYProgress, [0, 0.1], [1, 0]) }}
             >
                 <span className="text-[9px] uppercase tracking-[0.3em] text-gray-500 font-bold">Scroll</span>
                 <motion.div
                     animate={{ y: [0, 8, 0] }}
                     transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-                    className="w-5 h-9 border-2 border-white/10 rounded-full flex justify-center p-1.5 backdrop-blur-sm"
+                    className="w-5 h-9 border-2 border-white/30 rounded-full flex justify-center p-1.5 backdrop-blur-sm no-mobile-blur"
                 >
                     <div className="w-1 h-1.5 bg-primary rounded-full"></div>
                 </motion.div>
