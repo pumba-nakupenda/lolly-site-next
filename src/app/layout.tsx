@@ -61,6 +61,9 @@ export default function RootLayout({
             <head>
                 <link rel="manifest" href="/manifest.json" />
                 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+                <link rel="dns-prefetch" href="https://cdn.sanity.io" />
+                <link rel="preconnect" href="https://cdn.sanity.io" crossOrigin="anonymous" />
+                <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
                 <meta name="theme-color" content="#FFD100" />
             </head>
             <body className="antialiased">
