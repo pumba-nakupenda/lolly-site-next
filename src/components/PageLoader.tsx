@@ -1,16 +1,23 @@
 import { motion } from "framer-motion";
+import OptimizedImage from "./OptimizedImage";
 
 const PageLoader = () => {
     return (
         <div className="fixed inset-0 z-[200] bg-background flex items-center justify-center overflow-hidden">
             <div className="relative flex flex-col items-center">
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.8, ease: "easeOut", repeat: Infinity, repeatType: "reverse", repeatDelay: 0.5 }}
-                    className="text-7xl md:text-9xl font-logo font-black text-white tracking-tighter opacity-50"
+                    className="relative h-16 md:h-24 w-auto mb-4 opacity-50"
                 >
-                    LOLLY<span className="text-primary">.</span>
+                    <OptimizedImage
+                        src="/assets/logos/logo_white.png"
+                        alt="LOLLY Agency"
+                        height={96}
+                        width={300}
+                        className="h-full w-auto object-contain"
+                    />
                 </motion.div>
 
                 <motion.div

@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
+import OptimizedImage from "./OptimizedImage";
 
 const Preloader = () => {
     const [isLoading, setIsLoading] = useState(true);
@@ -24,12 +25,19 @@ const Preloader = () => {
                 >
                     <div className="relative flex flex-col items-center">
                         <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.8, ease: "easeOut" }}
-                            className="text-7xl md:text-9xl font-logo font-black text-white tracking-tighter"
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 1, ease: "easeOut" }}
+                            className="relative h-24 md:h-32 w-auto mb-4"
                         >
-                            LOLLY<span className="text-primary">.</span>
+                            <OptimizedImage
+                                src="/assets/logos/logo_white.png"
+                                alt="LOLLY Agency"
+                                height={128}
+                                width={480}
+                                className="h-full w-auto object-contain"
+                                priority
+                            />
                         </motion.div>
 
                         <motion.div

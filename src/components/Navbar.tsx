@@ -1,16 +1,20 @@
+"use client";
+
 import { useState, useEffect } from "react";
 import { Menu, X, ChevronDown, ChevronRight } from "lucide-react";
 import { Button } from "./ui/Button";
 import { motion, AnimatePresence } from "framer-motion";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import OptimizedImage from "./OptimizedImage";
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const [servicesOpen, setServicesOpen] = useState(false); // For Mobile accordion
     const [hoverServices, setHoverServices] = useState(false); // For Desktop hover
-    const location = useLocation();
-    const navigate = useNavigate();
+    const pathname = usePathname();
+    const router = useRouter();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -37,16 +41,17 @@ const Navbar = () => {
             ]
         },
         { name: "Portfolio", href: "/portfolio" },
+        { name: "Le Lab", href: "/blog" },
         { name: "À propos", href: "/about" },
         { name: "Contact", href: "/contact" },
     ];
 
-    const isActive = (path: string) => location.pathname === path || (path !== '/' && location.pathname.startsWith(path));
+    const isActive = (path: string) => pathname === path || (path !== '/' && pathname.startsWith(path));
 
     const handleContactClick = () => {
         if (window.innerWidth < 768) {
             setIsOpen(false);
-            navigate('/contact');
+            router.push('/contact');
         } else {
             window.dispatchEvent(new CustomEvent('open-contact-modal'));
         }
@@ -66,13 +71,15 @@ const Navbar = () => {
                         ? "bg-surface/95 md:bg-surface/40 md:backdrop-blur-2xl border border-white/10 shadow-2xl"
                         : "bg-transparent border border-transparent"}`}
                     >
-                        <Link to="/" className="relative z-10 group">
-                            <span
-                                className="text-3xl tracking-tight text-white group-hover:text-primary transition-colors italic"
-                                style={{ fontFamily: 'var(--font-logo)', fontWeight: 900 }}
-                            >
-                                LOLLY<span className="text-primary group-hover:text-white">.</span>
-                            </span>
+                        <Link href="/" className="relative z-10 block h-8 w-auto">
+                            <OptimizedImage
+                                src="/assets/logos/logo_white.png"
+                                alt="LOLLY Agency"
+                                height={32}
+                                width={120}
+                                className="h-8 w-auto object-contain transition-all hover:opacity-80"
+                                priority
+                            />
                         </Link>
 
                         {/* Desktop Menu */}
@@ -86,7 +93,7 @@ const Navbar = () => {
                                 >
                                     <div className="flex items-center gap-1">
                                         <Link
-                                            to={link.href}
+                                            href={link.href}
                                             className="relative transition-colors font-bold text-[10px] uppercase tracking-[0.2em] group py-2"
                                             onClick={() => {
                                                 // Optional: if clicking "Services" should just open dropdown on touch devices or do nothing if hover works
@@ -121,7 +128,7 @@ const Navbar = () => {
                                                     {link.subItems.map((subItem) => (
                                                         <Link
                                                             key={subItem.name}
-                                                            to={subItem.href}
+                                                            href={subItem.href}
                                                             className="px-4 py-3 rounded-xl hover:bg-white/10 text-gray-300 hover:text-white transition-all text-xs font-bold uppercase tracking-wider flex items-center justify-between group/item"
                                                         >
                                                             {subItem.name}
@@ -134,7 +141,7 @@ const Navbar = () => {
                                     </AnimatePresence>
                                 </div>
                             ))}
-                            <div className={location.pathname === '/contact' ? "invisible pointer-events-none" : ""}>
+                            <div className={pathname === '/contact' ? "invisible pointer-events-none" : ""}>
                                 <Button
                                     className="h-10 px-6 rounded-xl font-black text-[10px] uppercase tracking-widest shadow-lg shadow-primary/10"
                                     onClick={handleContactClick}
@@ -161,18 +168,24 @@ const Navbar = () => {
                 <AnimatePresence>
                     {isOpen && (
                         <motion.div
-                            initial={{ opacity: 0, backdropFilter: "blur(0px)" }}
-                            animate={{ opacity: 1, backdropFilter: "blur(5px)" }}
-                            exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
-                            className="fixed inset-0 z-[-1] bg-black/95 flex flex-col pt-32 px-10 pb-10 overflow-y-auto"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            className="fixed inset-0 z-[-1] bg-black/98 flex flex-col pt-32 px-10 pb-10 overflow-y-auto backdrop-blur-3xl"
                         >
-                            <div className="flex flex-col space-y-6">
-                                {navLinks.map((link) => (
-                                    <div key={link.name} className="flex flex-col">
+                            <div className="flex flex-col space-y-8">
+                                {navLinks.map((link, i) => (
+                                    <motion.div
+                                        key={link.name}
+                                        initial={{ opacity: 0, x: -20 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{ delay: i * 0.1 }}
+                                        className="flex flex-col"
+                                    >
                                         <div className="flex items-center justify-between">
                                             <Link
-                                                to={link.href}
-                                                className={`text-4xl font-serif font-bold ${isActive(link.href) ? "text-primary" : "text-white"}`}
+                                                href={link.href}
+                                                className={`text-3xl font-serif font-bold ${isActive(link.href) ? "text-primary" : "text-white"}`}
                                                 onClick={() => !link.subItems && setIsOpen(false)}
                                             >
                                                 {link.name}
@@ -180,11 +193,11 @@ const Navbar = () => {
                                             {link.subItems && (
                                                 <button
                                                     onClick={() => setServicesOpen(!servicesOpen)}
-                                                    className="p-2 border border-white/10 rounded-full bg-white/5"
+                                                    className="p-3 border border-white/10 rounded-2xl bg-white/5"
                                                 >
                                                     <ChevronDown
                                                         size={24}
-                                                        className={`text-white transition-transform duration-300 ${servicesOpen ? 'rotate-180' : ''}`}
+                                                        className={`text-white transition-transform duration-500 ${servicesOpen ? 'rotate-180 text-primary' : ''}`}
                                                     />
                                                 </button>
                                             )}
@@ -199,12 +212,12 @@ const Navbar = () => {
                                                     exit={{ height: 0, opacity: 0 }}
                                                     className="overflow-hidden"
                                                 >
-                                                    <div className="flex flex-col gap-4 pl-4 pt-6 border-l border-white/10 ml-2 mt-2">
+                                                    <div className="flex flex-col gap-5 pl-6 pt-6 border-l-2 border-primary/20 ml-2 mt-2">
                                                         {link.subItems.map((subItem) => (
                                                             <Link
                                                                 key={subItem.name}
-                                                                to={subItem.href}
-                                                                className={`text-lg font-medium ${isActive(subItem.href) ? "text-primary" : "text-gray-400"}`}
+                                                                href={subItem.href}
+                                                                className={`text-base font-bold uppercase tracking-widest ${isActive(subItem.href) ? "text-primary" : "text-gray-400"}`}
                                                                 onClick={() => setIsOpen(false)}
                                                             >
                                                                 {subItem.name}
@@ -214,17 +227,40 @@ const Navbar = () => {
                                                 </motion.div>
                                             )}
                                         </AnimatePresence>
-                                    </div>
+                                    </motion.div>
                                 ))}
+
                                 <motion.div
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: 0.5 }}
-                                    className="pt-10 border-t border-white/10 mt-auto"
+                                    transition={{ delay: 0.6 }}
+                                    className="pt-12 border-t border-white/10 mt-auto"
                                 >
-                                    <Button className="w-full h-16 text-xl" onClick={handleContactClick}>
-                                        Contactez-nous
+                                    <Button className="w-full h-16 text-lg font-black rounded-2xl" onClick={handleContactClick}>
+                                        Lancer un projet
                                     </Button>
+
+                                    {/* Social Links in Mobile Menu */}
+                                    <div className="flex justify-center gap-6 mt-12">
+                                        {[
+                                            { icon: "Instagram", url: "https://www.instagram.com/agence_lolly/" },
+                                            { icon: "Linkedin", url: "https://www.linkedin.com/company/lolly-sas" },
+                                            { icon: "Facebook", url: "https://www.facebook.com/AGENCELOLLY" },
+                                        ].map((social, i) => (
+                                            <a
+                                                key={i}
+                                                href={social.url}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-primary hover:border-primary/30 transition-all font-bold text-xs uppercase"
+                                            >
+                                                {social.icon[0]}
+                                            </a>
+                                        ))}
+                                    </div>
+                                    <p className="text-center text-[8px] text-gray-600 mt-8 uppercase tracking-[0.3em] font-black">
+                                        © {new Date().getFullYear()} LOLLY SAS
+                                    </p>
                                 </motion.div>
                             </div>
                         </motion.div>

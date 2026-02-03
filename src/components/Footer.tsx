@@ -1,5 +1,6 @@
 import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone, Music2 } from "lucide-react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
+import OptimizedImage from "./OptimizedImage";
 
 const Footer = () => {
     return (
@@ -8,12 +9,15 @@ const Footer = () => {
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8 text-center md:text-left">
                     {/* Agency Info */}
                     <div className="col-span-1 md:col-span-2">
-                        <h3
-                            className="text-3xl mb-6 text-primary italic justify-center md:justify-start flex"
-                            style={{ fontFamily: 'var(--font-logo)', fontWeight: 900 }}
-                        >
-                            LOLLY
-                        </h3>
+                        <Link href="/" className="mb-6 block h-10 w-fit">
+                            <OptimizedImage
+                                src="/assets/logos/logo_white.png"
+                                alt="LOLLY Agency"
+                                height={40}
+                                width={150}
+                                className="h-10 w-auto object-contain"
+                            />
+                        </Link>
                         <p className="text-gray-300 mb-8 max-w-sm mx-auto md:mx-0 leading-relaxed">
                             Des mots qui touchent, des images qui marquent.
                             Nous sommes une agence de communication basée à Dakar, dédiée à propulser votre image de marque.
@@ -38,11 +42,11 @@ const Footer = () => {
                     <div className="space-y-4">
                         <h4 className="text-lg font-bold mb-6 text-secondary uppercase tracking-widest text-sm">Liens Rapides</h4>
                         <ul className="space-y-3">
-                            <li><Link to="/" className="text-gray-300 hover:text-primary transition-colors py-1 inline-block">Accueil</Link></li>
-                            <li><Link to="/services" className="text-gray-300 hover:text-primary transition-colors py-1 inline-block">Services</Link></li>
-                            <li><Link to="/portfolio" className="text-gray-300 hover:text-primary transition-colors py-1 inline-block">Réalisations</Link></li>
-                            <li><Link to="/about" className="text-gray-300 hover:text-primary transition-colors py-1 inline-block">À propos</Link></li>
-                            <li><Link to="/contact" className="text-gray-300 hover:text-primary transition-colors py-1 inline-block">Contact</Link></li>
+                            <li><Link href="/" className="text-gray-300 hover:text-primary transition-colors py-1 inline-block">Accueil</Link></li>
+                            <li><Link href="/services" className="text-gray-300 hover:text-primary transition-colors py-1 inline-block">Services</Link></li>
+                            <li><Link href="/portfolio" className="text-gray-300 hover:text-primary transition-colors py-1 inline-block">Réalisations</Link></li>
+                            <li><Link href="/about" className="text-gray-300 hover:text-primary transition-colors py-1 inline-block">À propos</Link></li>
+                            <li><Link href="/contact" className="text-gray-300 hover:text-primary transition-colors py-1 inline-block">Contact</Link></li>
                         </ul>
                     </div>
 
@@ -69,8 +73,8 @@ const Footer = () => {
                 <div className="border-t border-white/5 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center text-gray-500 text-sm gap-4">
                     <p>&copy; {new Date().getFullYear()} LOLLY Agency. Tous droits réservés.</p>
                     <div className="flex gap-6">
-                        <Link to="/legal" className="hover:text-primary transition-colors">Mentions Légales</Link>
-                        <Link to="/cgv" className="hover:text-primary transition-colors">CGV</Link>
+                        <Link href="/legal" className="hover:text-primary transition-colors">Mentions Légales</Link>
+                        <Link href="/cgv" className="hover:text-primary transition-colors">CGV</Link>
                     </div>
                 </div>
             </div>
