@@ -2,6 +2,21 @@ import "./globals.css";
 import ClientLayout from "@/components/ClientLayout";
 import { Metadata } from "next";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
+import { Montserrat, MuseoModerno } from 'next/font/google';
+
+const montserrat = Montserrat({
+    subsets: ['latin'],
+    variable: '--font-montserrat',
+    display: 'swap',
+});
+
+const museo = MuseoModerno({
+    subsets: ['latin'],
+    variable: '--font-museo',
+    weight: '900',
+    style: 'italic',
+    display: 'swap',
+});
 
 export const metadata: Metadata = {
     metadataBase: new URL("https://lolly.sn"),
@@ -42,13 +57,13 @@ export default function RootLayout({
     children: React.ReactNode;
 }) {
     return (
-        <html lang="fr">
+        <html lang="fr" className={`${montserrat.variable} ${museo.variable}`}>
             <head>
                 <link rel="manifest" href="/manifest.json" />
                 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
                 <meta name="theme-color" content="#FFD100" />
             </head>
-            <body>
+            <body className="antialiased">
                 <GoogleAnalytics GA_MEASUREMENT_ID={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || ""} />
                 <ClientLayout>{children}</ClientLayout>
             </body>

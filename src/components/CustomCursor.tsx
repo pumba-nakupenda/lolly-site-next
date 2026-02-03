@@ -30,7 +30,7 @@ const CustomCursor = () => {
                     translateX: cursorX,
                     translateY: cursorY,
                 }}
-                className="w-8 h-8 rounded-full border border-primary/50 flex items-center justify-center -ml-4 -mt-4 shadow-[0_0_15px_rgba(255,209,0,0.1)]"
+                className="w-8 h-8 rounded-full border border-primary/50 flex items-center justify-center -ml-4 -mt-4 shadow-[0_0_15px_rgba(255,209,0,0.1)] will-change-transform"
             >
                 <div className="w-1 h-1 bg-primary rounded-full shadow-lg" />
             </motion.div>
