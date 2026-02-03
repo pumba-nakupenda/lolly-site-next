@@ -146,7 +146,7 @@ const Hero = ({ data }: HeroProps) => {
             {/* Scroll indicator */}
             <motion.div
                 className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-3 z-30"
-                style={{ opacity: isMobile ? 1 : scrollYOpacity }}
+                style={{ opacity: scrollYOpacity }}
             >
                 <span className="text-[9px] uppercase tracking-[0.3em] text-gray-500 font-bold">Scroll</span>
                 <motion.div
