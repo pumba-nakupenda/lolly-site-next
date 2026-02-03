@@ -37,13 +37,15 @@ export default function ClientLayout({
     }, []);
 
     const isVCardPage = pathname?.toLowerCase().startsWith("/vcard");
+    const isStudioPage = pathname?.toLowerCase().startsWith("/studio");
+    const isIsolatedPage = isVCardPage || isStudioPage;
 
     return (
         <MotionConfig>
             <div className="min-h-screen font-sans text-gray-100 flex flex-col bg-background">
-                {!isMobile && !isVCardPage && <Preloader />}
-                {!isVCardPage && <CustomCursor />}
-                {!isVCardPage && <Navbar />}
+                {!isMobile && !isIsolatedPage && <Preloader />}
+                {!isIsolatedPage && <CustomCursor />}
+                {!isIsolatedPage && <Navbar />}
                 <ScrollToTop />
                 <ContactModal
                     isOpen={isContactModalOpen}
@@ -53,8 +55,8 @@ export default function ClientLayout({
 
                 <main className="flex-grow">{children}</main>
 
-                {!isVCardPage && <Footer />}
-                {!isVCardPage && <WhatsAppButton />}
+                {!isIsolatedPage && <Footer />}
+                {!isIsolatedPage && <WhatsAppButton />}
             </div>
         </MotionConfig>
     );
