@@ -39,6 +39,8 @@ const breadcrumbData = {
     ]
 };
 
+export const revalidate = 60;
+
 async function getServicesData() {
     const { client } = await import("@/sanityClient");
     try {

@@ -4,6 +4,8 @@ import JsonLd from "@/components/JsonLd";
 import { FALLBACK_TESTIMONIALS } from "@/data/fallback";
 import { client } from "@/sanityClient";
 
+export const revalidate = 60; // revalidate at most every 60 seconds
+
 export const metadata: Metadata = {
     title: "Agence de Conseil en Communication | LOLLY Agence",
     description:

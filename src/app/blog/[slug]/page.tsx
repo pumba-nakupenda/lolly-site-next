@@ -1,5 +1,8 @@
 import BlogPostClient from "@/components/blog/BlogPostClient";
 import { client } from "@/sanityClient";
+
+export const revalidate = 60;
+
 import JsonLd from "@/components/JsonLd";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {

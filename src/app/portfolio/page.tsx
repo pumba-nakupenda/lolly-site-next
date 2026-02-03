@@ -1,6 +1,9 @@
 import PortfolioClient from "@/components/portfolio/PortfolioClient";
 import { Metadata } from "next";
 import { client } from "@/sanityClient";
+
+export const revalidate = 60;
+
 import { FALLBACK_PROJECTS } from "@/data/fallback";
 import JsonLd from "@/components/JsonLd";
 

@@ -1,6 +1,9 @@
 import BlogClient from "@/components/blog/BlogClient";
 import { Metadata } from "next";
 import { client } from "@/sanityClient";
+
+export const revalidate = 60;
+
 import JsonLd from "@/components/JsonLd";
 
 export const metadata: Metadata = {
