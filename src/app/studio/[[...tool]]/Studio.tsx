@@ -1,3 +1,5 @@
+"use client";
+
 import { NextStudio } from "next-sanity/studio";
 import config from "../../../../studio/sanity.config";
 import { useState, useEffect } from "react";
