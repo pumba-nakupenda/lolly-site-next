@@ -1,7 +1,9 @@
+"use client";
+
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Mail, Phone, MapPin, Loader2, CheckCircle2 } from "lucide-react";
 import { Button } from "./ui/Button";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 
 interface ContactModalProps {
     isOpen: boolean;
@@ -22,6 +24,8 @@ const ContactModal = ({ isOpen, onClose, title = "Contactez-nous", prefilledSubj
         subject: "Demande de devis",
         message: ""
     });
+    const modalRef = useRef<HTMLDivElement>(null);
+    const previousFocusRef = useRef<HTMLElement | null>(null);
 
     // Handle pre-filled subject
     useEffect(() => {
@@ -29,6 +33,48 @@ const ContactModal = ({ isOpen, onClose, title = "Contactez-nous", prefilledSubj
             setFormData(prev => ({ ...prev, subject: prefilledSubject }));
         }
     }, [prefilledSubject, isOpen]);
+
+    // Save focus, restore on close, trap focus inside modal
+    useEffect(() => {
+        if (isOpen) {
+            previousFocusRef.current = document.activeElement as HTMLElement;
+            // Focus first focusable element
+            const firstFocusable = modalRef.current?.querySelector<HTMLElement>(
+                'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+            );
+            firstFocusable?.focus();
+        } else {
+            previousFocusRef.current?.focus();
+        }
+    }, [isOpen]);
+
+    const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
+        if (e.key === 'Escape') {
+            onClose();
+            return;
+        }
+        if (e.key !== 'Tab') return;
+
+        const focusable = modalRef.current?.querySelectorAll<HTMLElement>(
+            'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        if (!focusable || focusable.length === 0) return;
+
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        if (e.shiftKey) {
+            if (document.activeElement === first) {
+                e.preventDefault();
+                last.focus();
+            }
+        } else {
+            if (document.activeElement === last) {
+                e.preventDefault();
+                first.focus();
+            }
+        }
+    }, [onClose]);
 
     const countries = [
         { code: "+221", label: "SN" },
@@ -87,16 +133,24 @@ const ContactModal = ({ isOpen, onClose, title = "Contactez-nous", prefilledSubj
     return (
         <AnimatePresence>
             {isOpen && (
-                <div className="fixed inset-0 z-[60] flex items-center justify-center p-4">
+                <div
+                        className="fixed inset-0 z-[60] flex items-center justify-center p-4"
+                        onKeyDown={handleKeyDown}
+                    >
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         onClick={onClose}
+                        aria-hidden="true"
                         className="absolute inset-0 bg-black/80 backdrop-blur-sm"
                     />
 
                     <motion.div
+                        ref={modalRef}
+                        role="dialog"
+                        aria-modal="true"
+                        aria-labelledby="contact-modal-title"
                         initial={{ opacity: 0, scale: 0.9, y: 20 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.9, y: 20 }}
@@ -104,6 +158,7 @@ const ContactModal = ({ isOpen, onClose, title = "Contactez-nous", prefilledSubj
                     >
                         <button
                             onClick={onClose}
+                            aria-label="Fermer la fenêtre de contact"
                             className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors z-20 w-8 h-8 flex items-center justify-center bg-black/20 rounded-full"
                         >
                             <X size={20} />
@@ -159,7 +214,7 @@ const ContactModal = ({ isOpen, onClose, title = "Contactez-nous", prefilledSubj
                                 </motion.div>
                             ) : (
                                 <>
-                                    <h2 className="text-2xl font-bold mb-2 text-white">{title}</h2>
+                                    <h2 id="contact-modal-title" className="text-2xl font-bold mb-2 text-white">{title}</h2>
                                     <p className="text-gray-400 mb-8 text-sm lowercase tracking-wide">Parlons de votre prochain succès.</p>
 
                                     <form className="space-y-5" onSubmit={handleSubmit}>

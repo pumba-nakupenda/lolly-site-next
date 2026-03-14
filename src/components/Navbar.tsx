@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { Menu, X, ChevronDown, ChevronRight } from "lucide-react";
 import { Button } from "./ui/Button";
 import { motion, AnimatePresence } from "framer-motion";
@@ -13,8 +13,16 @@ const Navbar = () => {
     const [scrolled, setScrolled] = useState(false);
     const [servicesOpen, setServicesOpen] = useState(false); // For Mobile accordion
     const [hoverServices, setHoverServices] = useState(false); // For Desktop hover
+    const [keyboardServices, setKeyboardServices] = useState(false); // For Desktop keyboard
+    const servicesDropdownOpen = hoverServices || keyboardServices;
+    const servicesRef = useRef<HTMLDivElement>(null);
     const pathname = usePathname();
     const router = useRouter();
+
+    const closeServicesDropdown = useCallback(() => {
+        setHoverServices(false);
+        setKeyboardServices(false);
+    }, []);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -87,16 +95,30 @@ const Navbar = () => {
                             {navLinks.map((link) => (
                                 <div
                                     key={link.name}
+                                    ref={link.subItems ? servicesRef : undefined}
                                     className="relative group"
                                     onMouseEnter={() => link.subItems && setHoverServices(true)}
                                     onMouseLeave={() => link.subItems && setHoverServices(false)}
+                                    onBlur={(e) => {
+                                        if (link.subItems && !e.currentTarget.contains(e.relatedTarget as Node)) {
+                                            closeServicesDropdown();
+                                        }
+                                    }}
                                 >
                                     <div className="flex items-center gap-1">
                                         <Link
                                             href={link.href}
                                             className="relative transition-colors font-bold text-[10px] uppercase tracking-[0.2em] group py-2"
-                                            onClick={() => {
-                                                // Optional: if clicking "Services" should just open dropdown on touch devices or do nothing if hover works
+                                            onFocus={() => link.subItems && setKeyboardServices(true)}
+                                            onKeyDown={(e) => {
+                                                if (!link.subItems) return;
+                                                if (e.key === 'Escape') closeServicesDropdown();
+                                                if (e.key === 'ArrowDown') {
+                                                    e.preventDefault();
+                                                    setKeyboardServices(true);
+                                                    const firstItem = servicesRef.current?.querySelector<HTMLAnchorElement>('[data-dropdown-item]');
+                                                    firstItem?.focus();
+                                                }
                                             }}
                                         >
                                             <span className={`relative z-10 transition-colors ${isActive(link.href) ? "text-primary" : "text-gray-400 group-hover:text-white"}`}>
@@ -110,14 +132,27 @@ const Navbar = () => {
                                             )}
                                         </Link>
                                         {link.subItems && (
-                                            <ChevronDown size={12} className={`text-gray-400 transition-transform duration-300 ${hoverServices && link.name === 'Services' ? 'rotate-180 text-primary' : ''}`} />
+                                            <button
+                                                aria-expanded={servicesDropdownOpen}
+                                                aria-haspopup="true"
+                                                aria-label={servicesDropdownOpen ? "Fermer le sous-menu Services" : "Ouvrir le sous-menu Services"}
+                                                onClick={() => setKeyboardServices(!keyboardServices)}
+                                                onKeyDown={(e) => {
+                                                    if (e.key === 'Escape') closeServicesDropdown();
+                                                }}
+                                                className="p-1 rounded focus:outline-none focus:ring-2 focus:ring-primary/50"
+                                            >
+                                                <ChevronDown size={12} className={`text-gray-400 transition-transform duration-300 ${servicesDropdownOpen && link.name === 'Services' ? 'rotate-180 text-primary' : ''}`} />
+                                            </button>
                                         )}
                                     </div>
 
                                     {/* Dropdown Menu */}
                                     <AnimatePresence>
-                                        {link.subItems && hoverServices && (
+                                        {link.subItems && servicesDropdownOpen && (
                                             <motion.div
+                                                role="menu"
+                                                aria-label="Sous-menu Services"
                                                 initial={{ opacity: 0, y: 10, scale: 0.95 }}
                                                 animate={{ opacity: 1, y: 0, scale: 1 }}
                                                 exit={{ opacity: 0, y: 10, scale: 0.95 }}
@@ -125,11 +160,34 @@ const Navbar = () => {
                                                 className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-64 bg-surface/90 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl overflow-hidden p-2"
                                             >
                                                 <div className="flex flex-col gap-1">
-                                                    {link.subItems.map((subItem) => (
+                                                    {link.subItems.map((subItem, idx) => (
                                                         <Link
                                                             key={subItem.name}
                                                             href={subItem.href}
-                                                            className="px-4 py-3 rounded-xl hover:bg-white/10 text-gray-300 hover:text-white transition-all text-xs font-bold uppercase tracking-wider flex items-center justify-between group/item"
+                                                            role="menuitem"
+                                                            data-dropdown-item
+                                                            onClick={closeServicesDropdown}
+                                                            onKeyDown={(e) => {
+                                                                if (e.key === 'Escape') {
+                                                                    closeServicesDropdown();
+                                                                    servicesRef.current?.querySelector<HTMLAnchorElement>('a')?.focus();
+                                                                }
+                                                                if (e.key === 'ArrowDown') {
+                                                                    e.preventDefault();
+                                                                    const items = servicesRef.current?.querySelectorAll<HTMLAnchorElement>('[data-dropdown-item]');
+                                                                    items?.[idx + 1]?.focus();
+                                                                }
+                                                                if (e.key === 'ArrowUp') {
+                                                                    e.preventDefault();
+                                                                    const items = servicesRef.current?.querySelectorAll<HTMLAnchorElement>('[data-dropdown-item]');
+                                                                    if (idx === 0) {
+                                                                        servicesRef.current?.querySelector<HTMLAnchorElement>('a')?.focus();
+                                                                    } else {
+                                                                        items?.[idx - 1]?.focus();
+                                                                    }
+                                                                }
+                                                            }}
+                                                            className="px-4 py-3 rounded-xl hover:bg-white/10 text-gray-300 hover:text-white transition-all text-xs font-bold uppercase tracking-wider flex items-center justify-between group/item focus:outline-none focus:bg-white/10 focus:text-white"
                                                         >
                                                             {subItem.name}
                                                             <ChevronRight size={12} className="opacity-0 -translate-x-2 group-hover/item:opacity-100 group-hover/item:translate-x-0 transition-all text-primary" />
@@ -193,6 +251,8 @@ const Navbar = () => {
                                             {link.subItems && (
                                                 <button
                                                     onClick={() => setServicesOpen(!servicesOpen)}
+                                                    aria-expanded={servicesOpen}
+                                                    aria-label={servicesOpen ? "Fermer le sous-menu Services" : "Ouvrir le sous-menu Services"}
                                                     className="p-3 border border-white/10 rounded-2xl bg-white/5"
                                                 >
                                                     <ChevronDown

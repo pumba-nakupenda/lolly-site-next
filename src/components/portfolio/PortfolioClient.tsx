@@ -163,7 +163,11 @@ const PortfolioClient = ({ projects: initialProjects }: { projects: Project[] })
                                 transition={{ duration: 0.5, delay: index * 0.05 }}
                                 key={project.id}
                                 onClick={() => setSelectedProject(project)}
-                                className="min-w-[85vw] md:min-w-0 snap-center group relative aspect-[4/5] rounded-[2.5rem] overflow-hidden cursor-pointer shadow-2xl bg-surface/20"
+                                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setSelectedProject(project); } }}
+                                role="button"
+                                tabIndex={0}
+                                aria-label={`Voir le projet : ${project.title}`}
+                                className="min-w-[85vw] md:min-w-0 snap-center group relative aspect-[4/5] rounded-[2.5rem] overflow-hidden cursor-pointer shadow-2xl bg-surface/20 focus:outline-none focus:ring-2 focus:ring-primary"
                             >
                                 <OptimizedImage
                                     src={project.image}
@@ -210,12 +214,19 @@ const PortfolioClient = ({ projects: initialProjects }: { projects: Project[] })
             {/* Project Modal */}
             <AnimatePresence>
                 {selectedProject && (
-                    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-12 overflow-y-auto pt-20">
+                    <div
+                        className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-12 overflow-y-auto pt-20"
+                        onKeyDown={(e) => { if (e.key === 'Escape') setSelectedProject(null); }}
+                        role="dialog"
+                        aria-modal="true"
+                        aria-label={`Projet : ${selectedProject.title}`}
+                    >
                         <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             onClick={() => setSelectedProject(null)}
+                            aria-hidden="true"
                             className="fixed inset-0 bg-black/95 backdrop-blur-xl"
                         />
 
@@ -227,6 +238,7 @@ const PortfolioClient = ({ projects: initialProjects }: { projects: Project[] })
                         >
                             <button
                                 onClick={() => setSelectedProject(null)}
+                                aria-label="Fermer le projet"
                                 className="absolute top-6 right-6 md:top-8 md:right-8 z-20 w-10 h-10 md:w-12 md:h-12 bg-black/50 backdrop-blur-md rounded-xl md:rounded-2xl flex items-center justify-center text-white hover:bg-primary hover:text-black transition-all group shadow-xl"
                             >
                                 <X size={20} className="group-hover:rotate-90 transition-transform" />
@@ -267,22 +279,26 @@ const PortfolioClient = ({ projects: initialProjects }: { projects: Project[] })
                                             <>
                                                 <button
                                                     onClick={prevImage}
+                                                    aria-label="Image précédente"
                                                     className="absolute left-4 md:left-6 top-1/2 -translate-y-1/2 w-10 h-10 md:w-14 md:h-14 bg-black/40 backdrop-blur-lg rounded-xl md:rounded-2xl flex items-center justify-center text-white opacity-100 lg:opacity-0 lg:group-hover/carousel:opacity-100 transition-all hover:bg-primary hover:text-black z-30 shadow-2xl"
                                                 >
                                                     <ChevronLeft size={24} />
                                                 </button>
                                                 <button
                                                     onClick={nextImage}
+                                                    aria-label="Image suivante"
                                                     className="absolute right-4 md:right-6 top-1/2 -translate-y-1/2 w-10 h-10 md:w-14 md:h-14 bg-black/40 backdrop-blur-lg rounded-xl md:rounded-2xl flex items-center justify-center text-white opacity-100 lg:opacity-0 lg:group-hover/carousel:opacity-100 transition-all hover:bg-primary hover:text-black z-30 shadow-2xl"
                                                 >
                                                     <ChevronRight size={24} />
                                                 </button>
 
-                                                <div className="absolute bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 flex gap-2 md:gap-3 z-30 bg-black/20 backdrop-blur-md px-3 py-1.5 md:px-4 md:py-2 rounded-full">
+                                                <div role="group" aria-label="Navigation entre les images" className="absolute bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 flex gap-2 md:gap-3 z-30 bg-black/20 backdrop-blur-md px-3 py-1.5 md:px-4 md:py-2 rounded-full">
                                                     {selectedProject.images.map((_: any, i: number) => (
                                                         <button
                                                             key={i}
                                                             onClick={(e) => { e.stopPropagation(); setCurrentImageIndex(i); }}
+                                                            aria-label={`Image ${i + 1} sur ${selectedProject.images.length}`}
+                                                            aria-current={i === currentImageIndex ? 'true' : undefined}
                                                             className={`w-2 h-2 md:w-2.5 md:h-2.5 rounded-full transition-all duration-500 ${i === currentImageIndex ? 'bg-primary w-6 md:w-8' : 'bg-white/30 hover:bg-white/50'}`}
                                                         />
                                                     ))}
