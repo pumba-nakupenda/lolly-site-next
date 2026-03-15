@@ -10,12 +10,23 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     try {
         const { data: post } = await supabase
             .from("posts")
-            .select("title, excerpt")
+            .select("title, excerpt, main_image")
             .eq("slug", slug)
             .single();
+        const ogImage = post?.main_image || 'https://lolly.sn/meta-image.png';
         return {
             title: `${post?.title || 'Article'} | LOLLY Agency`,
             description: post?.excerpt || 'Découvrez notre dernier article sur le blog de LOLLY Agency.',
+            openGraph: {
+                title: `${post?.title || 'Article'} | LOLLY Agency`,
+                description: post?.excerpt || 'Découvrez notre dernier article sur le blog de LOLLY Agency.',
+                images: [{ url: ogImage }],
+                type: 'article',
+            },
+            twitter: {
+                card: 'summary_large_image',
+                images: [ogImage],
+            },
         };
     } catch (error) {
         console.error("Error generating metadata for blog post:", error);

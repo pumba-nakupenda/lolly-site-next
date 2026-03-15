@@ -4,6 +4,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { supabaseAdmin } from "@/lib/supabase-admin";
 
+function isAuthorized(req: NextRequest): boolean {
+  const secret = process.env.ADMIN_API_SECRET;
+  if (!secret) return false;
+  const auth = req.headers.get("authorization");
+  return auth === `Bearer ${secret}`;
+}
+
 const ALLOWED_TABLES = [
   "posts",
   "portfolio",
@@ -24,6 +31,7 @@ function getTable(req: NextRequest): string | null {
 }
 
 export async function GET(req: NextRequest) {
+  if (!isAuthorized(req)) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   const table = getTable(req);
   if (!table) return NextResponse.json({ error: "Invalid table" }, { status: 400 });
 
@@ -33,6 +41,7 @@ export async function GET(req: NextRequest) {
 }
 
 export async function POST(req: NextRequest) {
+  if (!isAuthorized(req)) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   const table = getTable(req);
   if (!table) return NextResponse.json({ error: "Invalid table" }, { status: 400 });
 
@@ -43,6 +52,7 @@ export async function POST(req: NextRequest) {
 }
 
 export async function PUT(req: NextRequest) {
+  if (!isAuthorized(req)) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   const table = getTable(req);
   if (!table) return NextResponse.json({ error: "Invalid table" }, { status: 400 });
 
@@ -61,6 +71,7 @@ export async function PUT(req: NextRequest) {
 }
 
 export async function DELETE(req: NextRequest) {
+  if (!isAuthorized(req)) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   const table = getTable(req);
   if (!table) return NextResponse.json({ error: "Invalid table" }, { status: 400 });
 

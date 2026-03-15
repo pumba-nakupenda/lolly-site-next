@@ -12,7 +12,7 @@ interface ContactModalProps {
     prefilledSubject?: string;
 }
 
-const WEBHOOK_URL = process.env.NEXT_PUBLIC_WEBHOOK_URL || "https://n8n.srv812544.hstgr.cloud/webhook/2ee87114-da42-4f38-85e8-c4a99ba04a3f";
+const CONTACT_API = "/api/contact";
 
 const ContactModal = ({ isOpen, onClose, title = "Contactez-nous", prefilledSubject }: ContactModalProps) => {
     const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
@@ -105,7 +105,7 @@ const ContactModal = ({ isOpen, onClose, title = "Contactez-nous", prefilledSubj
                 timestamp: new Date().toISOString()
             };
 
-            const response = await fetch(WEBHOOK_URL, {
+            const response = await fetch(CONTACT_API, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

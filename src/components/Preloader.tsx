@@ -3,14 +3,19 @@ import { useState, useEffect } from "react";
 import OptimizedImage from "./OptimizedImage";
 
 const Preloader = () => {
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(() => {
+        if (typeof window === "undefined") return false;
+        return !sessionStorage.getItem("lolly_visited");
+    });
 
     useEffect(() => {
+        if (!isLoading) return;
+        sessionStorage.setItem("lolly_visited", "1");
         const timer = setTimeout(() => {
             setIsLoading(false);
-        }, 2500);
+        }, 2000);
         return () => clearTimeout(timer);
-    }, []);
+    }, [isLoading]);
 
     return (
         <AnimatePresence>

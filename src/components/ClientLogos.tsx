@@ -24,7 +24,7 @@ const ClientLogos = ({ partners }: { partners?: Partner[] }) => {
 
     const displayLogos = partners && partners.length > 0 ? partners : defaultLogos;
     // Duplicate for seamless loop
-    const allLogos = [...displayLogos, ...displayLogos, ...displayLogos];
+    const allLogos = [...displayLogos, ...displayLogos];
 
     return (
         <section className="py-12 md:py-20 bg-black border-y border-white/5 overflow-hidden relative z-10">

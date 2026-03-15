@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 const WhatsAppButton = () => {
     const [showScrollTop, setShowScrollTop] = useState(false);
     const [canShare, setCanShare] = useState(false);
-    const phoneNumber = "221772354747"; // Updated mobile number
+    const phoneNumber = "+221772354747";
     const message = "Bonjour LOLLY Agency, je souhaiterais en savoir plus sur vos services.";
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 

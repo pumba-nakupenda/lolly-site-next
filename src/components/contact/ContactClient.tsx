@@ -6,7 +6,7 @@ import { Mail, MapPin, Phone, Loader2, CheckCircle2, Linkedin, Instagram, Facebo
 import { useState } from "react";
 import { useSearchParams } from "next/navigation";
 
-const WEBHOOK_URL = process.env.NEXT_PUBLIC_WEBHOOK_URL || "https://n8n.srv812544.hstgr.cloud/webhook/2ee87114-da42-4f38-85e8-c4a99ba04a3f";
+const CONTACT_API = "/api/contact";
 
 const ContactClient = () => {
     const searchParams = useSearchParams();
@@ -62,7 +62,7 @@ const ContactClient = () => {
                 timestamp: new Date().toISOString()
             };
 
-            const response = await fetch(WEBHOOK_URL, {
+            const response = await fetch(CONTACT_API, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

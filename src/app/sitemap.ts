@@ -1,17 +1,20 @@
 import { MetadataRoute } from 'next';
-import { client } from '@/sanityClient';
+import { supabase } from '@/lib/supabase';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const baseUrl = 'https://lolly.sn';
 
-    // Fetch all blog posts slugs
-    let postUrls: any[] = [];
+    // Fetch all blog posts from Supabase
+    let postUrls: MetadataRoute.Sitemap = [];
     try {
-        const posts = await client.fetch(`*[_type == "post" && defined(slug.current)]{ "slug": slug.current, _updatedAt }`);
-        postUrls = posts.map((post: any) => ({
+        const { data: posts } = await supabase
+            .from('posts')
+            .select('slug, updated_at')
+            .not('slug', 'is', null);
+        postUrls = (posts ?? []).map((post) => ({
             url: `${baseUrl}/blog/${post.slug}`,
-            lastModified: new Date(post._updatedAt),
-            changeFrequency: 'weekly',
+            lastModified: new Date(post.updated_at),
+            changeFrequency: 'weekly' as const,
             priority: 0.7,
         }));
     } catch (error) {

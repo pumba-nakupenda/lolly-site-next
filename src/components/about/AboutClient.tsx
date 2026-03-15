@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { CheckCircle, Award, Users, Lightbulb, Target, Rocket } from "lucide-react";
 import { Button } from "@/components/ui/Button";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import OptimizedImage from "../OptimizedImage";
 // Removed SEO
@@ -55,11 +55,6 @@ const AboutClient = () => {
     const visionTitle = "Bâtir l'élite créative du continent.";
     const visionContent = "Notre ambition est claire : devenir la référence absolue de la communication et du marketing digital en Afrique de l'Ouest d'ici 5 ans.";
     const visionHorizon = "2030";
-
-    useEffect(() => {
-        const checkMobile = () => { };
-        checkMobile();
-    }, []);
 
     const handleScroll = (e: any, setIndex: any) => {
         const scrollLeft = e.target.scrollLeft;
