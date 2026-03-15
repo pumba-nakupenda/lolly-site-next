@@ -1,6 +1,6 @@
 import PortfolioClient from "@/components/portfolio/PortfolioClient";
 import { Metadata } from "next";
-import { client } from "@/sanityClient";
+import { supabase } from "@/lib/supabase";
 
 export const revalidate = 60;
 
@@ -39,20 +39,25 @@ const breadcrumbData = {
 
 async function getProjects() {
     try {
-        return await client.fetch(`*[_type == "portfolio"] | order(publishedAt desc) {
-            "id": _id,
-            title,
-            category,
-            "image": mainImage.asset->url,
-            "images": [mainImage.asset->url, ...gallery[].asset->url],
-            description,
-            client,
-            "date": publishedAt,
-            hasReport,
-            reportUrl,
-            reportLabel,
-            videoUrl
-        }`);
+        const { data, error } = await supabase
+            .from("portfolio")
+            .select("*")
+            .order("published_at", { ascending: false });
+        if (error) throw error;
+        return data?.map((p) => ({
+            id: p.id,
+            title: p.title,
+            category: p.category,
+            image: p.main_image,
+            images: [p.main_image, ...(p.gallery ?? [])].filter(Boolean),
+            description: p.description,
+            client: p.client,
+            date: p.published_at,
+            hasReport: p.has_report,
+            reportUrl: p.report_url,
+            reportLabel: p.report_label,
+            videoUrl: p.video_url,
+        })) ?? FALLBACK_PROJECTS;
     } catch (error) {
         console.error("Error fetching projects:", error);
         return FALLBACK_PROJECTS;

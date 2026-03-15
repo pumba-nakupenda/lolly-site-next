@@ -42,46 +42,34 @@ const breadcrumbData = {
 export const revalidate = 60;
 
 async function getServicesData() {
-    const { client } = await import("@/sanityClient");
+    const { supabase } = await import("@/lib/supabase");
     try {
-        const [expertises, steps, faqs, results] = await Promise.all([
-            client.fetch(`*[_type == "service"] | order(orderId asc) {
-                "id": _id,
-                orderId,
-                title,
-                description,
-                items,
-                cta,
-                link,
-                highlight,
-                icon,
-                extra
-            }`),
-            client.fetch(`*[_type == "step"] | order(orderId asc) {
-                "id": _id,
-                orderId,
-                title,
-                subtitle,
-                icon,
-                content,
-                details,
-                deliverable
-            }`),
-            client.fetch(`*[_type == "faq"] | order(orderId asc) {
-                "id": _id,
-                question,
-                answer
-            }`),
-            client.fetch(`*[_type == "result"] | order(orderId asc) {
-                "id": _id,
-                value,
-                label,
-                description
-            }`)
+        const [{ data: expertises }, { data: steps }, { data: faqs }, { data: results }] = await Promise.all([
+            supabase.from("services").select("*").order("order_id", { ascending: true }),
+            supabase.from("steps").select("*").order("order_id", { ascending: true }),
+            supabase.from("faqs").select("*").order("order_id", { ascending: true }),
+            supabase.from("results").select("*").order("order_id", { ascending: true }),
         ]);
-        return { expertises, steps, faqs, results };
+        return {
+            expertises: expertises !== null ? expertises.map((s) => ({
+                id: s.id, orderId: s.order_id, title: s.title,
+                description: s.description, items: s.items, cta: s.cta,
+                link: s.link, highlight: s.highlight, icon: s.icon, extra: s.extra,
+            })) : undefined,
+            steps: steps !== null ? steps.map((s) => ({
+                id: s.id, orderId: s.order_id, title: s.title,
+                subtitle: s.subtitle, icon: s.icon, content: s.content,
+                details: s.details, deliverable: s.deliverable,
+            })) : undefined,
+            faqs: faqs !== null ? faqs.map((f) => ({
+                id: f.id, question: f.question, answer: f.answer,
+            })) : undefined,
+            results: results !== null ? results.map((r) => ({
+                id: r.id, value: r.value, label: r.label, description: r.description,
+            })) : undefined,
+        };
     } catch (e) {
-        return { expertises: null, steps: null, faqs: null, results: null };
+        return { expertises: undefined, steps: undefined, faqs: undefined, results: undefined };
     }
 }
 

@@ -2,7 +2,7 @@ import HomeClient from "@/components/home/HomeClient";
 import { Metadata } from "next";
 import JsonLd from "@/components/JsonLd";
 import { FALLBACK_TESTIMONIALS } from "@/data/fallback";
-import { client } from "@/sanityClient";
+import { supabase } from "@/lib/supabase";
 
 export const revalidate = 60; // revalidate at most every 60 seconds
 
@@ -50,33 +50,32 @@ const organizationData = {
 
 async function getHomeData() {
     try {
-        const [testimonials, hero, partners] = await Promise.all([
-            client.fetch(`*[_type == "testimonial"] {
-                "quote": content,
-                "author": name,
-                role,
-                rating,
-                "color": select(rating >= 5 => "primary", "accent"),
-                "avatar": avatar.asset->url
-            }`),
-            client.fetch(`*[_type == "hero"][0]`),
-            client.fetch(`*[_type == "partner"] {
-                name,
-                "logo": logo.asset->url,
-                scale
-            }`)
+        const [{ data: rawTestimonials }, { data: heroes }, { data: partners }] = await Promise.all([
+            supabase.from("testimonials").select("*"),
+            supabase.from("hero").select("*").limit(1),
+            supabase.from("partners").select("*"),
         ]);
+
+        const testimonials = rawTestimonials?.map((t) => ({
+            quote: t.content,
+            author: t.name,
+            role: t.role,
+            rating: t.rating,
+            color: t.rating >= 5 ? "primary" : "accent",
+            avatar: t.avatar,
+        }));
+
         return {
-            testimonials: testimonials?.length > 0 ? testimonials : FALLBACK_TESTIMONIALS,
-            hero,
-            partners
+            testimonials: testimonials?.length ? testimonials : FALLBACK_TESTIMONIALS,
+            hero: heroes?.[0] ?? null,
+            partners: partners !== null ? partners : undefined,
         };
     } catch (e) {
         console.error("Error fetching home data:", e);
         return {
             testimonials: FALLBACK_TESTIMONIALS,
             hero: null,
-            partners: null
+            partners: undefined,
         };
     }
 }

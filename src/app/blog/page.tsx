@@ -1,6 +1,6 @@
 import BlogClient from "@/components/blog/BlogClient";
 import { Metadata } from "next";
-import { client } from "@/sanityClient";
+import { supabase } from "@/lib/supabase";
 
 export const revalidate = 60;
 
@@ -37,14 +37,19 @@ const breadcrumbData = {
 
 async function getPosts() {
     try {
-        return await client.fetch(`*[_type == "post" && defined(slug.current)] | order(publishedAt desc) {
-            title,
-            slug,
-            "mainImage": mainImage.asset->url,
-            publishedAt,
-            "categories": categories[]->title,
-            "excerpt": array::join(string::split(pt::text(body), "")[0..150], "") + "..."
-        }`);
+        const { data, error } = await supabase
+            .from("posts")
+            .select("id, title, slug, main_image, published_at, categories, excerpt")
+            .order("published_at", { ascending: false });
+        if (error) throw error;
+        return data?.map((p) => ({
+            title: p.title,
+            slug: { current: p.slug },
+            mainImage: p.main_image,
+            publishedAt: p.published_at,
+            categories: p.categories,
+            excerpt: p.excerpt,
+        })) ?? [];
     } catch (error) {
         console.error("Error fetching posts:", error);
         return [];
