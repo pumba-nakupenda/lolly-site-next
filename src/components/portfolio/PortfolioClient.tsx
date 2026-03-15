@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/Button";
 import { X, ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
@@ -32,6 +32,14 @@ const PortfolioClient = ({ projects: initialProjects }: { projects: Project[] })
     const [activeIndex, setActiveIndex] = useState(0);
     const [isMobile, setIsMobile] = useState(false);
     const router = useRouter();
+    const portfolioScrollRef = useRef<HTMLDivElement>(null);
+
+    const scrollToIndex = (index: number) => {
+        if (!portfolioScrollRef.current) return;
+        const item = portfolioScrollRef.current.children[index] as HTMLElement;
+        if (!item) return;
+        portfolioScrollRef.current.scrollTo({ left: item.offsetLeft, behavior: "smooth" });
+    };
 
     useEffect(() => {
         const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -148,8 +156,31 @@ const PortfolioClient = ({ projects: initialProjects }: { projects: Project[] })
                     ))}
                 </motion.div>
 
+                {/* Empty state */}
+                {filteredProjects.length === 0 && (
+                    <div className="flex flex-col items-center justify-center py-32 text-center px-6">
+                        <div className="w-20 h-20 bg-white/5 rounded-3xl flex items-center justify-center mb-6 border border-white/10">
+                            <X size={32} className="text-gray-600" />
+                        </div>
+                        <h3 className="text-2xl font-bold text-white mb-3">Aucun projet dans cette catégorie</h3>
+                        <p className="text-gray-400 max-w-sm leading-relaxed mb-8">
+                            Nos projets dans cette catégorie arrivent bientôt. En attendant, découvrez tous nos travaux.
+                        </p>
+                        <button
+                            onClick={() => setFilter("Tout")}
+                            className="px-8 py-4 bg-primary text-black rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-primary/80 transition-all"
+                        >
+                            Voir tous les projets
+                        </button>
+                    </div>
+                )}
+
                 {/* Grid / Carousel */}
+                {filteredProjects.length > 0 && (
+                <div className="relative">
+                <div className="md:hidden pointer-events-none absolute right-0 top-0 bottom-8 w-16 z-10 bg-gradient-to-l from-background/90 to-transparent" aria-hidden="true" />
                 <div
+                    ref={portfolioScrollRef}
                     className="flex overflow-x-auto snap-x snap-mandatory pb-8 gap-6 px-6 md:px-0 scrollbar-hide md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-10 md:pb-0 md:overflow-visible"
                     onScroll={handleScroll}
                 >
@@ -199,16 +230,23 @@ const PortfolioClient = ({ projects: initialProjects }: { projects: Project[] })
                         ))}
                     </AnimatePresence>
                 </div>
-
-                {/* Pagination Dots for Portfolio (Mobile Only) */}
-                <div className="flex md:hidden justify-center gap-2 mt-4">
+                </div>
+                )}
+                {/* Pagination Dots for Portfolio (Mobile Only) – cliquables */}
+                {filteredProjects.length > 1 && (
+                <div className="flex md:hidden justify-center gap-3 mt-4 flex-wrap px-6" role="tablist" aria-label="Navigation projets">
                     {filteredProjects.map((_, i) => (
-                        <div
+                        <button
                             key={i}
-                            className={`h-1.5 rounded-full transition-all duration-300 ${activeIndex === i ? "w-6 bg-primary" : "w-1.5 bg-white/20"}`}
+                            role="tab"
+                            aria-selected={activeIndex === i}
+                            aria-label={`Projet ${i + 1}`}
+                            onClick={() => { setActiveIndex(i); scrollToIndex(i); }}
+                            className={`h-3 rounded-full transition-all duration-300 ${activeIndex === i ? "w-6 bg-primary" : "w-3 bg-white/20 hover:bg-white/40"}`}
                         />
                     ))}
                 </div>
+                )}
             </div>
 
             {/* Project Modal */}

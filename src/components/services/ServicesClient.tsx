@@ -22,12 +22,22 @@ const ServicesClient = ({
     results?: any[]
 }) => {
     const stepsRef = useRef(null);
+    const expertiseScrollRef = useRef<HTMLDivElement>(null);
+    const diffScrollRef = useRef<HTMLDivElement>(null);
+    const resultScrollRef = useRef<HTMLDivElement>(null);
     const router = useRouter();
     const [activeExpertise, setActiveExpertise] = useState(0);
     const [activeDiff, setActiveDiff] = useState(0);
     const [activeResult, setActiveResult] = useState(0);
     const [activeCatalogue, setActiveCatalogue] = useState(0);
     const [isMobile, setIsMobile] = useState(false);
+
+    const scrollToIndex = (ref: React.RefObject<HTMLDivElement | null>, index: number) => {
+        if (!ref.current) return;
+        const item = ref.current.children[index] as HTMLElement;
+        if (!item) return;
+        ref.current.scrollTo({ left: item.offsetLeft, behavior: "smooth" });
+    };
 
     useEffect(() => {
         const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -344,7 +354,10 @@ const ServicesClient = ({
                 </motion.div>
 
                 {/* Grid for other expertises - Horizontal on Mobile */}
+                <div className="relative">
+                <div className="md:hidden pointer-events-none absolute right-0 top-12 bottom-8 w-16 z-10 bg-gradient-to-l from-background/90 to-transparent" aria-hidden="true" />
                 <div
+                    ref={expertiseScrollRef}
                     className="flex overflow-x-auto snap-x snap-mandatory pt-12 pb-8 gap-5 px-6 md:px-0 scrollbar-hide md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-10 md:pb-0 md:overflow-visible"
                     onScroll={(e) => handleScroll(e, setActiveExpertise)}
                 >
@@ -402,12 +415,17 @@ const ServicesClient = ({
                         </motion.div>
                     ))}
                 </div>
-                {/* Pagination Dots for Expertises (Mobile Only) */}
-                <div className="flex md:hidden justify-center gap-2 mt-2">
+                </div>{/* end relative wrapper */}
+                {/* Pagination Dots for Expertises (Mobile Only) – cliquables */}
+                <div className="flex md:hidden justify-center gap-3 mt-2" role="tablist" aria-label="Navigation expertises">
                     {standardExpertises.map((_, i) => (
-                        <div
+                        <button
                             key={i}
-                            className={`h-1.5 rounded-full transition-all duration-300 ${activeExpertise === i ? "w-6 bg-accent" : "w-1.5 bg-white/20"}`}
+                            role="tab"
+                            aria-selected={activeExpertise === i}
+                            aria-label={`Expertise ${i + 1}`}
+                            onClick={() => { setActiveExpertise(i); scrollToIndex(expertiseScrollRef, i); }}
+                            className={`h-3 rounded-full transition-all duration-300 ${activeExpertise === i ? "w-6 bg-accent" : "w-3 bg-white/20 hover:bg-white/40"}`}
                         />
                     ))}
                 </div>
@@ -431,7 +449,10 @@ const ServicesClient = ({
                         </h2>
                     </motion.div>
 
+                    <div className="relative">
+                    <div className="md:hidden pointer-events-none absolute right-0 top-0 bottom-8 w-16 z-10 bg-gradient-to-l from-background/90 to-transparent" aria-hidden="true" />
                     <div
+                        ref={diffScrollRef}
                         className="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-8 px-6 md:px-0 scrollbar-hide md:grid md:grid-cols-3 lg:grid-cols-5 md:overflow-visible"
                         onScroll={(e) => handleScroll(e, setActiveDiff)}
                     >
@@ -459,12 +480,17 @@ const ServicesClient = ({
                             </motion.div>
                         ))}
                     </div>
-                    {/* Pagination Dots for Differentiators (Mobile Only) */}
-                    <div className="flex md:hidden justify-center gap-2 mt-4">
+                    </div>{/* end relative wrapper */}
+                    {/* Pagination Dots for Differentiators (Mobile Only) – cliquables */}
+                    <div className="flex md:hidden justify-center gap-3 mt-4" role="tablist" aria-label="Navigation différenciateurs">
                         {[0, 1, 2, 3, 4].map((i) => (
-                            <div
+                            <button
                                 key={i}
-                                className={`h-1.5 rounded-full transition-all duration-300 ${activeDiff === i ? "w-6 bg-primary" : "w-1.5 bg-white/20"}`}
+                                role="tab"
+                                aria-selected={activeDiff === i}
+                                aria-label={`Différenciateur ${i + 1}`}
+                                onClick={() => { setActiveDiff(i); scrollToIndex(diffScrollRef, i); }}
+                                className={`h-3 rounded-full transition-all duration-300 ${activeDiff === i ? "w-6 bg-primary" : "w-3 bg-white/20 hover:bg-white/40"}`}
                             />
                         ))}
                     </div>
@@ -484,8 +510,11 @@ const ServicesClient = ({
                     </h2>
                 </motion.div>
 
+                <div className="relative max-w-6xl mx-auto">
+                <div className="md:hidden pointer-events-none absolute right-0 top-0 bottom-8 w-16 z-10 bg-gradient-to-l from-background/90 to-transparent" aria-hidden="true" />
                 <div
-                    className="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-8 px-6 md:px-0 scrollbar-hide md:grid md:grid-cols-3 md:gap-10 md:overflow-visible max-w-6xl mx-auto"
+                    ref={resultScrollRef}
+                    className="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-8 px-6 md:px-0 scrollbar-hide md:grid md:grid-cols-3 md:gap-10 md:overflow-visible"
                     onScroll={(e) => handleScroll(e, setActiveResult)}
                 >
                     {displayResults.map((stat: any, i: number) => (
@@ -515,12 +544,17 @@ const ServicesClient = ({
                         </motion.div>
                     ))}
                 </div>
-                {/* Pagination Dots for Results (Mobile Only) */}
-                <div className="flex md:hidden justify-center gap-2 mt-4">
+                </div>{/* end relative wrapper */}
+                {/* Pagination Dots for Results (Mobile Only) – cliquables */}
+                <div className="flex md:hidden justify-center gap-3 mt-4" role="tablist" aria-label="Navigation résultats">
                     {[0, 1, 2].map((i) => (
-                        <div
+                        <button
                             key={i}
-                            className={`h-1.5 rounded-full transition-all duration-300 ${activeResult === i ? "w-6 bg-primary" : "w-1.5 bg-white/20"}`}
+                            role="tab"
+                            aria-selected={activeResult === i}
+                            aria-label={`Résultat ${i + 1}`}
+                            onClick={() => { setActiveResult(i); scrollToIndex(resultScrollRef, i); }}
+                            className={`h-3 rounded-full transition-all duration-300 ${activeResult === i ? "w-6 bg-primary" : "w-3 bg-white/20 hover:bg-white/40"}`}
                         />
                     ))}
                 </div>

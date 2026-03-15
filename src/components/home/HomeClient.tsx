@@ -34,9 +34,18 @@ interface HomeClientProps {
 
 const HomeClient = ({ testimonials, partners, hero }: HomeClientProps) => {
     const containerRef = useRef(null);
+    const servicesScrollRef = useRef<HTMLDivElement>(null);
+    const testimonialsScrollRef = useRef<HTMLDivElement>(null);
     const [activeService, setActiveService] = useState(0);
     const [activeTestimonial, setActiveTestimonial] = useState(0);
     const [isMobile, setIsMobile] = useState(false);
+
+    const scrollToIndex = (ref: React.RefObject<HTMLDivElement | null>, index: number) => {
+        if (!ref.current) return;
+        const item = ref.current.children[index] as HTMLElement;
+        if (!item) return;
+        ref.current.scrollTo({ left: item.offsetLeft, behavior: "smooth" });
+    };
 
     useEffect(() => {
         const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -110,7 +119,11 @@ const HomeClient = ({ testimonials, partners, hero }: HomeClientProps) => {
                     </div>
 
                     {/* Services Section - Horizontal Scroll on Mobile */}
+                    <div className="relative">
+                    {/* Scroll hint fade – right edge (mobile only) */}
+                    <div className="md:hidden pointer-events-none absolute right-0 top-0 bottom-8 w-16 z-10 bg-gradient-to-l from-background/90 to-transparent" aria-hidden="true" />
                     <div
+                        ref={servicesScrollRef}
                         className="flex overflow-x-auto pb-8 gap-5 snap-x snap-mandatory scrollbar-hide md:grid md:grid-cols-3 md:gap-8 md:pb-0 md:overflow-visible"
                         onScroll={(e) => handleScroll(e, setActiveService)}
                     >
@@ -137,12 +150,17 @@ const HomeClient = ({ testimonials, partners, hero }: HomeClientProps) => {
                             </Link>
                         ))}
                     </div>
-                    {/* Pagination Dots for Services (Mobile Only) */}
-                    <div className="flex md:hidden justify-center gap-2 mt-4">
+                    </div>{/* end relative scroll wrapper */}
+                    {/* Pagination Dots for Services (Mobile Only) – cliquables */}
+                    <div className="flex md:hidden justify-center gap-3 mt-4" role="tablist" aria-label="Navigation cartes services">
                         {[0, 1, 2].map((i) => (
-                            <div
+                            <button
                                 key={i}
-                                className={`h-1.5 rounded-full transition-all duration-300 ${activeService === i ? "w-6 bg-primary" : "w-1.5 bg-white/20"}`}
+                                role="tab"
+                                aria-selected={activeService === i}
+                                aria-label={`Service ${i + 1}`}
+                                onClick={() => { setActiveService(i); scrollToIndex(servicesScrollRef, i); }}
+                                className={`h-3 rounded-full transition-all duration-300 ${activeService === i ? "w-6 bg-primary" : "w-3 bg-white/20 hover:bg-white/40"}`}
                             />
                         ))}
                     </div>
@@ -169,7 +187,10 @@ const HomeClient = ({ testimonials, partners, hero }: HomeClientProps) => {
                     </motion.div>
 
                     {/* Testimonials Section - Horizontal Scroll on Mobile */}
+                    <div className="relative">
+                    <div className="md:hidden pointer-events-none absolute right-0 top-0 bottom-8 w-16 z-10 bg-gradient-to-l from-background/90 to-transparent" aria-hidden="true" />
                     <div
+                        ref={testimonialsScrollRef}
                         className="flex md:grid overflow-x-auto md:overflow-visible pb-8 md:pb-0 gap-5 md:gap-10 snap-x snap-mandatory md:grid-cols-2"
                         onScroll={(e) => handleScroll(e, setActiveTestimonial)}
                     >
@@ -219,13 +240,17 @@ const HomeClient = ({ testimonials, partners, hero }: HomeClientProps) => {
                             </motion.div>
                         ))}
                     </div>
-
-                    {/* Pagination Dots for Testimonials (Mobile Only) */}
-                    <div className="flex md:hidden justify-center gap-2 mt-4">
+                    </div>{/* end relative scroll wrapper */}
+                    {/* Pagination Dots for Testimonials (Mobile Only) – cliquables */}
+                    <div className="flex md:hidden justify-center gap-3 mt-4" role="tablist" aria-label="Navigation témoignages">
                         {[0, 1].map((i) => (
-                            <div
+                            <button
                                 key={i}
-                                className={`h-1.5 rounded-full transition-all duration-300 ${activeTestimonial === i ? "w-6 bg-accent" : "w-1.5 bg-white/20"}`}
+                                role="tab"
+                                aria-selected={activeTestimonial === i}
+                                aria-label={`Témoignage ${i + 1}`}
+                                onClick={() => { setActiveTestimonial(i); scrollToIndex(testimonialsScrollRef, i); }}
+                                className={`h-3 rounded-full transition-all duration-300 ${activeTestimonial === i ? "w-6 bg-accent" : "w-3 bg-white/20 hover:bg-white/40"}`}
                             />
                         ))}
                     </div>
