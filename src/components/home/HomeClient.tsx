@@ -53,9 +53,9 @@ const HomeClient = ({ testimonials, partners, hero }: HomeClientProps) => {
     };
 
     const defaultServices = [
-        { id: "01", title: "Stratégie 360°", color: "bg-primary", desc: "Audit, positionnement et plan d'action pour connecter votre marque à son audience." },
-        { id: "02", title: "Design & Branding", color: "bg-accent", desc: "Identités visuelles fortes, chartes graphiques et supports qui impriment la rétine." },
-        { id: "03", title: "Formation", color: "bg-white", desc: "Empowerment de vos équipes pour une autonomie digitale totale et certifiée." }
+        { id: "01", title: "Stratégie 360°", color: "bg-primary", desc: "Audit, positionnement et plan d'action pour connecter votre marque à son audience.", link: "/services/consulting" },
+        { id: "02", title: "Design & Branding", color: "bg-accent", desc: "Identités visuelles fortes, chartes graphiques et supports qui impriment la rétine.", link: "/services/design" },
+        { id: "03", title: "Site Web", color: "bg-white", desc: "Sites vitrine, landing pages et e-commerce — votre meilleur commercial, disponible 24h/24.", link: "/services/web" }
     ];
 
     const displayServices = defaultServices;
@@ -115,22 +115,26 @@ const HomeClient = ({ testimonials, partners, hero }: HomeClientProps) => {
                         onScroll={(e) => handleScroll(e, setActiveService)}
                     >
                         {displayServices.map((item, i) => (
-                            <motion.div
-                                key={i}
-                                initial={{ opacity: 0, y: 50 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: i * 0.2, duration: 0.8 }}
-                                whileHover={{ y: -15, scale: 1.02 }}
-                                className={`min-w-[85vw] md:min-w-0 snap-center p-8 md:p-10 bg-surface/30 md:backdrop-blur-xl border border-white/5 rounded-[2.5rem] hover:border-primary/30 transition-all duration-500 group relative overflow-hidden ${i === 1 ? 'md:mt-12' : i === 2 ? 'md:mt-24' : ''}`}
-                            >
-                                <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent pointer-events-none" />
-                                <div className={`w-14 h-14 md:w-16 md:h-16 ${item.color} rounded-2xl mb-6 md:mb-8 flex items-center justify-center text-black font-black text-xl md:text-2xl group-hover:rotate-12 transition-transform shadow-lg`}>
-                                    {item.id}
-                                </div>
-                                <h3 className="text-2xl md:text-3xl font-bold text-white mb-4 tracking-tight">{item.title}</h3>
-                                <p className="text-gray-300 text-base md:text-lg leading-relaxed">{item.desc}</p>
-                            </motion.div>
+                            <Link key={i} href={item.link || '/services'} className="block">
+                                <motion.div
+                                    initial={{ opacity: 0, y: 50 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: i * 0.2, duration: 0.8 }}
+                                    whileHover={{ y: -15, scale: 1.02 }}
+                                    className={`min-w-[85vw] md:min-w-0 snap-center p-8 md:p-10 bg-surface/30 md:backdrop-blur-xl border border-white/5 rounded-[2.5rem] hover:border-primary/30 transition-all duration-500 group relative overflow-hidden cursor-pointer ${i === 1 ? 'md:mt-12' : i === 2 ? 'md:mt-24' : ''}`}
+                                >
+                                    <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent pointer-events-none" />
+                                    <div className={`w-14 h-14 md:w-16 md:h-16 ${item.color} rounded-2xl mb-6 md:mb-8 flex items-center justify-center text-black font-black text-xl md:text-2xl group-hover:rotate-12 transition-transform shadow-lg`}>
+                                        {item.id}
+                                    </div>
+                                    <h3 className="text-2xl md:text-3xl font-bold text-white mb-4 tracking-tight">{item.title}</h3>
+                                    <p className="text-gray-300 text-base md:text-lg leading-relaxed">{item.desc}</p>
+                                    <div className="mt-6 flex items-center gap-2 text-primary text-xs font-black uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">
+                                        Découvrir <span className="text-base group-hover:translate-x-1 transition-transform inline-block">→</span>
+                                    </div>
+                                </motion.div>
+                            </Link>
                         ))}
                     </div>
                     {/* Pagination Dots for Services (Mobile Only) */}
