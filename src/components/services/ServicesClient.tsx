@@ -1,13 +1,13 @@
 "use client";
 
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
-import { BookOpen, Target, PenTool, BarChart, Rocket, HeartHandshake, Award, CheckCircle, Search, Video, Image, Users, MessageSquare, FileText, ChevronDown } from "lucide-react";
+import { BookOpen, Target, PenTool, BarChart, Rocket, HeartHandshake, Award, CheckCircle, Search, Video, Image, Users, MessageSquare, FileText, ChevronDown, Monitor } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/Button";
 import { useRouter } from "next/navigation";
 
 const IconMap: { [key: string]: any } = {
-    MessageSquare, BookOpen, Video, PenTool, Image, Users, FileText, Search, Target, Rocket, HeartHandshake, Award, CheckCircle, BarChart
+    MessageSquare, BookOpen, Video, PenTool, Image, Users, FileText, Search, Target, Rocket, HeartHandshake, Award, CheckCircle, BarChart, Monitor
 };
 
 const ServicesClient = ({
@@ -133,8 +133,25 @@ const ServicesClient = ({
             cta: "En savoir plus",
             link: "/services/consulting",
             highlight: true
+        },
+        {
+            id: "web",
+            title: "Création de Site Web",
+            icon: "Monitor",
+            badge: "Nouveau",
+            description: "Sites vitrine, e-commerce et landing pages qui convertissent vos visiteurs en clients.",
+            items: [
+                "Site vitrine professionnel",
+                "Landing page haute conversion",
+                "Site e-commerce",
+                "Refonte & modernisation",
+                "Optimisation SEO intégrée"
+            ],
+            cta: "Voir nos réalisations",
+            link: "/services/web",
+            highlight: false
         }
-    ]; // Minimized for readability, I'll use displayExpertises logic
+    ]; // Other services come from Supabase
 
     const displayExpertises = dynamicExpertises && dynamicExpertises.length > 0 ? dynamicExpertises : defaultExpertises;
     const highlightExpertise = displayExpertises.find(s => s.highlight) || displayExpertises[0];
@@ -544,7 +561,7 @@ const ServicesClient = ({
                     className="text-center mb-24"
                 >
                     <span className="text-primary font-bold tracking-[0.2em] uppercase text-[10px] mb-4 block">Catalogue Exhaustif</span>
-                    <h2 className="text-4xl md:text-8xl font-serif font-bold text-white mb-6">37 Services d'exception à <span className="text-primary italic">votre service</span></h2>
+                    <h2 className="text-4xl md:text-8xl font-serif font-bold text-white mb-6">40+ Services d'exception à <span className="text-primary italic">votre service</span></h2>
                     <p className="text-gray-300 max-w-2xl mx-auto text-lg leading-relaxed">
                         Parce que votre marque mérite une expertise chirurgicale dans chaque domaine de la communication moderne.
                     </p>
@@ -570,7 +587,7 @@ const ServicesClient = ({
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
                     {[
                         { cat: "Stratégie & Conseil", list: ["Audit image", "Audit digital", "Diagnostic comm", "Stratégie 360", "Plan de comm", "Positionnement", "Accompagnement Executive"] },
-                        { cat: "Identité & Design", list: ["Logo & Charte", "Supports Print", "Webdesign UI/UX", "Packaging", "Signalétique", "Design Event"] },
+                        { cat: "Identité & Design", list: ["Logo & Charte", "Supports Print", "Webdesign UI/UX", "Packaging", "Signalétique", "Design Event", "Création de Site Web", "E-commerce", "Landing Page"] },
                         { cat: "Photos & Vidéos", list: ["Film Corporate", "Spot TV/Web", "Motion Design", "Reportage photo", "Packshot produit", "Live Streaming"] },
                         { cat: "Digital & Social", list: ["Social Media Strat", "Community Management", "Social Ads", "E-réputation", "Influence Marketing", "Newsletters"] },
                         { cat: "Contenu & Écrit", list: ["Storytelling", "Rédaction Web SEO", "Scriptwriting", "Copywriting", "Articles de blog", "Livre Blanc"] },

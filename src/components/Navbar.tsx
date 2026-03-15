@@ -46,6 +46,7 @@ const Navbar = () => {
                 { name: "Photographie", href: "/services/photo" },
                 { name: "Community Management", href: "/services/social" },
                 { name: "Création de Contenu", href: "/services/content" },
+                { name: "Création de Site Web", href: "/services/web" },
             ]
         },
         { name: "Portfolio", href: "/portfolio" },
