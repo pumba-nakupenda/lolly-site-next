@@ -107,7 +107,7 @@ const Hero = ({ data }: HeroProps) => {
                         initial={{ opacity: 0, scale: 0.8 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: 0.2 }}
-                        className="inline-block py-2 px-5 rounded-full bg-primary/10 md:backdrop-blur-md text-primary font-bold tracking-[0.2em] uppercase text-[9px] md:text-xs mb-8 md:mb-8 border border-primary/20"
+                        className="inline-block py-2 px-5 rounded-full border border-primary/40 bg-transparent text-primary font-bold tracking-[0.2em] uppercase text-[9px] md:text-xs mb-8 md:mb-8"
                     >
                         {badge}
                     </motion.span>
@@ -149,13 +149,14 @@ const Hero = ({ data }: HeroProps) => {
                 style={{ opacity: scrollYOpacity }}
             >
                 <span className="text-[9px] uppercase tracking-[0.3em] text-gray-500 font-bold">Scroll</span>
-                <motion.div
-                    animate={{ y: [0, 8, 0] }}
-                    transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-                    className="w-5 h-9 border-2 border-white/30 rounded-full flex justify-center p-1.5 backdrop-blur-sm no-mobile-blur"
-                >
-                    <div className="w-1 h-1.5 bg-primary rounded-full"></div>
-                </motion.div>
+                {/* Static outer shell — only the inner dot animates */}
+                <div className="w-5 h-9 border-2 border-white/50 rounded-full flex justify-center pt-1.5">
+                    <motion.div
+                        animate={{ y: [0, 10, 0] }}
+                        transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+                        className="w-1.5 h-2 bg-primary rounded-full"
+                    />
+                </div>
             </motion.div>
         </section>
     );
