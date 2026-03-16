@@ -5,10 +5,19 @@ import { useState, useEffect, useCallback } from "react";
 const ADMIN_PWD = process.env.NEXT_PUBLIC_ADMIN_PASSWORD || "lolly2024";
 const authHeaders = { Authorization: `Bearer ${ADMIN_PWD}` };
 
+function parseApiError(raw: string): string {
+  try {
+    const obj = JSON.parse(raw);
+    if (obj?.error) return obj.error;
+  } catch {}
+  return raw;
+}
+
 export function useAdminTable<T extends { id: string }>(table: string) {
   const [items, setItems] = useState<T[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);       // load errors
+  const [saveError, setSaveError] = useState<string | null>(null); // create/update errors
   const [saving, setSaving] = useState(false);
 
   const load = useCallback(async () => {
@@ -16,7 +25,7 @@ export function useAdminTable<T extends { id: string }>(table: string) {
     setError(null);
     try {
       const res = await fetch(`/api/admin?table=${table}`, { headers: authHeaders });
-      if (!res.ok) throw new Error(await res.text());
+      if (!res.ok) throw new Error(parseApiError(await res.text()));
       setItems(await res.json());
     } catch (e: any) {
       setError(e.message);
@@ -29,6 +38,7 @@ export function useAdminTable<T extends { id: string }>(table: string) {
 
   const create = async (body: Partial<T>): Promise<T | null> => {
     setSaving(true);
+    setSaveError(null);
     try {
       const payload = { id: crypto.randomUUID(), ...body };
       const res = await fetch(`/api/admin?table=${table}`, {
@@ -36,12 +46,12 @@ export function useAdminTable<T extends { id: string }>(table: string) {
         headers: { "Content-Type": "application/json", ...authHeaders },
         body: JSON.stringify(payload),
       });
-      if (!res.ok) throw new Error(await res.text());
+      if (!res.ok) throw new Error(parseApiError(await res.text()));
       const created = await res.json();
       setItems((prev) => [created, ...prev]);
       return created;
     } catch (e: any) {
-      setError(e.message);
+      setSaveError(e.message);
       return null;
     } finally {
       setSaving(false);
@@ -50,18 +60,19 @@ export function useAdminTable<T extends { id: string }>(table: string) {
 
   const update = async (id: string, body: Partial<T>): Promise<T | null> => {
     setSaving(true);
+    setSaveError(null);
     try {
       const res = await fetch(`/api/admin?table=${table}&id=${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json", ...authHeaders },
         body: JSON.stringify(body),
       });
-      if (!res.ok) throw new Error(await res.text());
+      if (!res.ok) throw new Error(parseApiError(await res.text()));
       const updated = await res.json();
       setItems((prev) => prev.map((i) => (i.id === id ? updated : i)));
       return updated;
     } catch (e: any) {
-      setError(e.message);
+      setSaveError(e.message);
       return null;
     } finally {
       setSaving(false);
@@ -75,7 +86,7 @@ export function useAdminTable<T extends { id: string }>(table: string) {
         method: "DELETE",
         headers: authHeaders,
       });
-      if (!res.ok) throw new Error(await res.text());
+      if (!res.ok) throw new Error(parseApiError(await res.text()));
       setItems((prev) => prev.filter((i) => i.id !== id));
       return true;
     } catch (e: any) {
@@ -86,5 +97,5 @@ export function useAdminTable<T extends { id: string }>(table: string) {
     }
   };
 
-  return { items, loading, error, saving, reload: load, create, update, remove };
+  return { items, loading, error, saveError, setSaveError, saving, reload: load, create, update, remove };
 }

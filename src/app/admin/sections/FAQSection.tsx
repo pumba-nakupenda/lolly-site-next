@@ -12,25 +12,26 @@ import type { FAQ } from "@/lib/supabase";
 const EMPTY = { question: "", answer: "", order_id: 0 };
 
 export default function FAQSection() {
-  const { items, loading, error, saving, create, update, remove } = useAdminTable<FAQ>("faqs");
+  const { items, loading, error, saveError, setSaveError, saving, create, update, remove } = useAdminTable<FAQ>("faqs");
   const [editing, setEditing] = useState<FAQ | null>(null);
   const [form, setForm] = useState<typeof EMPTY>({ ...EMPTY });
   const [isNew, setIsNew] = useState(false);
 
   const sorted = [...items].sort((a, b) => a.order_id - b.order_id);
 
-  const openNew = () => { setForm({ ...EMPTY, order_id: items.length + 1 }); setIsNew(true); setEditing(null); };
+  const openNew = () => { setForm({ ...EMPTY, order_id: items.length + 1 }); setIsNew(true); setEditing(null); setSaveError(null); };
   const openEdit = (f: FAQ) => {
     setForm({ question: f.question, answer: f.answer, order_id: f.order_id });
-    setEditing(f); setIsNew(false);
+    setEditing(f); setIsNew(false); setSaveError(null);
   };
   const closeForm = () => { setEditing(null); setIsNew(false); };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (isNew) await create(form);
-    else if (editing) await update(editing.id, form);
-    closeForm();
+    let ok: boolean;
+    if (isNew) ok = !!(await create(form));
+    else ok = !!(await update(editing!.id, form));
+    if (ok) closeForm();
   };
 
   if (loading) return <AdminLoader />;
@@ -53,6 +54,7 @@ export default function FAQSection() {
             <AdminInput label="Ordre" type="number" value={String(form.order_id)} onChange={(v) => setForm({ ...form, order_id: Number(v) })} />
             <AdminInput label="Question" value={form.question} onChange={(v) => setForm({ ...form, question: v })} required />
             <AdminTextarea label="Réponse" value={form.answer} onChange={(v) => setForm({ ...form, answer: v })} required rows={4} />
+            {saveError && <AdminError message={saveError} />}
             <div className="flex gap-3 pt-2">
               <AdminBtn type="submit" disabled={saving}>
                 {saving ? <Loader2 size={16} className="animate-spin" /> : null}

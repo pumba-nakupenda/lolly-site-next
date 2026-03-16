@@ -12,25 +12,26 @@ import type { Result } from "@/lib/supabase";
 const EMPTY = { value: "", label: "", description: "", order_id: 0 };
 
 export default function ResultsSection() {
-  const { items, loading, error, saving, create, update, remove } = useAdminTable<Result>("results");
+  const { items, loading, error, saveError, setSaveError, saving, create, update, remove } = useAdminTable<Result>("results");
   const [editing, setEditing] = useState<Result | null>(null);
   const [form, setForm] = useState<typeof EMPTY>({ ...EMPTY });
   const [isNew, setIsNew] = useState(false);
 
   const sorted = [...items].sort((a, b) => a.order_id - b.order_id);
 
-  const openNew = () => { setForm({ ...EMPTY, order_id: items.length + 1 }); setIsNew(true); setEditing(null); };
+  const openNew = () => { setForm({ ...EMPTY, order_id: items.length + 1 }); setIsNew(true); setEditing(null); setSaveError(null); };
   const openEdit = (r: Result) => {
     setForm({ value: r.value, label: r.label, description: r.description ?? "", order_id: r.order_id });
-    setEditing(r); setIsNew(false);
+    setEditing(r); setIsNew(false); setSaveError(null);
   };
   const closeForm = () => { setEditing(null); setIsNew(false); };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (isNew) await create(form);
-    else if (editing) await update(editing.id, form);
-    closeForm();
+    let ok: boolean;
+    if (isNew) ok = !!(await create(form));
+    else ok = !!(await update(editing!.id, form));
+    if (ok) closeForm();
   };
 
   if (loading) return <AdminLoader />;
@@ -56,6 +57,7 @@ export default function ResultsSection() {
               <AdminInput label="Ordre" type="number" value={String(form.order_id)} onChange={(v) => setForm({ ...form, order_id: Number(v) })} />
             </div>
             <AdminTextarea label="Description" value={form.description} onChange={(v) => setForm({ ...form, description: v })} rows={2} />
+            {saveError && <AdminError message={saveError} />}
             <div className="flex gap-3 pt-2">
               <AdminBtn type="submit" disabled={saving}>
                 {saving ? <Loader2 size={16} className="animate-spin" /> : null}

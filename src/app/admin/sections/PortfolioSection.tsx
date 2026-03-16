@@ -27,13 +27,13 @@ const EMPTY = {
 };
 
 export default function PortfolioSection() {
-  const { items, loading, error, saving, create, update, remove } = useAdminTable<Portfolio>("portfolio");
+  const { items, loading, error, saveError, setSaveError, saving, create, update, remove } = useAdminTable<Portfolio>("portfolio");
   const [editing, setEditing] = useState<Portfolio | null>(null);
   const [form, setForm] = useState<typeof EMPTY>({ ...EMPTY });
   const [isNew, setIsNew] = useState(false);
   const [galleryInput, setGalleryInput] = useState("");
 
-  const openNew = () => { setForm({ ...EMPTY }); setGalleryInput(""); setIsNew(true); setEditing(null); };
+  const openNew = () => { setForm({ ...EMPTY }); setGalleryInput(""); setIsNew(true); setEditing(null); setSaveError(null); };
   const openEdit = (p: Portfolio) => {
     setForm({
       title: p.title, slug: p.slug, category: p.category,
@@ -47,6 +47,7 @@ export default function PortfolioSection() {
     setGalleryInput("");
     setEditing(p);
     setIsNew(false);
+    setSaveError(null);
   };
   const closeForm = () => { setEditing(null); setIsNew(false); };
 
@@ -56,9 +57,10 @@ export default function PortfolioSection() {
       ...form,
       published_at: form.published_at ? new Date(form.published_at).toISOString() : null,
     };
-    if (isNew) await create(payload);
-    else if (editing) await update(editing.id, payload);
-    closeForm();
+    let ok: boolean;
+    if (isNew) ok = !!(await create(payload));
+    else ok = !!(await update(editing!.id, payload));
+    if (ok) closeForm();
   };
 
   const addGalleryUrl = () => {
@@ -126,6 +128,7 @@ export default function PortfolioSection() {
                 </div>
               )}
             </div>
+            {saveError && <AdminError message={saveError} />}
             <div className="flex gap-3 pt-2">
               <AdminBtn type="submit" disabled={saving}>
                 {saving ? <Loader2 size={16} className="animate-spin" /> : null}

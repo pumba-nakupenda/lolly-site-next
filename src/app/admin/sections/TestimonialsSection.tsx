@@ -10,27 +10,27 @@ import {
 import type { Testimonial } from "@/lib/supabase";
 
 const RATINGS = [1, 2, 3, 4, 5].map((n) => ({ value: String(n), label: "⭐".repeat(n) }));
-
 const EMPTY = { name: "", role: "", content: "", avatar: "", rating: 5 };
 
 export default function TestimonialsSection() {
-  const { items, loading, error, saving, create, update, remove } = useAdminTable<Testimonial>("testimonials");
+  const { items, loading, error, saveError, setSaveError, saving, create, update, remove } = useAdminTable<Testimonial>("testimonials");
   const [editing, setEditing] = useState<Testimonial | null>(null);
   const [form, setForm] = useState<typeof EMPTY>({ ...EMPTY });
   const [isNew, setIsNew] = useState(false);
 
-  const openNew = () => { setForm({ ...EMPTY }); setIsNew(true); setEditing(null); };
+  const openNew = () => { setForm({ ...EMPTY }); setIsNew(true); setEditing(null); setSaveError(null); };
   const openEdit = (t: Testimonial) => {
     setForm({ name: t.name, role: t.role ?? "", content: t.content, avatar: t.avatar ?? "", rating: t.rating });
-    setEditing(t); setIsNew(false);
+    setEditing(t); setIsNew(false); setSaveError(null);
   };
   const closeForm = () => { setEditing(null); setIsNew(false); };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (isNew) await create(form);
-    else if (editing) await update(editing.id, form);
-    closeForm();
+    let ok: boolean;
+    if (isNew) ok = !!(await create(form));
+    else ok = !!(await update(editing!.id, form));
+    if (ok) closeForm();
   };
 
   if (loading) return <AdminLoader />;
@@ -54,14 +54,10 @@ export default function TestimonialsSection() {
               <AdminInput label="Nom" value={form.name} onChange={(v) => setForm({ ...form, name: v })} required />
               <AdminInput label="Rôle / Poste" value={form.role} onChange={(v) => setForm({ ...form, role: v })} />
               <AdminInput label="Avatar (URL)" value={form.avatar} onChange={(v) => setForm({ ...form, avatar: v })} />
-              <AdminSelect
-                label="Note"
-                value={String(form.rating)}
-                onChange={(v) => setForm({ ...form, rating: Number(v) })}
-                options={RATINGS}
-              />
+              <AdminSelect label="Note" value={String(form.rating)} onChange={(v) => setForm({ ...form, rating: Number(v) })} options={RATINGS} />
             </div>
             <AdminTextarea label="Témoignage" value={form.content} onChange={(v) => setForm({ ...form, content: v })} required rows={3} />
+            {saveError && <AdminError message={saveError} />}
             <div className="flex gap-3 pt-2">
               <AdminBtn type="submit" disabled={saving}>
                 {saving ? <Loader2 size={16} className="animate-spin" /> : null}

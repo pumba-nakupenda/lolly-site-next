@@ -12,23 +12,24 @@ import type { Partner } from "@/lib/supabase";
 const EMPTY = { name: "", logo: "", scale: 1 };
 
 export default function PartnersSection() {
-  const { items, loading, error, saving, create, update, remove } = useAdminTable<Partner>("partners");
+  const { items, loading, error, saveError, setSaveError, saving, create, update, remove } = useAdminTable<Partner>("partners");
   const [editing, setEditing] = useState<Partner | null>(null);
   const [form, setForm] = useState<typeof EMPTY>({ ...EMPTY });
   const [isNew, setIsNew] = useState(false);
 
-  const openNew = () => { setForm({ ...EMPTY }); setIsNew(true); setEditing(null); };
+  const openNew = () => { setForm({ ...EMPTY }); setIsNew(true); setEditing(null); setSaveError(null); };
   const openEdit = (p: Partner) => {
     setForm({ name: p.name, logo: p.logo ?? "", scale: p.scale });
-    setEditing(p); setIsNew(false);
+    setEditing(p); setIsNew(false); setSaveError(null);
   };
   const closeForm = () => { setEditing(null); setIsNew(false); };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (isNew) await create(form);
-    else if (editing) await update(editing.id, form);
-    closeForm();
+    let ok: boolean;
+    if (isNew) ok = !!(await create(form));
+    else ok = !!(await update(editing!.id, form));
+    if (ok) closeForm();
   };
 
   if (loading) return <AdminLoader />;
@@ -53,6 +54,7 @@ export default function PartnersSection() {
               <AdminInput label="Logo (URL)" value={form.logo} onChange={(v) => setForm({ ...form, logo: v })} />
               <AdminInput label="Échelle (ex: 1.2)" type="number" value={String(form.scale)} onChange={(v) => setForm({ ...form, scale: Number(v) })} />
             </div>
+            {saveError && <AdminError message={saveError} />}
             <div className="flex gap-3 pt-2">
               <AdminBtn type="submit" disabled={saving}>
                 {saving ? <Loader2 size={16} className="animate-spin" /> : null}

@@ -16,7 +16,7 @@ const EMPTY = {
 };
 
 export default function ServicesSection() {
-  const { items, loading, error, saving, create, update, remove } = useAdminTable<Service>("services");
+  const { items, loading, error, saveError, setSaveError, saving, create, update, remove } = useAdminTable<Service>("services");
   const [editing, setEditing] = useState<Service | null>(null);
   const [form, setForm] = useState<typeof EMPTY>({ ...EMPTY });
   const [isNew, setIsNew] = useState(false);
@@ -24,7 +24,7 @@ export default function ServicesSection() {
 
   const sorted = [...items].sort((a, b) => a.order_id - b.order_id);
 
-  const openNew = () => { setForm({ ...EMPTY, order_id: items.length + 1 }); setItemInput(""); setIsNew(true); setEditing(null); };
+  const openNew = () => { setForm({ ...EMPTY, order_id: items.length + 1 }); setItemInput(""); setIsNew(true); setEditing(null); setSaveError(null); };
   const openEdit = (s: Service) => {
     setForm({
       title: s.title, icon: s.icon ?? "", badge: s.badge ?? "",
@@ -32,7 +32,7 @@ export default function ServicesSection() {
       items: s.items ?? [], cta: s.cta ?? "", link: s.link ?? "",
       highlight: s.highlight, color: s.color ?? "", extra: s.extra ?? "",
     });
-    setItemInput(""); setEditing(s); setIsNew(false);
+    setItemInput(""); setEditing(s); setIsNew(false); setSaveError(null);
   };
   const closeForm = () => { setEditing(null); setIsNew(false); };
 
@@ -45,9 +45,10 @@ export default function ServicesSection() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (isNew) await create(form);
-    else if (editing) await update(editing.id, form);
-    closeForm();
+    let ok: boolean;
+    if (isNew) ok = !!(await create(form));
+    else ok = !!(await update(editing!.id, form));
+    if (ok) closeForm();
   };
 
   if (loading) return <AdminLoader />;
@@ -105,6 +106,7 @@ export default function ServicesSection() {
               )}
             </div>
 
+            {saveError && <AdminError message={saveError} />}
             <div className="flex gap-3 pt-2">
               <AdminBtn type="submit" disabled={saving}>
                 {saving ? <Loader2 size={16} className="animate-spin" /> : null}
