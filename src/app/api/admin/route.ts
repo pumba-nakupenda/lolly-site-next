@@ -64,7 +64,7 @@ export async function PUT(req: NextRequest) {
   const body = await req.json();
   const { data, error } = await supabaseAdmin
     .from(table)
-    .update({ ...body, updated_at: new Date().toISOString() })
+    .update(body)
     .eq("id", id)
     .select()
     .single();

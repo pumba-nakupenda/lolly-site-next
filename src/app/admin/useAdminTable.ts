@@ -30,10 +30,11 @@ export function useAdminTable<T extends { id: string }>(table: string) {
   const create = async (body: Partial<T>): Promise<T | null> => {
     setSaving(true);
     try {
+      const payload = { id: crypto.randomUUID(), ...body };
       const res = await fetch(`/api/admin?table=${table}`, {
         method: "POST",
         headers: { "Content-Type": "application/json", ...authHeaders },
-        body: JSON.stringify(body),
+        body: JSON.stringify(payload),
       });
       if (!res.ok) throw new Error(await res.text());
       const created = await res.json();
