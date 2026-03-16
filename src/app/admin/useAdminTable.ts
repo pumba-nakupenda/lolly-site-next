@@ -2,6 +2,9 @@
 
 import { useState, useEffect, useCallback } from "react";
 
+const ADMIN_PWD = process.env.NEXT_PUBLIC_ADMIN_PASSWORD || "lolly2024";
+const authHeaders = { Authorization: `Bearer ${ADMIN_PWD}` };
+
 export function useAdminTable<T extends { id: string }>(table: string) {
   const [items, setItems] = useState<T[]>([]);
   const [loading, setLoading] = useState(true);
@@ -12,7 +15,7 @@ export function useAdminTable<T extends { id: string }>(table: string) {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch(`/api/admin?table=${table}`);
+      const res = await fetch(`/api/admin?table=${table}`, { headers: authHeaders });
       if (!res.ok) throw new Error(await res.text());
       setItems(await res.json());
     } catch (e: any) {
@@ -29,7 +32,7 @@ export function useAdminTable<T extends { id: string }>(table: string) {
     try {
       const res = await fetch(`/api/admin?table=${table}`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", ...authHeaders },
         body: JSON.stringify(body),
       });
       if (!res.ok) throw new Error(await res.text());
@@ -49,7 +52,7 @@ export function useAdminTable<T extends { id: string }>(table: string) {
     try {
       const res = await fetch(`/api/admin?table=${table}&id=${id}`, {
         method: "PUT",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", ...authHeaders },
         body: JSON.stringify(body),
       });
       if (!res.ok) throw new Error(await res.text());
@@ -69,6 +72,7 @@ export function useAdminTable<T extends { id: string }>(table: string) {
     try {
       const res = await fetch(`/api/admin?table=${table}&id=${id}`, {
         method: "DELETE",
+        headers: authHeaders,
       });
       if (!res.ok) throw new Error(await res.text());
       setItems((prev) => prev.filter((i) => i.id !== id));

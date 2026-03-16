@@ -39,7 +39,8 @@ export default function ClientLayout({
 
     const isVCardPage = pathname?.toLowerCase().startsWith("/vcard");
     const isStudioPage = pathname?.toLowerCase().startsWith("/studio");
-    const isIsolatedPage = isVCardPage || isStudioPage;
+    const isAdminPage = pathname?.toLowerCase().startsWith("/admin");
+    const isIsolatedPage = isVCardPage || isStudioPage || isAdminPage;
 
     return (
         <MotionConfig>
