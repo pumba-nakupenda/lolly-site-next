@@ -37,7 +37,7 @@ const ClientLogos = ({ partners }: { partners?: Partner[] }) => {
                 <div className="absolute right-0 top-0 bottom-0 w-20 md:w-48 bg-gradient-to-l from-black via-black/80 to-transparent z-10"></div>
 
                 <motion.div
-                    className="flex items-center space-x-12 md:space-x-48"
+                    className="flex items-center space-x-6 md:space-x-48"
                     animate={{ x: [0, -1600] }}
                     transition={{
                         repeat: Infinity,
