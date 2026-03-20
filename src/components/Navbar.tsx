@@ -79,40 +79,6 @@ const Navbar = () => {
                 className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-700 ${scrolled ? "py-4" : "py-8"}`}
                 style={{ paddingTop: scrolled ? 'max(1rem, env(safe-area-inset-top))' : 'max(2rem, env(safe-area-inset-top))' }}
             >
-                {/* Breadcrumb — shown inside the nav when on nested pages, below the main bar */}
-                {(() => {
-                    const segments = pathname.split("/").filter(Boolean);
-                    if (segments.length < 2) return null;
-                    return (
-                        <div className={`container mx-auto px-6 transition-all duration-700 ${scrolled ? "pb-1" : "pb-2"}`}>
-                            <ol className="flex items-center gap-1.5 px-4">
-                                <li>
-                                    <Link href="/" className="flex items-center gap-1 text-[9px] font-bold uppercase tracking-widest text-gray-400 hover:text-white transition-colors">
-                                        <Home size={9} />
-                                        Accueil
-                                    </Link>
-                                </li>
-                                {segments.map((seg, i) => {
-                                    const href = "/" + segments.slice(0, i + 1).join("/");
-                                    const isLast = i === segments.length - 1;
-                                    return (
-                                        <li key={href} className="flex items-center gap-1.5">
-                                            <ChevronRight size={8} className="text-gray-700" aria-hidden="true" />
-                                            {isLast ? (
-                                                <span className="text-[9px] font-bold uppercase tracking-widest text-primary/80">{BREADCRUMB_LABELS[seg] || seg}</span>
-                                            ) : (
-                                                <Link href={href} className="text-[9px] font-bold uppercase tracking-widest text-gray-400 hover:text-white transition-colors">
-                                                    {BREADCRUMB_LABELS[seg] || seg}
-                                                </Link>
-                                            )}
-                                        </li>
-                                    );
-                                })}
-                            </ol>
-                        </div>
-                    );
-                })()}
-
                 <div className="container mx-auto px-6">
                     <div className={`relative flex items-center justify-between px-8 py-4 rounded-[2rem] transition-all duration-700 ${scrolled
                         ? "bg-surface/95 md:bg-surface/40 md:backdrop-blur-2xl border border-white/10 shadow-2xl"
@@ -260,6 +226,40 @@ const Navbar = () => {
                         </button>
                     </div>
                 </div>
+
+                {/* Breadcrumb — below the pill, aligned with pill content */}
+                {(() => {
+                    const segments = pathname.split("/").filter(Boolean);
+                    if (segments.length < 2) return null;
+                    return (
+                        <div className="container mx-auto px-6 pt-1">
+                            <ol className="flex items-center gap-1.5 px-8">
+                                <li>
+                                    <Link href="/" className="flex items-center gap-1 text-[9px] font-bold uppercase tracking-widest text-gray-400 hover:text-white transition-colors">
+                                        <Home size={9} />
+                                        Accueil
+                                    </Link>
+                                </li>
+                                {segments.map((seg, i) => {
+                                    const href = "/" + segments.slice(0, i + 1).join("/");
+                                    const isLast = i === segments.length - 1;
+                                    return (
+                                        <li key={href} className="flex items-center gap-1.5">
+                                            <ChevronRight size={8} className="text-gray-700" aria-hidden="true" />
+                                            {isLast ? (
+                                                <span className="text-[9px] font-bold uppercase tracking-widest text-primary/80">{BREADCRUMB_LABELS[seg] || seg}</span>
+                                            ) : (
+                                                <Link href={href} className="text-[9px] font-bold uppercase tracking-widest text-gray-400 hover:text-white transition-colors">
+                                                    {BREADCRUMB_LABELS[seg] || seg}
+                                                </Link>
+                                            )}
+                                        </li>
+                                    );
+                                })}
+                            </ol>
+                        </div>
+                    );
+                })()}
 
                 {/* Mobile Menu Overlay */}
                 <AnimatePresence>
