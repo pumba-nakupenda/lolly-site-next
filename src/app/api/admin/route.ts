@@ -2,6 +2,7 @@
 // Supports GET, POST, PUT, DELETE with service role key
 
 import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { supabaseAdmin } from "@/lib/supabase-admin";
 
 function isAuthorized(req: NextRequest): boolean {
@@ -32,10 +33,38 @@ function getTable(req: NextRequest): string | null {
   return table;
 }
 
+// Map tables to the public pages that display their data
+const TABLE_PATHS: Record<string, string[]> = {
+  posts: ["/", "/blog"],
+  portfolio: ["/", "/portfolio"],
+  services: ["/", "/services"],
+  testimonials: ["/", "/services"],
+  faqs: ["/services"],
+  steps: ["/services"],
+  results: ["/", "/services"],
+  hero: ["/"],
+  partners: ["/"],
+  authors: ["/blog"],
+};
+
+function revalidateTablePaths(table: string) {
+  const paths = TABLE_PATHS[table] ?? ["/"];
+  for (const p of paths) {
+    revalidatePath(p);
+  }
+}
+
 export async function GET(req: NextRequest) {
   if (!isAuthorized(req)) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   const table = getTable(req);
   if (!table) return NextResponse.json({ error: "Invalid table" }, { status: 400 });
+
+  if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
+    return NextResponse.json(
+      { error: "Supabase n'est pas configuré. Ajoutez NEXT_PUBLIC_SUPABASE_URL et SUPABASE_SERVICE_ROLE_KEY dans vos variables d'environnement." },
+      { status: 500 }
+    );
+  }
 
   const { data, error } = await supabaseAdmin.from(table).select("*").order("created_at", { ascending: false });
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
@@ -50,6 +79,7 @@ export async function POST(req: NextRequest) {
   const body = await req.json();
   const { data, error } = await supabaseAdmin.from(table).insert(body).select().single();
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+  revalidateTablePaths(table);
   return NextResponse.json(data, { status: 201 });
 }
 
@@ -69,6 +99,7 @@ export async function PUT(req: NextRequest) {
     .select()
     .single();
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+  revalidateTablePaths(table);
   return NextResponse.json(data);
 }
 
@@ -82,5 +113,6 @@ export async function DELETE(req: NextRequest) {
 
   const { error } = await supabaseAdmin.from(table).delete().eq("id", id);
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+  revalidateTablePaths(table);
   return NextResponse.json({ success: true });
 }
