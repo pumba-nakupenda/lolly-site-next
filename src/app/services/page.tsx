@@ -43,6 +43,10 @@ export const revalidate = 60;
 
 async function getServicesData() {
     const { supabase } = await import("@/lib/supabase");
+    if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+        console.warn("[services] Supabase not configured, using default data");
+        return { expertises: undefined, steps: undefined, faqs: undefined, results: undefined };
+    }
     try {
         const [{ data: expertises }, { data: steps }, { data: faqs }, { data: results }] = await Promise.all([
             supabase.from("services").select("*").order("order_id", { ascending: true }),
@@ -55,20 +59,21 @@ async function getServicesData() {
                 id: s.id, orderId: s.order_id, title: s.title,
                 description: s.description, items: s.items, cta: s.cta,
                 link: s.link, highlight: s.highlight, icon: s.icon, extra: s.extra,
-            })) : undefined,
+            })) : [],
             steps: steps !== null ? steps.map((s) => ({
                 id: s.id, orderId: s.order_id, title: s.title,
                 subtitle: s.subtitle, icon: s.icon, content: s.content,
                 details: s.details, deliverable: s.deliverable,
-            })) : undefined,
+            })) : [],
             faqs: faqs !== null ? faqs.map((f) => ({
                 id: f.id, question: f.question, answer: f.answer,
-            })) : undefined,
+            })) : [],
             results: results !== null ? results.map((r) => ({
                 id: r.id, value: r.value, label: r.label, description: r.description,
-            })) : undefined,
+            })) : [],
         };
     } catch (e) {
+        console.error("Error fetching services data:", e);
         return { expertises: undefined, steps: undefined, faqs: undefined, results: undefined };
     }
 }

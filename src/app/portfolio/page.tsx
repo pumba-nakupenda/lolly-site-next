@@ -38,6 +38,10 @@ const breadcrumbData = {
 };
 
 async function getProjects() {
+    if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+        console.warn("[portfolio] Supabase not configured, using fallback data");
+        return FALLBACK_PROJECTS;
+    }
     try {
         const { data, error } = await supabase
             .from("portfolio")
@@ -57,10 +61,10 @@ async function getProjects() {
             reportUrl: p.report_url,
             reportLabel: p.report_label,
             videoUrl: p.video_url,
-        })) ?? FALLBACK_PROJECTS;
+        })) ?? [];
     } catch (error) {
         console.error("Error fetching projects:", error);
-        return FALLBACK_PROJECTS;
+        return [];
     }
 }
 
@@ -69,7 +73,7 @@ export default async function PortfolioPage() {
     return (
         <>
             <JsonLd data={breadcrumbData} />
-            <PortfolioClient projects={projects && projects.length > 0 ? projects : FALLBACK_PROJECTS} />
+            <PortfolioClient projects={projects} />
         </>
     );
 }

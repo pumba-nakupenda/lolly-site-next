@@ -49,6 +49,10 @@ const organizationData = {
 };
 
 async function getHomeData() {
+    if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+        console.warn("[home] Supabase not configured, using fallback data");
+        return { testimonials: FALLBACK_TESTIMONIALS, hero: null, partners: undefined };
+    }
     try {
         const [{ data: rawTestimonials }, { data: heroes }, { data: partners }] = await Promise.all([
             supabase.from("testimonials").select("*"),
@@ -63,17 +67,17 @@ async function getHomeData() {
             rating: t.rating,
             color: t.rating >= 5 ? "primary" : "accent",
             avatar: t.avatar,
-        }));
+        })) ?? [];
 
         return {
-            testimonials: testimonials?.length ? testimonials : FALLBACK_TESTIMONIALS,
+            testimonials,
             hero: heroes?.[0] ?? null,
             partners: partners !== null ? partners : undefined,
         };
     } catch (e) {
         console.error("Error fetching home data:", e);
         return {
-            testimonials: FALLBACK_TESTIMONIALS,
+            testimonials: [],
             hero: null,
             partners: undefined,
         };
