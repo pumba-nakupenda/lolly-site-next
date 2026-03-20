@@ -6,7 +6,7 @@ import OptimizedImage from "../OptimizedImage";
 
 interface Post {
     title: string;
-    slug: { current: string };
+    slug: string;
     mainImage?: any;
     publishedAt: string;
     excerpt: string;
@@ -70,13 +70,13 @@ const BlogClient = ({ posts }: { posts: Post[] }) => {
                                             {featuredPost.publishedAt ? new Date(featuredPost.publishedAt).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' }) : 'À venir'}
                                         </div>
                                         <h2 className="text-3xl md:text-5xl font-bold text-white mb-8 group-hover:text-primary transition-colors leading-[1.1] tracking-tight">
-                                            <Link href={`/blog/${featuredPost.slug?.current}`}>{featuredPost.title}</Link>
+                                            <Link href={`/blog/${featuredPost.slug}`}>{featuredPost.title}</Link>
                                         </h2>
                                         <p className="text-gray-400 text-base md:text-lg mb-10 leading-relaxed line-clamp-4 font-light">
                                             {featuredPost.excerpt}
                                         </p>
                                         <Link
-                                            href={`/blog/${featuredPost.slug?.current}`}
+                                            href={`/blog/${featuredPost.slug}`}
                                             className="inline-flex items-center gap-4 text-white font-bold group/btn"
                                         >
                                             <span className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group-hover/btn:bg-primary group-hover/btn:border-primary group-hover/btn:text-black transition-all duration-300">
@@ -93,7 +93,7 @@ const BlogClient = ({ posts }: { posts: Post[] }) => {
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                             {otherPosts.map((post, i) => (
                                 <motion.article
-                                    key={post.slug?.current || i}
+                                    key={post.slug || i}
                                     initial={{ opacity: 0, y: 30 }}
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
@@ -101,7 +101,7 @@ const BlogClient = ({ posts }: { posts: Post[] }) => {
                                     className="group flex flex-col"
                                 >
                                     <Link
-                                        href={`/blog/${post.slug?.current}`}
+                                        href={`/blog/${post.slug}`}
                                         className="relative h-72 rounded-[2rem] overflow-hidden mb-8 border border-white/10"
                                     >
                                         {post.mainImage ? (
@@ -128,14 +128,14 @@ const BlogClient = ({ posts }: { posts: Post[] }) => {
                                             {post.publishedAt ? new Date(post.publishedAt).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' }) : 'Inconnu'}
                                         </div>
                                         <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-primary transition-colors leading-snug">
-                                            <Link href={`/blog/${post.slug?.current}`}>{post.title}</Link>
+                                            <Link href={`/blog/${post.slug}`}>{post.title}</Link>
                                         </h3>
                                         <p className="text-gray-400 text-sm line-clamp-3 mb-8 leading-relaxed font-light">
                                             {post.excerpt}
                                         </p>
                                         <div className="mt-auto">
                                             <Link
-                                                href={`/blog/${post.slug?.current}`}
+                                                href={`/blog/${post.slug}`}
                                                 className="text-white text-xs font-bold uppercase tracking-widest flex items-center gap-3 hover:text-primary transition-colors"
                                             >
                                                 Explorer

@@ -44,7 +44,7 @@ async function getPosts() {
         if (error) throw error;
         return data?.map((p) => ({
             title: p.title,
-            slug: { current: p.slug },
+            slug: p.slug,
             mainImage: p.main_image,
             publishedAt: p.published_at,
             categories: p.categories,

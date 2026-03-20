@@ -2,38 +2,29 @@
 
 import { motion } from "framer-motion";
 import OptimizedImage from "../OptimizedImage";
-import { PortableText } from "@portabletext/react";
+import ReactMarkdown from "react-markdown";
 import Link from "next/link";
-import { urlFor } from "@/sanityClient";
 
-const components = {
-    types: {
-        image: ({ value }: any) => (
-            <div className="my-12 rounded-3xl overflow-hidden border border-white/5">
-                <OptimizedImage
-                    src={urlFor(value).url()}
-                    alt={value.alt || "Image de blog"}
-                    className="w-full object-cover"
-                />
-                {value.caption && (
-                    <p className="text-center text-gray-500 text-sm mt-4 italic">{value.caption}</p>
-                )}
-            </div>
-        ),
-    },
-    block: {
-        h2: ({ children }: any) => <h2 className="text-3xl font-bold text-white mt-16 mb-6">{children}</h2>,
-        h3: ({ children }: any) => <h3 className="text-2xl font-bold text-white mt-12 mb-4">{children}</h3>,
-        normal: ({ children }: any) => <p className="text-gray-400 leading-relaxed mb-6 font-light">{children}</p>,
-        blockquote: ({ children }: any) => (
-            <blockquote className="border-l-4 border-primary pl-8 my-12 italic text-xl text-gray-200 bg-white/5 p-8 rounded-r-3xl">
-                {children}
-            </blockquote>
-        ),
-    },
-    list: {
-        bullet: ({ children }: any) => <ul className="list-disc list-inside mb-8 space-y-4 text-gray-400">{children}</ul>,
-    },
+const markdownComponents = {
+    h2: ({ children }: any) => <h2 className="text-3xl font-bold text-white mt-16 mb-6">{children}</h2>,
+    h3: ({ children }: any) => <h3 className="text-2xl font-bold text-white mt-12 mb-4">{children}</h3>,
+    p: ({ children }: any) => <p className="text-gray-400 leading-relaxed mb-6 font-light">{children}</p>,
+    blockquote: ({ children }: any) => (
+        <blockquote className="border-l-4 border-primary pl-8 my-12 italic text-xl text-gray-200 bg-white/5 p-8 rounded-r-3xl">
+            {children}
+        </blockquote>
+    ),
+    ul: ({ children }: any) => <ul className="list-disc list-inside mb-8 space-y-4 text-gray-400">{children}</ul>,
+    ol: ({ children }: any) => <ol className="list-decimal list-inside mb-8 space-y-4 text-gray-400">{children}</ol>,
+    img: ({ src, alt }: any) => (
+        <div className="my-12 rounded-3xl overflow-hidden border border-white/5">
+            <OptimizedImage src={src || ""} alt={alt || "Image de blog"} className="w-full object-cover" />
+        </div>
+    ),
+    a: ({ href, children }: any) => (
+        <a href={href} className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">{children}</a>
+    ),
+    strong: ({ children }: any) => <strong className="text-white font-bold">{children}</strong>,
 };
 
 const BlogPostClient = ({ post }: { post: any }) => {
@@ -86,7 +77,7 @@ const BlogPostClient = ({ post }: { post: any }) => {
                     {/* Corps de l'article */}
                     <div className="prose prose-invert prose-primary max-w-none mb-32">
                         {post.body ? (
-                            <PortableText value={post.body} components={components} />
+                            <ReactMarkdown components={markdownComponents}>{post.body}</ReactMarkdown>
                         ) : (
                             <div className="text-center py-20 bg-white/5 rounded-3xl border border-white/10">
                                 <p className="text-gray-500 italic">Contenu en cours de rédaction...</p>

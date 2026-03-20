@@ -59,8 +59,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             body: rawPost.body,
             categories: rawPost.categories,
             excerpt: rawPost.excerpt,
-            prev: prevPosts?.[0] ? { title: prevPosts[0].title, slug: { current: prevPosts[0].slug } } : null,
-            next: nextPosts?.[0] ? { title: nextPosts[0].title, slug: { current: nextPosts[0].slug } } : null,
+            prev: prevPosts?.[0] ? { title: prevPosts[0].title, slug: prevPosts[0].slug } : null,
+            next: nextPosts?.[0] ? { title: nextPosts[0].title, slug: nextPosts[0].slug } : null,
         } : null;
 
         const blogPostingData = post ? {
