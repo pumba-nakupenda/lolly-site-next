@@ -12,7 +12,7 @@ const BREADCRUMB_LABELS: Record<string, string> = {
     services: "Services", consulting: "Consulting", design: "Design Graphique",
     video: "Production Vidéo", photo: "Photographie", social: "Community Management",
     content: "Création de Contenu", formations: "Formations", web: "Site Web",
-    portfolio: "Portfolio", about: "À propos", blog: "Le Lab", contact: "Contact",
+    portfolio: "Portfolio", about: "À propos", blog: "Articles", contact: "Contact",
 };
 
 const Navbar = () => {
@@ -57,7 +57,7 @@ const Navbar = () => {
             ]
         },
         { name: "Portfolio", href: "/portfolio" },
-        { name: "Le Lab", href: "/blog" },
+        { name: "Articles", href: "/blog" },
         { name: "À propos", href: "/about" },
         { name: "Contact", href: "/contact" },
     ];
