@@ -85,7 +85,7 @@ const ContactClient = () => {
     };
 
     return (
-        <div className="pt-24 md:pt-40 pb-16 md:pb-20 px-0 md:px-6 min-h-screen bg-transparent relative overflow-hidden">
+        <div className="pt-20 md:pt-32 pb-16 md:pb-20 px-0 md:px-6 bg-transparent relative overflow-hidden">
 
             {/* Background Decorative Elements */}
             <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
@@ -122,7 +122,7 @@ const ContactClient = () => {
                         initial={{ opacity: 0, scale: 0.8 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: 0.2 }}
-                        className="bg-primary/10 text-primary font-bold tracking-[0.2em] uppercase text-xs px-4 py-1.5 rounded-full mb-6 inline-block border border-primary/20 backdrop-blur-sm"
+                        className="text-primary font-bold tracking-[0.2em] uppercase text-[10px] mb-6 inline-block"
                     >
                         Une idée ? Une question ?
                     </motion.span>
@@ -413,10 +413,10 @@ const ContactClient = () => {
                     initial={{ opacity: 0, y: 50 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="mt-32 relative group"
+                    className="mt-16 md:mt-24 relative group"
                 >
                     <div className="absolute inset-0 bg-primary/20 blur-[100px] opacity-0 group-hover:opacity-30 transition-opacity duration-1000" />
-                    <div className="bg-surface/30 backdrop-blur-xl border border-white/10 rounded-[4rem] h-[600px] relative overflow-hidden group/map shadow-3xl">
+                    <div className="bg-surface/30 backdrop-blur-xl border border-white/10 rounded-[3rem] md:rounded-[4rem] h-[350px] md:h-[600px] relative overflow-hidden group/map shadow-3xl">
                         {/* Real Styled Google Map Embed */}
                         <iframe
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3859.324!2d-17.4555932!3d14.6878172!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xec173cd4cab8e55%3A0x5ac445cca102ad01!2sLOLLY%20SAS!5e0!3m2!1sfr!2ssn!4v1737842276034!5m2!1sfr!2ssn"

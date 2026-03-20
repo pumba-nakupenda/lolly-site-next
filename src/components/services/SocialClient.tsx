@@ -18,7 +18,7 @@ const SocialClient = () => {
     };
 
     return (
-        <div className="pt-24 md:pt-40 pb-20 px-4 md:px-6 min-h-screen relative overflow-hidden bg-black text-white">
+        <div className="pt-32 md:pt-40 pb-20 px-4 md:px-6 relative overflow-hidden bg-black text-white">
             <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
                 <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-pink-500/10 rounded-full blur-[120px]" />
                 <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-indigo-500/10 rounded-full blur-[100px]" />
@@ -30,7 +30,7 @@ const SocialClient = () => {
                     animate={{ opacity: 1, y: 0 }}
                     className="text-center mb-16 md:mb-24"
                 >
-                    <span className="bg-pink-500/10 text-pink-400 font-bold tracking-[0.2em] uppercase text-xs px-4 py-2 rounded-full mb-6 inline-block border border-pink-500/20">Social Media</span>
+                    <span className="text-pink-400 font-bold tracking-[0.2em] uppercase text-[10px] mb-6 inline-block">Social Media</span>
                     <h1 className="text-4xl md:text-7xl font-serif font-bold mb-8 tracking-tight">
                         Community <span className="text-pink-400 italic">Management</span>
                     </h1>
@@ -56,7 +56,7 @@ const SocialClient = () => {
                                 <div className="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center mb-4 group-hover:bg-pink-500/20 transition-colors">
                                     <item.icon className="text-white group-hover:text-pink-400" size={24} />
                                 </div>
-                                <h3 className="font-bold text-lg mb-2">{item.title}</h3>
+                                <p className="font-bold text-lg mb-2">{item.title}</p>
                                 <p className="text-sm text-gray-300">{item.desc}</p>
                             </div>
                         ))}

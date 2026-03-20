@@ -142,7 +142,7 @@ const WebClient = () => {
     ];
 
     return (
-        <div className="pt-24 md:pt-40 pb-20 px-4 md:px-6 min-h-screen relative overflow-hidden bg-black text-white">
+        <div className="pt-32 md:pt-40 pb-20 px-4 md:px-6 relative overflow-hidden bg-black text-white">
             {/* Background */}
             <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
                 <div className="absolute top-[10%] left-[-10%] w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[140px]" />
@@ -157,9 +157,7 @@ const WebClient = () => {
                     animate={{ opacity: 1, y: 0 }}
                     className="text-center mb-16 md:mb-24"
                 >
-                    <span className="bg-blue-500/10 text-blue-400 font-bold tracking-[0.2em] uppercase text-xs px-4 py-2 rounded-full mb-6 inline-block border border-blue-500/20">
-                        Présence Digitale
-                    </span>
+                    <span className="text-blue-400 font-bold tracking-[0.2em] uppercase text-[10px] mb-6 inline-block">Présence Digitale</span>
                     <h1 className="text-4xl md:text-7xl font-serif font-bold mb-8 tracking-tight leading-[1.1]">
                         Création de{" "}
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400 italic">
@@ -184,7 +182,7 @@ const WebClient = () => {
                                 <div className="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center mb-4 group-hover:bg-blue-500/20 transition-colors">
                                     <item.icon className="text-white group-hover:text-blue-400 transition-colors" size={24} />
                                 </div>
-                                <h3 className="font-bold text-lg mb-2">{item.title}</h3>
+                                <p className="font-bold text-lg mb-2">{item.title}</p>
                                 <p className="text-sm text-gray-400 leading-relaxed">{item.desc}</p>
                             </div>
                         ))}

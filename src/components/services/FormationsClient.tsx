@@ -53,7 +53,7 @@ const FormationsClient = () => {
     };
 
     return (
-        <div className="pt-24 md:pt-40 pb-20 px-4 md:px-6 min-h-screen relative overflow-hidden bg-black text-white">
+        <div className="pt-32 md:pt-40 pb-20 px-4 md:px-6 relative overflow-hidden bg-black text-white">
             <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
                 <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-indigo-500/10 rounded-full blur-[120px]" />
                 <div className="absolute top-[40%] right-[-10%] w-[400px] h-[400px] bg-primary/5 rounded-full blur-[100px]" />
@@ -65,7 +65,7 @@ const FormationsClient = () => {
                     animate={{ opacity: 1, y: 0 }}
                     className="text-center mb-16 md:mb-24"
                 >
-                    <span className="bg-indigo-500/20 text-indigo-400 font-bold tracking-[0.2em] uppercase text-xs px-4 py-2 rounded-full mb-6 inline-block border border-indigo-500/20">Lolly Academy</span>
+                    <span className="text-indigo-400 font-bold tracking-[0.2em] uppercase text-[10px] mb-6 inline-block">Lolly Academy</span>
                     <h1 className="text-4xl md:text-7xl font-serif font-bold mb-8 tracking-tight">
                         Formations <span className="text-indigo-400 italic">Professionnelles</span>
                     </h1>
@@ -91,7 +91,7 @@ const FormationsClient = () => {
                                 <div className="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center mb-4 group-hover:bg-indigo-500/20 transition-colors">
                                     <item.icon className="text-white group-hover:text-indigo-400" size={24} />
                                 </div>
-                                <h3 className="font-bold text-lg mb-2">{item.title}</h3>
+                                <p className="font-bold text-lg mb-2">{item.title}</p>
                                 <p className="text-sm text-gray-300">{item.desc}</p>
                             </div>
                         ))}

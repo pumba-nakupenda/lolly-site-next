@@ -67,7 +67,7 @@ const AboutClient = () => {
     };
 
     return (
-        <div className="pt-24 md:pt-40 pb-16 md:pb-20 px-0 md:px-6 min-h-screen relative overflow-hidden bg-transparent" ref={containerRef}>
+        <div className="pt-20 md:pt-32 pb-16 md:pb-20 px-0 md:px-6 relative overflow-hidden bg-transparent" ref={containerRef}>
 
             {/* Background Decorative Elements */}
             <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none hidden md:block">
@@ -93,13 +93,13 @@ const AboutClient = () => {
             </div>
 
             {/* Header */}
-            <div className="container mx-auto max-w-5xl text-center mb-16 md:mb-32 relative z-10 px-6 md:px-0">
+            <div className="container mx-auto max-w-5xl text-center mb-12 md:mb-20 relative z-10 px-6 md:px-0">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1, ease: "easeOut" }}
                 >
-                    <span className="bg-primary/10 text-primary font-bold tracking-[0.2em] uppercase text-xs px-4 py-1.5 rounded-full mb-6 inline-block border border-primary/20 backdrop-blur-sm">Notre ADN</span>
+                    <span className="text-primary font-bold tracking-[0.2em] uppercase text-xs mb-6 inline-block">Notre ADN</span>
                     <h1 className="text-3xl md:text-8xl font-serif font-bold text-white mb-8 md:mb-10 tracking-tight leading-[1.1]">
                         {(() => {
                             const lines = title.split(',');
@@ -116,7 +116,7 @@ const AboutClient = () => {
             </div>
 
             {/* Notre Histoire */}
-            <section className="container mx-auto max-w-6xl mb-24 md:mb-48 relative z-20 px-6 md:px-0">
+            <section className="container mx-auto max-w-6xl mb-16 md:mb-24 relative z-20 px-6 md:px-0">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-20 items-center">
                     <motion.div
                         initial={{ opacity: 0, x: -50 }}
@@ -186,7 +186,7 @@ const AboutClient = () => {
             </section>
 
             {/* Philosophie & Valeurs */}
-            <section className="py-16 md:py-32 relative overflow-hidden">
+            <section className="py-12 md:py-20 relative overflow-hidden">
                 {/* Background decorative strip */}
                 <div className="absolute inset-0 bg-surface/30 border-y border-white/5 pointer-events-none" />
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,215,0,0.02)_0%,transparent_70%)] pointer-events-none" />
@@ -246,7 +246,7 @@ const AboutClient = () => {
             </section>
 
             {/* Expertise & Leadership */}
-            <section className="container mx-auto max-w-6xl mb-24 md:mb-48 px-6 mt-12 md:mt-20 relative z-10">
+            <section className="container mx-auto max-w-6xl mb-16 md:mb-24 px-6 mt-10 md:mt-16 relative z-10">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 md:gap-16 items-start">
                     {/* Founder Highlight */}
                     <motion.div
@@ -350,7 +350,7 @@ const AboutClient = () => {
                     initial={{ opacity: 0, scale: 0.98 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
-                    className="bg-gradient-to-br from-gray-900 via-surface/40 to-black p-8 md:p-24 rounded-[3rem] md:rounded-[4rem] border border-white/10 shadow-3xl text-center relative overflow-hidden group"
+                    className="bg-gradient-to-br from-gray-900 via-surface/40 to-black p-8 md:p-16 rounded-[3rem] md:rounded-[4rem] border border-white/10 shadow-3xl text-center relative overflow-hidden group"
                 >
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,215,0,0.05)_0%,transparent_70%)]" />
 

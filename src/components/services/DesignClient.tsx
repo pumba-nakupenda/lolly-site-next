@@ -18,7 +18,7 @@ const DesignClient = () => {
     };
 
     return (
-        <div className="pt-24 md:pt-40 pb-20 px-4 md:px-6 min-h-screen relative overflow-hidden bg-black text-white">
+        <div className="pt-32 md:pt-40 pb-20 px-4 md:px-6 relative overflow-hidden bg-black text-white">
             <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
                 <div className="absolute top-[20%] left-[-10%] w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-[120px]" />
                 <div className="absolute bottom-[10%] right-[10%] w-[400px] h-[400px] bg-accent/5 rounded-full blur-[100px]" />
@@ -30,7 +30,7 @@ const DesignClient = () => {
                     animate={{ opacity: 1, y: 0 }}
                     className="text-center mb-16 md:mb-24"
                 >
-                    <span className="bg-purple-500/10 text-purple-400 font-bold tracking-[0.2em] uppercase text-xs px-4 py-2 rounded-full mb-6 inline-block border border-purple-500/20">Identité Visuelle</span>
+                    <span className="text-purple-400 font-bold tracking-[0.2em] uppercase text-[10px] mb-6 inline-block">Identité Visuelle</span>
                     <h1 className="text-4xl md:text-7xl font-serif font-bold mb-8 tracking-tight">
                         Design <span className="text-purple-400 italic">Graphique</span>
                     </h1>
@@ -56,7 +56,7 @@ const DesignClient = () => {
                                 <div className="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center mb-4 group-hover:bg-purple-500/20 transition-colors">
                                     <item.icon className="text-white group-hover:text-purple-400" size={24} />
                                 </div>
-                                <h3 className="font-bold text-lg mb-2">{item.title}</h3>
+                                <p className="font-bold text-lg mb-2">{item.title}</p>
                                 <p className="text-sm text-gray-300">{item.desc}</p>
                             </div>
                         ))}
@@ -223,7 +223,7 @@ const DesignClient = () => {
                     </p>
                     <Button
                         size="lg"
-                        className="rounded-full px-6 md:px-10 py-5 md:py-6 text-sm md:text-lg font-bold bg-purple-500 text-white hover:bg-white hover:text-purple-500 transition-all shadow-lg hover:shadow-purple-500/20 whitespace-normal"
+                        className="rounded-full px-6 md:px-10 py-5 md:py-6 text-sm md:text-lg font-bold bg-purple-700 text-white hover:bg-white hover:text-purple-700 transition-all shadow-lg hover:shadow-purple-500/20 whitespace-normal"
                         onClick={handleContact}
                     >
                         Briefer nos créatifs

@@ -171,7 +171,7 @@ const ServicesClient = ({
     const displayFaqs = dynamicFaqs && dynamicFaqs.length > 0 ? dynamicFaqs : defaultFaqs;
 
     return (
-        <div className="pt-24 md:pt-40 pb-16 md:pb-20 px-0 md:px-6 min-h-screen relative overflow-hidden bg-transparent">
+        <div className="pt-32 md:pt-40 pb-16 md:pb-20 px-0 md:px-6 relative overflow-hidden bg-transparent">
 
             {/* Premium Background Decorative Elements */}
             <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none hidden md:block">
@@ -203,7 +203,7 @@ const ServicesClient = ({
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1, ease: "easeOut" }}
                 >
-                    <span className="bg-primary/10 text-primary font-bold tracking-[0.2em] uppercase text-xs px-4 py-1.5 rounded-full mb-6 inline-block border border-primary/20 backdrop-blur-sm">Notre Art & Manière</span>
+                    <span className="text-primary font-bold tracking-[0.2em] uppercase text-[10px] mb-6 inline-block">Notre Art & Manière</span>
                     <h1 className="text-3xl md:text-8xl font-serif font-bold text-white mb-10 tracking-tight leading-[1.1]">
                         Une méthodologie <br /> qui <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-white to-primary italic pb-1 px-2">garantit</span> le succès
                     </h1>
@@ -658,7 +658,7 @@ const ServicesClient = ({
                 >
                     <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
                     <div className="relative z-10">
-                        <span className="bg-primary/20 text-primary font-bold tracking-[0.2em] uppercase text-[10px] px-4 py-1.5 rounded-full mb-8 inline-block border border-primary/20">Parlons Avenir</span>
+                        <span className="text-primary font-bold tracking-[0.2em] uppercase text-[10px] mb-8 inline-block">Parlons Avenir</span>
                         <h2 className="text-4xl md:text-7xl font-serif font-bold text-white mb-8 tracking-tight leading-tight">
                             Prêt à bousculer <br /> votre <span className="text-primary italic">marché</span> ?
                         </h2>

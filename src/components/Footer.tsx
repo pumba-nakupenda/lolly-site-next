@@ -40,7 +40,7 @@ const Footer = () => {
 
                     {/* Links */}
                     <div className="space-y-4">
-                        <h4 className="text-lg font-bold mb-6 text-secondary uppercase tracking-widest text-sm">Liens Rapides</h4>
+                        <p className="text-lg font-bold mb-6 text-primary uppercase tracking-widest text-sm">Liens Rapides</p>
                         <ul className="space-y-3">
                             <li><Link href="/" className="text-gray-300 hover:text-primary transition-colors py-1 inline-block">Accueil</Link></li>
                             <li><Link href="/services" className="text-gray-300 hover:text-primary transition-colors py-1 inline-block">Services</Link></li>
@@ -52,7 +52,7 @@ const Footer = () => {
 
                     {/* Contact */}
                     <div className="space-y-4">
-                        <h4 className="text-lg font-bold mb-6 text-secondary uppercase tracking-widest text-sm">Contact</h4>
+                        <p className="text-lg font-bold mb-6 text-primary uppercase tracking-widest text-sm">Contact</p>
                         <ul className="space-y-6">
                             <li className="flex flex-col md:flex-row items-center md:items-start gap-3">
                                 <MapPin className="text-primary shrink-0" size={20} />
@@ -70,7 +70,7 @@ const Footer = () => {
                     </div>
                 </div>
 
-                <div className="border-t border-white/5 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center text-gray-500 text-sm gap-4">
+                <div className="border-t border-white/5 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center text-gray-400 text-sm gap-4">
                     <p>&copy; {new Date().getFullYear()} LOLLY Agency. Tous droits réservés.</p>
                     <div className="flex gap-6">
                         <Link href="/legal" className="hover:text-primary transition-colors">Mentions Légales</Link>
