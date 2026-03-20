@@ -29,10 +29,10 @@ const BlogClient = ({ posts }: { posts: Post[] }) => {
                     animate={{ opacity: 1, y: 0 }}
                     className="mb-20 text-center"
                 >
-                    <span className="text-primary font-bold tracking-[0.2em] uppercase text-xs mb-4 block">Lolly Insights</span>
-                    <h1 className="text-5xl md:text-8xl font-serif font-bold text-white mb-8">Le <span className="text-primary italic">Lab</span> de LOLLY</h1>
+                    <span className="text-primary font-bold tracking-[0.2em] uppercase text-xs mb-4 block">LOLLY Blog</span>
+                    <h1 className="text-5xl md:text-8xl font-serif font-bold text-white mb-8">Nos <span className="text-primary italic">Articles</span></h1>
                     <p className="text-gray-400 max-w-2xl mx-auto text-xl font-light leading-relaxed">
-                        Exploration des tendances, stratégies digitales et pépites créatives tout droit venues de Dakar.
+                        Tendances, stratégies digitales et actualités de la communication au Sénégal.
                     </p>
                 </motion.div>
 
@@ -149,7 +149,7 @@ const BlogClient = ({ posts }: { posts: Post[] }) => {
                     </div>
                 ) : (
                     <div className="text-center py-40 border border-dashed border-white/10 rounded-[3rem]">
-                        <p className="text-gray-500 text-2xl font-serif italic">Le labo est en pleine ébullition... Revenez bientôt.</p>
+                        <p className="text-gray-500 text-2xl font-serif italic">De nouveaux articles arrivent bientôt... Restez connectés.</p>
                     </div>
                 )}
             </div>
